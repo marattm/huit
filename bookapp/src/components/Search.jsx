@@ -20,7 +20,8 @@ class Search extends Component {
     };
 
     getBooks(query) {
-        axios.get(`https://www.googleapis.com/books/v1/volumes?q=` + query + `&key=${process.env.REACT_APP_GoogleAPIKey}`)
+        axios.get(`https://www.googleapis.com/books/v1/volumes?q=` + query)
+        // axios.get(`https://www.googleapis.com/books/v1/volumes?q=` + query + `&key=${process.env.REACT_APP_GoogleAPIKey}`)
             .then((res) => { this.setState({ books: res.data.items }); })
             .catch((err) => { console.log(err); });
     };
@@ -187,6 +188,7 @@ class Search extends Component {
                                 value={this.state.query}
                                 onChange={this.handleFormChange}
                             />
+                            
                         </div>
 
                         <input
