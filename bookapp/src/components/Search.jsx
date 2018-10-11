@@ -9,7 +9,7 @@ class Search extends Component {
             title: 'Search books..',
             books: [],
             query: '',
-            type: 'Authors',
+            type: 'relevance',
             option: 'title',
             maxResults: 10,
             startIndex: 0
@@ -33,7 +33,8 @@ class Search extends Component {
                 `https://www.googleapis.com/books/v1/volumes?q=`
                 + query
                 + `&maxResults=` + this.state.maxResults
-                + `&startIndex=` + newStartIndex)
+                + `&startIndex=` + newStartIndex
+                + `&orderBy=` + this.state.type)
                 .then((res) => {
                     this.setState({ 
                         books: res.data.items,
@@ -48,7 +49,8 @@ class Search extends Component {
                 `https://www.googleapis.com/books/v1/volumes?q=`
                 + query
                 + `&maxResults=` + this.state.maxResults
-                + `&startIndex=` + newStartIndex)
+                + `&startIndex=` + newStartIndex
+                + `&orderBy=` + this.state.type)
                 .then((res) => {
                     this.setState({
                         books: res.data.items,
@@ -62,7 +64,8 @@ class Search extends Component {
                 `https://www.googleapis.com/books/v1/volumes?q=`
                 + query
                 + `&maxResults=` + this.state.maxResults
-                + `&startIndex=` + 0)
+                + `&startIndex=` + 0
+                + `&orderBy=` + this.state.type)
                 .then((res) => { 
                     let newStartIndex = 0 + parseInt(this.state.maxResults);                    
                     this.setState({
@@ -259,23 +262,22 @@ class Search extends Component {
                 <Row className="show-grid">
                     <Col md={6} mdOffset={5}>
                         <ButtonGroup >
-                            <ToggleButtonGroup type="radio" name="type" defaultValue={"Books"}>
-                                <ToggleButton value={"Books"} onChange={this.handleToogleChange}>Books</ToggleButton>
-                                <ToggleButton value={"Library"} onChange={this.handleToogleChange}>Library</ToggleButton>
-                                <ToggleButton value={"Users"} onChange={this.handleToogleChange}>Users</ToggleButton>
+                            <ToggleButtonGroup type="radio" name="type" defaultValue={"relevance"}>
+                                <ToggleButton value={"relevance"} onChange={this.handleToogleChange}>Relevance</ToggleButton>
+                                <ToggleButton value={"newest"} onChange={this.handleToogleChange}>Newest</ToggleButton>
                             </ToggleButtonGroup>
                         </ButtonGroup>
                     </Col>
 
-                    <Col md={6} mdOffset={5}>
+                    {/* <Col md={6} mdOffset={5}>
                         <ButtonToolbar >
-                            <ToggleButtonGroup type="radio" name="option" defaultValue={"Authors"}>
+                            <ToggleButtonGroup type="radio" name="option" defaultValue={"Title"}>
+                                <ToggleButton value={"Title"} onChange={this.handleToogleChange}>Title</ToggleButton>
                                 <ToggleButton value={"Authors"} onChange={this.handleToogleChange}>Authors</ToggleButton>
                                 <ToggleButton value={"Publisher"} onChange={this.handleToogleChange}>Publisher</ToggleButton>
-                                <ToggleButton value={"Title"} onChange={this.handleToogleChange}>Title</ToggleButton>
                             </ToggleButtonGroup>
                         </ButtonToolbar>
-                    </Col>
+                    </Col> */}
 
                     <Col md={6} mdOffset={5}>
                         <ButtonToolbar >
