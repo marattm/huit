@@ -34,6 +34,10 @@ class NavBar extends Component {
                             <NavItem eventKey={2}>About</NavItem>
                         </LinkContainer>
                     </Nav>
+                    <Nav pullRight>
+                        <NavItem eventKey={3} href="https://github.com/marattm/huit">Github</NavItem>
+                    </Nav>
+
                 </Navbar.Collapse>
             </Navbar>
         )

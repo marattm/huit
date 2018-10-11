@@ -19,7 +19,8 @@ class About extends Component {
     }
 
     health() {
-        axios.get(`https://www.googleapis.com/books/v1/volumes?q=flowers+inauthor:keyes&key=${process.env.REACT_APP_GoogleAPIKey}`)
+        axios.get(`https://www.googleapis.com/books/v1/volumes?q=flowers+inauthor:keyes`)
+        // axios.get(`https://www.googleapis.com/books/v1/volumes?q=flowers+inauthor:keyes&key=${process.env.REACT_APP_GoogleAPIKey}`)
             .then((res) => {
                 if (this.state.healthData.status === "success") {
                     this.setState({
