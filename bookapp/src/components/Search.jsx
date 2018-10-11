@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { Media, Panel, PanelGroup, Table } from 'react-bootstrap';
+import { Media, Panel, PanelGroup } from 'react-bootstrap';
 
 class Search extends Component {
     constructor(props) {
@@ -60,7 +60,7 @@ class Search extends Component {
             }
         } catch (error) {
             console.log(error);
-            return "No information available.";
+            
         }
     };
     checkAuthors(info) {
@@ -70,7 +70,7 @@ class Search extends Component {
             }
         } catch (error) {
             console.log(error);
-            return "No information available.";
+            
         }
     };
     checkPublishers(info) {
@@ -80,7 +80,7 @@ class Search extends Component {
             }
         } catch (error) {
             console.log(error);
-            return "No information available.";
+            
         }
     };
     checkPublishedDate(info) {
@@ -90,7 +90,7 @@ class Search extends Component {
             }
         } catch (error) {
             console.log(error);
-            return "No information available.";
+            
         }
     };
     checkDescription(info) {
@@ -100,7 +100,72 @@ class Search extends Component {
             }
         } catch (error) {
             console.log(error);
-            return "No information available.";
+            
+        }
+    }; 
+    checkPageCount(info) {
+        try {
+            if (info.pageCount) {
+                return info.pageCount;
+            }
+        } catch (error) {
+            console.log(error);
+            
+        }
+    }; 
+    checkAverageRating(info) {
+        try {
+            if (info.averageRating) {
+                return info.averageRating;
+            }
+        } catch (error) {
+            console.log(error);
+            
+        }
+    }; 
+    checkCategories(info) {
+        try {
+            var result = '';
+            if (info.categories) {
+                for (let i = 0; i < info.categories.length; i++) {
+                    const element = info.categories[i];
+                    result = result + ', ' + element;
+                }
+                return result;
+            }
+        } catch (error) {
+            console.log(error);
+            
+        }
+    }; 
+    checkPreviewLink(info) {
+        try {
+            if (info.webReaderLink) {
+                return info.webReaderLink;
+            }
+        } catch (error) {
+            console.log(error);
+            
+        }
+    }; 
+    checkLanguage(info) {
+        try {
+            if (info.language) {
+                return info.language;
+            }
+        } catch (error) {
+            console.log(error);
+            
+        }
+    }; 
+    checkInfoLink(info) {
+        try {
+            if (info.infoLink) {
+                return info.infoLink;
+            }
+        } catch (error) {
+            console.log(error);
+            
         }
     };
 
@@ -110,8 +175,6 @@ class Search extends Component {
                 <h1> {this.state.title} </h1> <hr /><br />
 
                 <div>
-
-
                     <form onSubmit={(event) => this.handleSearchFormSubmit(event)}>
 
                         <div className="form-group">
@@ -131,11 +194,11 @@ class Search extends Component {
                             className="btn btn-primary btn-lg btn-block"
                             value="Submit"
                         />
-
                     </form>
                 </div>
+
                 <br /><br />
-                {/* This the ACTUAL display of the result list. */}
+
                 <div>
                     {
                         this.state.books.map((book) => {
@@ -146,7 +209,7 @@ class Search extends Component {
                                             <Panel.Title toggle>
                                                 <Media>
                                                     <Media.Left>
-                                                        <img width={64} height={64} src={this.checkThumbnail(book.volumeInfo)}/>
+                                                        <img width={64} height={64} alt={this.checkTitle(book.volumeInfo)} src={this.checkThumbnail(book.volumeInfo)}/>
                                                     </Media.Left>
                                                     <Media.Body>
                                                         <Media.Heading>{this.checkTitle(book.volumeInfo)}</Media.Heading>
@@ -154,28 +217,30 @@ class Search extends Component {
                                                             {this.checkAuthors(book.volumeInfo)} 
                                                             <em>   {this.checkPublishers(book.volumeInfo)}</em> 
                                                             <em>   {this.checkPublishedDate(book.volumeInfo)}</em>
-
                                                         </p>
                                                     </Media.Body>
                                                 </Media>
                                             </Panel.Title>
                                         </Panel.Heading>
                                         <Panel.Body collapsible>
-                                            <p>{this.checkDescription(book.volumeInfo)}</p>
+                                            <p> <b>Description:</b> {this.checkDescription(book.volumeInfo)}</p>
+                                            <p> <b>Average Rating:</b> {this.checkAverageRating(book.volumeInfo)}/5</p>
+                                            <p> <b>Category:</b> {this.checkCategories(book.volumeInfo)}</p>
+                                            <p> <b>Page number:</b> {this.checkPageCount(book.volumeInfo)} pages</p>
+                                            <p> <b>Language:</b> {this.checkLanguage(book.volumeInfo)}</p>
+                                            <p><a href={this.checkPreviewLink(book.accessInfo)}>Preview</a></p>
+                                            <p><a href={this.checkInfoLink(book.volumeInfo)}>More..</a></p>
                                         </Panel.Body>
                                     </Panel>
                                 </PanelGroup>
                             )
                         })
                     }
-
                 </div>
-
             </div>
         )
     };
 }
-
 
 
 
