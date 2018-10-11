@@ -2,6 +2,8 @@
 
 ## BookApp
 
+https://thebookapp.herokuapp.com/
+
 ### Todo and possible improvements
 
 - [ ] Google Books Api exploitation
@@ -19,9 +21,10 @@
     - [x] Display the result with extra information
     - [ ] Highlight the result with the term of the query searched.
     - [ ] Enhanced UI
-        - Better design
-        - More responsive
-- Backend implementation
+        - [ ] Better design
+        - [ ] More responsive
+- [ ] Backend implementation
     - [ ] Account, profile, etc..
     - [ ] My library functionality, etc..
     - [ ] Data processing, ML, suggestion features etc..
+
