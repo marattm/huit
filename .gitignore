@@ -1,3 +1,4 @@
 .env
 ressources/
 __tests__
+.DS_Store

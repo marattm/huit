@@ -11,14 +11,15 @@ class App extends Component {
     constructor() {
         super();
         this.state = {
-            title: 'The Book App',
         };
     };
 
     render() {
         return (
             <div>
-                <NavBar title={this.state.title} />
+                
+                <NavBar/>
+
                 <div className="container"> 
                     <div className="row">
                         <div className="col-lg-12 col-md-6"> <br />

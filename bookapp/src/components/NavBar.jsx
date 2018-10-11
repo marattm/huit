@@ -3,13 +3,20 @@ import { Navbar, Nav, NavItem } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 
 class NavBar extends Component {
+    constructor() {
+        super();
+        this.state = {
+            title: 'The Book App',
+        };
+    };
+
     render() {
         return(
             <Navbar inverse collapseOnSelect >
                 <Navbar.Header>
                     <Navbar.Brand>
                         <LinkContainer to="/">
-                            <span>{this.props.title}</span>
+                            <span>{this.state.title}</span>
                         </LinkContainer>
                     </Navbar.Brand>
                     <Navbar.Toggle />
