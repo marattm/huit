@@ -42,7 +42,8 @@ class Search extends Component {
                 .then((res) => {
                     this.setState({ 
                         books: res.data.items,
-                        startIndex: newStartIndex
+                        startIndex: newStartIndex,
+                        disabled: true
                     });
                 })
                 .catch((err) => { console.log(err); });
@@ -58,7 +59,8 @@ class Search extends Component {
                 .then((res) => {
                     this.setState({
                         books: res.data.items,
-                        startIndex: newStartIndex
+                        startIndex: newStartIndex,
+                        disabled: true
                     });
                 })
                 .catch((err) => { console.log(err); });
@@ -74,7 +76,8 @@ class Search extends Component {
                     let newStartIndex = 0 + parseInt(this.state.maxResults);
                     this.setState({
                         books: res.data.items,
-                        startIndex: newStartIndex
+                        startIndex: newStartIndex,
+                        disabled: true
                     });
                 })
                 .catch((err) => { console.log(err); });
@@ -275,19 +278,36 @@ class Search extends Component {
         }
     }
 
-    displayIndex() {
+    displayIndexUp() {
+        if (this.state.disabled) {
+            if (this.state.startIndex === 0) {
+                return (
+                    < Pager.Item href="#bottom">
+                        Results from {this.state.startIndex}
+                    </Pager.Item >
+                )
+            } else {
+                return (
+                    < Pager.Item href="#bottom">
+                        Results up to {this.state.startIndex}
+                    </Pager.Item >
+                )
+            }
+        }
+    }
+
+    displayIndexBot() {
         if (this.state.startIndex === 0) {
             return (
-                
-                <Badge>
+                < Pager.Item id='bottom' href="#up">
                     Results from {this.state.startIndex}
-                </Badge>
+                </Pager.Item >
             )
         } else {
             return (
-                <Badge>
+                < Pager.Item id='bottom' href="#up">
                     Results up to {this.state.startIndex}
-                </Badge>
+                </Pager.Item >
             )
         }
     }
@@ -327,7 +347,7 @@ class Search extends Component {
     render() {
         return (
             <div>
-                <h1> {this.state.title} </h1><hr/>
+                <h1 id='up'> {this.state.title} </h1><hr/>
                 
 
                 <Form onSubmit={(event) => this.handleSearchFormSubmit(event)}>
@@ -382,9 +402,13 @@ class Search extends Component {
 
                 <Pager>
                     {this.dynamicPreviousButton()}
-                    {this.displayIndex()}
+                    {this.displayIndexUp()}
                     {this.dynamicNextButton()}
                 </Pager>
+
+                {/* <p id='up'></p>
+                <Button><a href='#bottom'>Goto Bot</a></Button> */}
+
 
                 <hr />
 
@@ -422,6 +446,20 @@ class Search extends Component {
                         </PanelGroup>
                     )
                 })}
+
+                <Collapse in={ this.state.disabled }>
+                    <Pager>
+                        {this.dynamicPreviousButton()}
+                        {this.displayIndexBot()}
+                        {this.dynamicNextButton()}
+                    </Pager>
+                </Collapse>
+
+                {/* <Button><a href='#up'>Goto Up</a></Button>
+                <p id='bottom'></p> */}
+                
+
+
 
             </div>
         )
