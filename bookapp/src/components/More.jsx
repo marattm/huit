@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 
-
 class More extends Component {
     constructor() {
         super();
@@ -15,10 +14,5 @@ class More extends Component {
         );
     }
 }
-
-{/* <LinkContainer to="/more">
-    <Button bookData={this.state.books} bsStyle="link"> More..
-                                                </Button>
-</LinkContainer> */}
 
 export default More;

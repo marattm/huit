@@ -7,7 +7,6 @@ import NavBar from './components/NavBar';
 import Search from './components/Search';
 
 
-
 class App extends Component {
     constructor() {
         super();
@@ -37,7 +36,7 @@ class App extends Component {
                                         <About />
                                     )}
                                 />
-
+                                
                             </Switch>
                         </div>
                     </div>
