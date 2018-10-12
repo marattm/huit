@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { Media, Panel, PanelGroup, Form, Collapse, Well, FormGroup, InputGroup, FormControl, ToggleButtonGroup, ToggleButton, ButtonGroup, Button, Pager, Badge, Glyphicon} from 'react-bootstrap';
+import { Media, Panel, PanelGroup, Form, Collapse, FormGroup, InputGroup, FormControl, ToggleButtonGroup, ToggleButton, ButtonGroup, Button, Pager, Glyphicon} from 'react-bootstrap';
 
 class Search extends Component {
     constructor(props) {
@@ -83,7 +83,6 @@ class Search extends Component {
                 .catch((err) => { console.log(err); });
         }
     };
-
 
     clearForm() {
         this.setState({
@@ -313,34 +312,38 @@ class Search extends Component {
     }
 
     dynamicPreviousButton() {
-        if (this.state.startIndex === 0) {
-            return (
-                <Pager.Item disabled previous href="#" name="prev" onClick={this.handlePreviousNext}>
-                    &larr; Prev Page
+        if (this.state.disabled) {
+            if (this.state.startIndex === 0) {
+                return (
+                    <Pager.Item disabled previous href="#" name="prev" onClick={this.handlePreviousNext}>
+                        &larr; Prev Page
+                        </Pager.Item>
+                );
+            } else {
+                return (
+                    <Pager.Item previous href="#" name="prev" onClick={this.handlePreviousNext}>
+                        &larr; Prev Page
                     </Pager.Item>
-            );
-        } else {
-            return (
-                <Pager.Item previous href="#" name="prev" onClick={this.handlePreviousNext}>
-                    &larr; Prev Page
-                </Pager.Item>
-            );
+                );
+            }
         }
     }
 
     dynamicNextButton() {
-        if (this.state.query) {
-            return (
-                <Pager.Item next href="#" name="next" onClick={this.handlePreviousNext}>
-                    Next Page &rarr;
-                </Pager.Item>
-            );
-        } else {
-            return (
-                <Pager.Item disabled next href="#" name="next" onClick={this.handlePreviousNext}>
-                    Next Page &rarr;
-                </Pager.Item>
-            );
+        if (this.state.disabled) {
+            if (this.state.query) {
+                return (
+                    <Pager.Item next href="#" name="next" onClick={this.handlePreviousNext}>
+                        Next Page &rarr;
+                    </Pager.Item>
+                );
+            } else {
+                return (
+                    <Pager.Item disabled next href="#" name="next" onClick={this.handlePreviousNext}>
+                        Next Page &rarr;
+                    </Pager.Item>
+                );
+            }
         }
     }
 
@@ -348,7 +351,6 @@ class Search extends Component {
         return (
             <div>
                 <h1 id='up'> {this.state.title} </h1><hr/>
-                
 
                 <Form onSubmit={(event) => this.handleSearchFormSubmit(event)}>
                     <FormGroup>
@@ -406,10 +408,6 @@ class Search extends Component {
                     {this.dynamicNextButton()}
                 </Pager>
 
-                {/* <p id='up'></p>
-                <Button><a href='#bottom'>Goto Bot</a></Button> */}
-
-
                 <hr />
 
                 {this.state.books.map( (book) => {
@@ -454,13 +452,6 @@ class Search extends Component {
                         {this.dynamicNextButton()}
                     </Pager>
                 </Collapse>
-
-                {/* <Button><a href='#up'>Goto Up</a></Button>
-                <p id='bottom'></p> */}
-                
-
-
-
             </div>
         )
     };
