@@ -21,24 +21,22 @@ class App extends Component {
                 <NavBar/>
 
                 <div className="container"> 
-                    <div className="row">
-                        <div className="col-lg-12 col-md-6"> <br />
-                            <Switch>
+                    <div> <br />
+                        <Switch>
 
-                                <Route 
-                                    exact path='/' render={() => (
-                                        <Search/>
-                                    )} 
-                                />
+                            <Route 
+                                exact path='/' render={() => (
+                                    <Search/>
+                                )} 
+                            />
 
-                                <Route
-                                    exact path='/about' render={() => (
-                                        <About />
-                                    )}
-                                />
-                                
-                            </Switch>
-                        </div>
+                            <Route
+                                exact path='/about' render={() => (
+                                    <About />
+                                )}
+                            />
+                            
+                        </Switch>
                     </div>
                 </div>
             </div>
