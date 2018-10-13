@@ -12,8 +12,7 @@ https://thebookapp.herokuapp.com/
         - [x] Sorting
         - [x] Print Type
         - [x] Filtering
-        - [ ] Projection
-        - [ ] Download a format
+        - [x] Language
     - [ ] Bookshelves
     - [ ] Bookshelves "My Librairy"
 - [x] Data display (Frontend)
@@ -21,6 +20,7 @@ https://thebookapp.herokuapp.com/
     - [x] Display the result with extra information
     - [ ] Highlight the result with the term of the query searched
     - [ ] Enhanced UI
+        - [ ] Session local storage (as long as there is no backend and need to auth)
         - [ ] Better design
         - [ ] More responsive
 - [ ] Backend implementation
