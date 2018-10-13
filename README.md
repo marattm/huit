@@ -20,7 +20,7 @@ https://thebookapp.herokuapp.com/
     - [x] Display the result with extra information
     - [ ] Highlight the result with the term of the query searched
     - [ ] Enhanced UI
-        - [ ] Session local storage (as long as there is no backend and need to auth)
+        - [x] Local storage saved state
         - [ ] Better design
         - [ ] More responsive
 - [ ] Backend implementation
