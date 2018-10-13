@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { Media, Panel, PanelGroup, Form, Collapse, FormGroup, InputGroup, FormControl, ToggleButtonGroup, ToggleButton, ButtonGroup, Button, Pager, Glyphicon} from 'react-bootstrap';
+import { Media, Panel, PanelGroup, Form, Collapse, FormGroup, InputGroup, FormControl, ToggleButtonGroup, ToggleButton, ButtonGroup, Button, Pager, Glyphicon, DropdownButton, MenuItem} from 'react-bootstrap';
+
 
 class Search extends Component {
     constructor(props) {
@@ -17,13 +18,13 @@ class Search extends Component {
             disabled: false, 
             open: true, 
             printType: 'all',
-            filter: 'all'
-
-
+            filter: 'all', 
+            language: 'all'
         };
         this.handleSearchFormSubmit = this.handleSearchFormSubmit.bind(this);
         this.handleFormChange = this.handleFormChange.bind(this);
         this.handleToogleChange = this.handleToogleChange.bind(this);
+        this.handleSelectLanguageChange = this.handleSelectLanguageChange.bind(this);
         this.handlePreviousNext = this.handlePreviousNext.bind(this);
     };
 
@@ -42,7 +43,10 @@ class Search extends Component {
             fullUrl = fullUrl + `&filter=` + this.state.filter;
         }
         if (this.state.printType !== 'all') {
-            fullUrl = fullUrl +`&printType=` + this.state.printType;
+            fullUrl = fullUrl + `&printType=` + this.state.printType;
+        }
+        if (this.state.language !== 'all') {
+            fullUrl = fullUrl + `&langRestrict=` + this.state.language;
         }
         return fullUrl
     }
@@ -113,6 +117,18 @@ class Search extends Component {
         obj[event.target.name] = event.target.value;
         this.setState(obj);
     };
+
+    handleSelectLanguageChange(eventKey) {
+        this.setState({
+            language: eventKey
+        });
+    };
+    handleSelectDownloadableChange(eventKey) {
+        this.setState({
+            downloadable: eventKey
+        });
+    };
+
 
     startIndexUp() {
         let newStartIndex = parseInt(this.state.startIndex) + parseInt(this.state.maxResults);
@@ -377,6 +393,7 @@ class Search extends Component {
                                 <Button
                                     type="submit"
                                     className="btn-primary"
+                                    
                                 >
                                     Search
                                 </Button>
@@ -414,6 +431,14 @@ class Search extends Component {
                             </ToggleButtonGroup>
                         </ButtonGroup>
                         <br />
+                        <ButtonGroup >
+                            <DropdownButton title="language" id="bg-nested-dropdown">
+                                <MenuItem eventKey="all" onSelect={this.handleSelectLanguageChange}>All</MenuItem>
+                                <MenuItem eventKey="eng" onSelect={this.handleSelectLanguageChange}>Eng</MenuItem>
+                                <MenuItem eventKey="fr" onSelect={this.handleSelectLanguageChange}>Fr</MenuItem>
+                            </DropdownButton>
+                        </ButtonGroup>
+                        <br/>
                         <ButtonGroup>
                             <ToggleButtonGroup type="radio" name="maxResults" defaultValue={"10"}>
                                 <ToggleButton value={"10"} onChange={this.handleToogleChange}>10</ToggleButton>
