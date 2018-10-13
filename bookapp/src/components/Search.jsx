@@ -12,14 +12,15 @@ class Search extends Component {
             query: '',
             type: 'relevance',
             option: 'title',
-            maxResults: 10,
+            maxResults: "10",
             startIndex: 0,
             oldStartIndex: 0, 
             disabled: false, 
             open: true, 
             printType: 'all',
             filter: 'all', 
-            language: 'all'
+            language: 'all', 
+            previousButtonDisabled: true
         };
         this.handleSearchFormSubmit = this.handleSearchFormSubmit.bind(this);
         this.handleFormChange = this.handleFormChange.bind(this);
@@ -80,6 +81,12 @@ class Search extends Component {
     }
 
     queryMaker(query, newStartIndex) {
+        /** 
+         * Create query url based on the query input and the filter parameters.
+         * @param {string} query - The user input query.
+         * @param {string} newStartIndex - The new start index for paging.
+         * @return {string} full query URL.
+         */
         var fullUrl = `https://www.googleapis.com/books/v1/volumes?q=`
             + query
             + `&maxResults=` + this.state.maxResults
@@ -98,6 +105,11 @@ class Search extends Component {
     }
 
     getBooks(query, movement) {
+        /**
+         * Get the books list by send a request using Google API, and update the state.
+         * @param {string} query - The user input query.
+         * @param {string} movement - Selector to distinguish if the user use the search, previous or next button.
+         */
         if (movement === "next") {
             let newStartIndex = parseInt(this.state.startIndex) + parseInt(this.state.maxResults);
             axios.get(this.queryMaker(query, newStartIndex))
@@ -105,7 +117,8 @@ class Search extends Component {
                     this.setState({ 
                         books: res.data.items,
                         startIndex: newStartIndex,
-                        disabled: true
+                        disabled: true, 
+                        previousButtonDisabled: false
                     });
                 })
                 .catch((err) => { console.log(err); });
@@ -117,7 +130,8 @@ class Search extends Component {
                     this.setState({
                         books: res.data.items,
                         startIndex: newStartIndex,
-                        disabled: true
+                        disabled: true, 
+                        previousButtonDisabled: false
                     });
                 })
                 .catch((err) => { console.log(err); });
@@ -130,7 +144,8 @@ class Search extends Component {
                     this.setState({
                         books: res.data.items,
                         startIndex: newStartIndex,
-                        disabled: true
+                        disabled: true, 
+                        previousButtonDisabled: true
                     });
                 })
                 .catch((err) => { console.log(err); });
@@ -138,6 +153,9 @@ class Search extends Component {
     };
 
     clearForm() {
+        /**
+         * Clear the form.
+         */
         this.setState({
             query: '', 
             startIndex: 0
@@ -145,12 +163,20 @@ class Search extends Component {
     };
 
     handleFormChange(event) {
+        /**
+         * Update the state for every input in the form field.
+         * @param {object} event - Carry the name and the value in the form field.
+         */
         const obj = this.state;
         obj[event.target.name] = event.target.value;
         this.setState(obj);
     };
 
     handleSearchFormSubmit(event) {
+        /**
+         * Submit the query to the getBook() function.
+         * @param {object} event
+         */
         event.preventDefault();
         let query;
         query = this.state.query;
@@ -158,38 +184,40 @@ class Search extends Component {
     };
 
     handleToogleChange(event) {
+        /**
+         * Update the value of the event target state.
+         * @param {object} event - Carry the name and the value from the toogle button.
+         */
         event.preventDefault();
         const obj = this.state;
-        obj[event.target.name] = event.target.value;
+        obj[event.target.name] = String(event.target.value);
         this.setState(obj);
     };
 
     handleSelectLanguageChange(eventKey) {
+        /**
+         * Update the value of the language state.
+         * @param {object} eventKey - Value of the dropdown button.
+         */
         this.setState({
             language: eventKey
         });
     };
     handleSelectDownloadableChange(eventKey) {
+        /**
+         * Update the value of the language state.
+         * @param {object} eventKey - Value of the dropdown button.
+         */
         this.setState({
             downloadable: eventKey
         });
     };
 
-
-    startIndexUp() {
-        let newStartIndex = parseInt(this.state.startIndex) + parseInt(this.state.maxResults);
-        this.setState({
-            startIndex: newStartIndex
-        });
-    };
-    startIndexDown() {
-        let newStartIndex = parseInt(this.state.startIndex) - parseInt(this.state.maxResults);
-        this.setState({
-            startIndex: newStartIndex
-        });
-    };
-
     handlePreviousNext(event) {
+        /**
+         * Trigger the getBook() for the previous and next button case.
+         * @param {object} event - Carry the target name, either prev or next.
+         */
         if (event.target.name === "next") {
             this.getBooks(this.state.query, "next");
             let newStartIndex = 0 + parseInt(this.state.maxResults);
@@ -209,6 +237,11 @@ class Search extends Component {
     };
 
     checkThumbnail(info) {
+        /**
+         * Check if the thumbnail info os available in the response json from the API call.
+         * @param {json} info - Book information in JSON.
+         * @return {string} URL to the book's thumbnail.
+         */
         try {
             if (info.imageLinks.smallThumbnail) {
                 return info.imageLinks.smallThumbnail;
@@ -218,6 +251,11 @@ class Search extends Component {
         }
     };
     checkTitle(info) {
+        /**
+         * Check if the thumbnail info os available in the response json from the API call.
+         * @param {json} info - Book information in JSON.
+         * @return {string} Book's title.
+         */
         try {
             if (info.title) {
                 return info.title;
@@ -228,6 +266,11 @@ class Search extends Component {
         }
     };
     checkAuthors(info) {
+        /**
+         * Check if the thumbnail info os available in the response json from the API call.
+         * @param {json} info - Book information in JSON.
+         * @return {string} Book's authors.
+         */
         try {
             if (info.authors) {
                 return info.authors;
@@ -238,6 +281,11 @@ class Search extends Component {
         }
     };
     checkPublishers(info) {
+        /**
+         * Check if the thumbnail info os available in the response json from the API call.
+         * @param {json} info - Book information in JSON.
+         * @return {string} Book's publisher.
+         */
         try {
             if (info.publisher) {
                 return info.publisher;
@@ -248,6 +296,11 @@ class Search extends Component {
         }
     };
     checkPublishedDate(info) {
+        /**
+         * Check if the thumbnail info os available in the response json from the API call.
+         * @param {json} info - Book information in JSON.
+         * @return {string} Book's publish date.
+         */
         try {
             if (info.publishedDate) {
                 return info.publishedDate;
@@ -258,6 +311,11 @@ class Search extends Component {
         }
     };
     checkDescription(info) {
+        /**
+         * Check if the thumbnail info os available in the response json from the API call.
+         * @param {json} info - Book information in JSON.
+         * @return {string} Book's description.
+         */
         try {
             if (info.description) {
                 return info.description;
@@ -268,6 +326,11 @@ class Search extends Component {
         }
     }; 
     checkPageCount(info) {
+        /**
+         * Check if the thumbnail info os available in the response json from the API call.
+         * @param {json} info - Book information in JSON.
+         * @return {string} Book's page count.
+         */
         try {
             if (info.pageCount) {
                 return info.pageCount;
@@ -278,6 +341,11 @@ class Search extends Component {
         }
     }; 
     checkAverageRating(info) {
+        /**
+         * Check if the thumbnail info os available in the response json from the API call.
+         * @param {json} info - Book information in JSON.
+         * @return {string} Book's average rating.
+         */
         try {
             if (info.averageRating) {
                 return info.averageRating;
@@ -288,6 +356,11 @@ class Search extends Component {
         }
     }; 
     checkCategories(info) {
+        /**
+         * Check if the thumbnail info os available in the response json from the API call.
+         * @param {json} info - Book information in JSON.
+         * @return {string} Book's categories.
+         */
         try {
             var result = '';
             if (info.categories) {
@@ -303,6 +376,11 @@ class Search extends Component {
         }
     }; 
     checkPreviewLink(info) {
+        /**
+         * Check if the thumbnail info os available in the response json from the API call.
+         * @param {json} info - Book information in JSON.
+         * @return {string} Book's web reader link.
+         */
         try {
             if (info.webReaderLink) {
                 return info.webReaderLink;
@@ -313,6 +391,11 @@ class Search extends Component {
         }
     }; 
     checkLanguage(info) {
+        /**
+         * Check if the thumbnail info os available in the response json from the API call.
+         * @param {json} info - Book information in JSON.
+         * @return {string} Book's language.
+         */
         try {
             if (info.language) {
                 return info.language;
@@ -323,6 +406,11 @@ class Search extends Component {
         }
     }; 
     checkInfoLink(info) {
+        /**
+         * Check if the thumbnail info os available in the response json from the API call.
+         * @param {json} info - Book information in JSON.
+         * @return {string} Book's information link.
+         */
         try {
             if (info.infoLink) {
                 return info.infoLink;
@@ -333,16 +421,10 @@ class Search extends Component {
         }
     };
 
-    endIndex() {
-        if (this.state.startIndex === 0) {
-            return 0    
-        }
-        else {
-            return parseInt(this.state.oldStartIndex) + parseInt(this.state.maxResults)
-        }
-    }
-
-    displayIndexUp() {
+    displayIndexTop() {
+        /**
+         * Display the paging result button at the top of the result page.
+         */
         if (this.state.disabled) {
             if (this.state.startIndex === 0) {
                 return (
@@ -361,6 +443,9 @@ class Search extends Component {
     }
 
     displayIndexBot() {
+        /**
+         * Display the paging result button at the bottom of the result page.
+         */
         if (this.state.startIndex === 0) {
             return (
                 < Pager.Item id='bottom' href="#up">
@@ -377,8 +462,11 @@ class Search extends Component {
     }
 
     dynamicPreviousButton() {
+        /**
+         * Disable or enable the previous button.
+         */
         if (this.state.disabled) {
-            if (this.state.startIndex === 0) {
+            if (this.state.startIndex === 0 || this.state.previousButtonDisabled) {
                 return (
                     <Pager.Item disabled previous href="#" name="prev" onClick={this.handlePreviousNext}>
                         &larr; Prev Page
@@ -395,6 +483,9 @@ class Search extends Component {
     }
 
     dynamicNextButton() {
+        /**
+         * Disable or enable the previous button.
+         */
         if (this.state.disabled) {
             if (this.state.query) {
                 return (
@@ -452,14 +543,14 @@ class Search extends Component {
                     <div>
                     {/* <Pager> */}
                         <ButtonGroup >
-                            <ToggleButtonGroup type="radio" name="type" defaultValue={"relevance"}>
+                            <ToggleButtonGroup type="radio" name="type" defaultValue={this.state.type}>
                                 <ToggleButton value={"relevance"} onChange={this.handleToogleChange}>Relevance</ToggleButton>
                                 <ToggleButton value={"newest"} onChange={this.handleToogleChange}>Newest</ToggleButton>
                             </ToggleButtonGroup>
                         </ButtonGroup>
                         <br />
                         <ButtonGroup >
-                            <ToggleButtonGroup type="radio" name="printType" defaultValue={"all"}>
+                            <ToggleButtonGroup type="radio" name="printType" defaultValue={this.state.printType}>
                                 <ToggleButton value={"all"} onChange={this.handleToogleChange}>All</ToggleButton>
                                 <ToggleButton value={"books"} onChange={this.handleToogleChange}>Books</ToggleButton>
                                 <ToggleButton value={"magazine"} onChange={this.handleToogleChange}>Magazine</ToggleButton>
@@ -467,7 +558,7 @@ class Search extends Component {
                         </ButtonGroup>
                         <br />
                         <ButtonGroup >
-                            <ToggleButtonGroup type="radio" name="filter" defaultValue={"all"}>
+                            <ToggleButtonGroup type="radio" name="filter" defaultValue={this.state.filter}>
                                 <ToggleButton value={"all"} onChange={this.handleToogleChange}>All</ToggleButton>
                                 <ToggleButton value={"partial"} onChange={this.handleToogleChange}>Partial</ToggleButton>
                                 <ToggleButton value={"full"} onChange={this.handleToogleChange}>Full</ToggleButton>
@@ -486,7 +577,7 @@ class Search extends Component {
                         </ButtonGroup>
                         <br/>
                         <ButtonGroup>
-                            <ToggleButtonGroup type="radio" name="maxResults" defaultValue={"10"}>
+                            <ToggleButtonGroup type="radio" name="maxResults" defaultValue={this.state.maxResults}>
                                 <ToggleButton value={"10"} onChange={this.handleToogleChange}>10</ToggleButton>
                                 <ToggleButton value={"20"} onChange={this.handleToogleChange}>20</ToggleButton>
                                 <ToggleButton value={"30"} onChange={this.handleToogleChange}>30</ToggleButton>
@@ -499,7 +590,7 @@ class Search extends Component {
 
                 <Pager>
                     {this.dynamicPreviousButton()}
-                    {this.displayIndexUp()}
+                    {this.displayIndexTop()}
                     {this.dynamicNextButton()}
                 </Pager>
 
