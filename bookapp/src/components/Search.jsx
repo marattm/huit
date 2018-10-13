@@ -15,7 +15,9 @@ class Search extends Component {
             startIndex: 0,
             oldStartIndex: 0, 
             disabled: false, 
-            open: true
+            open: true, 
+            printType: 'all',
+            filter: 'all'
 
 
         };
@@ -30,15 +32,25 @@ class Search extends Component {
         this.render();
     };
 
+    queryMaker(query, newStartIndex) {
+        var fullUrl = `https://www.googleapis.com/books/v1/volumes?q=`
+            + query
+            + `&maxResults=` + this.state.maxResults
+            + `&startIndex=` + newStartIndex
+            + `&orderBy=` + this.state.type;
+        if (this.state.filter !== 'all') {
+            fullUrl = fullUrl + `&filter=` + this.state.filter;
+        }
+        if (this.state.printType !== 'all') {
+            fullUrl = fullUrl +`&printType=` + this.state.printType;
+        }
+        return fullUrl
+    }
+
     getBooks(query, movement) {
         if (movement === "next") {
             let newStartIndex = parseInt(this.state.startIndex) + parseInt(this.state.maxResults);
-            axios.get(
-                `https://www.googleapis.com/books/v1/volumes?q=`
-                + query
-                + `&maxResults=` + this.state.maxResults
-                + `&startIndex=` + newStartIndex
-                + `&orderBy=` + this.state.type)
+            axios.get(this.queryMaker(query, newStartIndex))
                 .then((res) => {
                     this.setState({ 
                         books: res.data.items,
@@ -50,12 +62,7 @@ class Search extends Component {
         }
         else if (movement === "prev") {
             let newStartIndex = parseInt(this.state.startIndex) - parseInt(this.state.maxResults);
-            axios.get(
-                `https://www.googleapis.com/books/v1/volumes?q=`
-                + query
-                + `&maxResults=` + this.state.maxResults
-                + `&startIndex=` + newStartIndex
-                + `&orderBy=` + this.state.type)
+            axios.get(this.queryMaker(query, newStartIndex))
                 .then((res) => {
                     this.setState({
                         books: res.data.items,
@@ -66,12 +73,8 @@ class Search extends Component {
                 .catch((err) => { console.log(err); });
         }
         else {
-            axios.get(
-                `https://www.googleapis.com/books/v1/volumes?q=`
-                + query
-                + `&maxResults=` + this.state.maxResults
-                + `&startIndex=` + 0
-                + `&orderBy=` + this.state.type)
+            let newStartIndex = 0;
+            axios.get(this.queryMaker(query, newStartIndex))
                 .then((res) => { 
                     let newStartIndex = 0 + parseInt(this.state.maxResults);
                     this.setState({
@@ -383,11 +386,31 @@ class Search extends Component {
                 </Form>
 
                 <Collapse in={this.state.open}>
-                    <Pager>
+                    <div>
+                    {/* <Pager> */}
                         <ButtonGroup >
                             <ToggleButtonGroup type="radio" name="type" defaultValue={"relevance"}>
                                 <ToggleButton value={"relevance"} onChange={this.handleToogleChange}>Relevance</ToggleButton>
                                 <ToggleButton value={"newest"} onChange={this.handleToogleChange}>Newest</ToggleButton>
+                            </ToggleButtonGroup>
+                        </ButtonGroup>
+                        <br />
+                        <ButtonGroup >
+                            <ToggleButtonGroup type="radio" name="printType" defaultValue={"all"}>
+                                <ToggleButton value={"all"} onChange={this.handleToogleChange}>All</ToggleButton>
+                                <ToggleButton value={"books"} onChange={this.handleToogleChange}>Books</ToggleButton>
+                                <ToggleButton value={"magazine"} onChange={this.handleToogleChange}>Magazine</ToggleButton>
+                            </ToggleButtonGroup>
+                        </ButtonGroup>
+                        <br />
+                        <ButtonGroup >
+                            <ToggleButtonGroup type="radio" name="filter" defaultValue={"all"}>
+                                <ToggleButton value={"all"} onChange={this.handleToogleChange}>All</ToggleButton>
+                                <ToggleButton value={"partial"} onChange={this.handleToogleChange}>Partial</ToggleButton>
+                                <ToggleButton value={"full"} onChange={this.handleToogleChange}>Full</ToggleButton>
+                                <ToggleButton value={"free-ebooks"} onChange={this.handleToogleChange}>Free</ToggleButton>
+                                <ToggleButton value={"paid-ebooks"} onChange={this.handleToogleChange}>Paid</ToggleButton>
+                                <ToggleButton value={"ebooks"} onChange={this.handleToogleChange}>Google ebooks</ToggleButton>
                             </ToggleButtonGroup>
                         </ButtonGroup>
                         <br />
@@ -399,7 +422,8 @@ class Search extends Component {
                                 <ToggleButton value={"40"} onChange={this.handleToogleChange}>40</ToggleButton>
                             </ToggleButtonGroup>
                         </ButtonGroup>
-                    </Pager>
+                    {/* </Pager> */}
+                    </div>
                 </Collapse>
 
                 <Pager>

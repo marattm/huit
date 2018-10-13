@@ -10,8 +10,8 @@ https://thebookapp.herokuapp.com/
     - [x] Volumes
         - [x] Pagination
         - [x] Sorting
-        - [ ] Print Type
-        - [ ] Filtering
+        - [x] Print Type
+        - [x] Filtering
         - [ ] Projection
         - [ ] Download a format
     - [ ] Bookshelves
@@ -28,6 +28,7 @@ https://thebookapp.herokuapp.com/
     - [ ] My library functionality, etc..
     - [ ] Data processing, ML, suggestion features etc..
 - [ ] Tests
+- [ ] Refactor
 
 ### Get started
 
