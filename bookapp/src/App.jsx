@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import { Switch, Route } from 'react-router-dom'
 
 
-import About from './components/Common/About';
-import NavBar from './components/Common/NavBar';
-import Search from './components/Search/Search';
+import About from './components/common/About';
+import NavBar from './components/common/NavBar';
+import Search from './components/search/Search';
 
 
 class App extends Component {

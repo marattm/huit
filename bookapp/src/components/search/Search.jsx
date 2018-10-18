@@ -3,7 +3,7 @@ import axios from 'axios';
 import { Collapse} from 'react-bootstrap';
 
 import SearchForm from "./SearchForm";
-import SearchResult from './SearchResult';
+import SearchResults from './SearchResults';
 import Pagination from './SearchPagination';
 import FilterOptions from './SearchFilterOptions';
 
@@ -277,7 +277,7 @@ class Search extends Component {
 
                 <hr />
                 {/* RESULT BLOCK */}
-                <SearchResult books={this.state.books}/>
+                <SearchResults books={this.state.books}/>
 
 
                 {/* PAGINATION BOTTOM */}

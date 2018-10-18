@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Media, Panel, PanelGroup} from 'react-bootstrap';
 
 
-class SearchResult extends Component {
+class SearchResults extends Component {
     constructor(props) {
         super(props);
         this.state = {};
@@ -200,7 +200,8 @@ class SearchResult extends Component {
     render() {
         return (
             <div>
-                {this.props.books.map( (book) => {
+                {this.props.books ?
+                    this.props.books.map( (book) => {
                     return (
                         <PanelGroup accordion key={book.id} id={"panel-group-" + book.id}>
                             <Panel eventKey="1" bsStyle="info" id={"panel-" + book.id}>
@@ -233,10 +234,11 @@ class SearchResult extends Component {
                             </Panel>
                         </PanelGroup>
                     )
-                })}
+                })
+                : "No results"}
             </div>
         )
     };
 }
 
-export default SearchResult;
+export default SearchResults;
