@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import { Switch, Route } from 'react-router-dom'
 
 
-import About from './components/About';
-import NavBar from './components/NavBar';
-import Search from './components/Search';
+import About from './components/Common/About';
+import NavBar from './components/Common/NavBar';
+import Search from './components/Search/Search';
 
 
 class App extends Component {
@@ -16,9 +16,9 @@ class App extends Component {
 
     render() {
         return (
-            <div>
+            <div id='up'>
 
-                <NavBar/>
+                <NavBar />
 
                 <div className="container"> 
                     <div> <br />
