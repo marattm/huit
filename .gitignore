@@ -1,4 +1,4 @@
 .env
 ressources/
-__tests__
+__snapshots__
 .DS_Store
