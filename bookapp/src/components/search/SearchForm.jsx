@@ -1,11 +1,15 @@
 import React, { Component } from 'react';
-import { Form, FormGroup, InputGroup, FormControl, Button} from 'react-bootstrap';
+import { Form, FormGroup, InputGroup, FormControl, Button, Glyphicon} from 'react-bootstrap';
+
+import FilterOptions from './SearchFilterOptions';
 
 
 class SearchForm extends Component {
     constructor(props) {
         super(props);
-        this.state = {}
+        this.state = {
+            open: true,
+        }
     };
 
     componentDidMount() {
@@ -19,10 +23,15 @@ class SearchForm extends Component {
     render() {
         return (
             <div>
-                {/* SEARCH BLOCK: Input */}
+                {/* SEARCH BLOCK */}
                 <Form onSubmit={(event) => this.props.handleSearchFormSubmit(event)}>
                     <FormGroup>
                         <InputGroup>
+                            <InputGroup.Button>
+                                <Button onClick={() => this.setState({ open: !this.state.open })}>
+                                    <Glyphicon glyph="align-justify" />
+                                </Button>
+                            </InputGroup.Button>
 
                             <FormControl 
                                 name="query"
@@ -44,6 +53,18 @@ class SearchForm extends Component {
                         </InputGroup>
                     </FormGroup>
                 </Form>
+
+                {/* FILTER BLOCK */}
+                <FilterOptions
+                    open={this.state.open}
+                    type={this.props.type}
+                    printType={this.props.printType}
+                    filter={this.props.filter}
+                    language={this.props.language}
+                    maxResults={this.props.maxResults}
+                    handleToggleChange={this.props.handleToggleChange}
+                    handleSelectLanguageChange={this.props.handleSelectLanguageChange}
+                />
             </div>
         )
     };

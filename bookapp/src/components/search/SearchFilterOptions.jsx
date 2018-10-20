@@ -127,27 +127,27 @@ class FilterOptions extends Component {
                     <div>
                         <ButtonGroup >
                             <ToggleButtonGroup type="radio" name="type" defaultValue={this.props.type}>
-                                <ToggleButton value={"relevance"} onChange={this.props.handleToogleChange}>Relevance</ToggleButton>
-                                <ToggleButton value={"newest"} onChange={this.props.handleToogleChange}>Newest</ToggleButton>
+                                <ToggleButton value={"relevance"} onChange={this.props.handleToggleChange}>Relevance</ToggleButton>
+                                <ToggleButton value={"newest"} onChange={this.props.handleToggleChange}>Newest</ToggleButton>
                             </ToggleButtonGroup>
                         </ButtonGroup>
                         <br />
                         <ButtonGroup >
                             <ToggleButtonGroup type="radio" name="printType" defaultValue={this.props.printType}>
-                                <ToggleButton value={"all"} onChange={this.props.handleToogleChange}>All</ToggleButton>
-                                <ToggleButton value={"books"} onChange={this.props.handleToogleChange}>Books</ToggleButton>
-                                <ToggleButton value={"magazines"} onChange={this.props.handleToogleChange}>Magazines</ToggleButton>
+                                <ToggleButton value={"all"} onChange={this.props.handleToggleChange}>All</ToggleButton>
+                                <ToggleButton value={"books"} onChange={this.props.handleToggleChange}>Books</ToggleButton>
+                                <ToggleButton value={"magazines"} onChange={this.props.handleToggleChange}>Magazines</ToggleButton>
                             </ToggleButtonGroup>
                         </ButtonGroup>
                         <br />
                         <ButtonGroup >
                             <ToggleButtonGroup type="radio" name="filter" defaultValue={this.props.filter}>
-                                <ToggleButton value={"all"} onChange={this.props.handleToogleChange}>All</ToggleButton>
-                                <ToggleButton value={"partial"} onChange={this.props.handleToogleChange}>Partial</ToggleButton>
-                                <ToggleButton value={"full"} onChange={this.props.handleToogleChange}>Full</ToggleButton>
-                                <ToggleButton value={"free-ebooks"} onChange={this.props.handleToogleChange}>Free</ToggleButton>
-                                <ToggleButton value={"paid-ebooks"} onChange={this.props.handleToogleChange}>Paid</ToggleButton>
-                                <ToggleButton value={"ebooks"} onChange={this.props.handleToogleChange}>Google ebooks</ToggleButton>
+                                <ToggleButton value={"all"} onChange={this.props.handleToggleChange}>All</ToggleButton>
+                                <ToggleButton value={"partial"} onChange={this.props.handleToggleChange}>Partial</ToggleButton>
+                                <ToggleButton value={"full"} onChange={this.props.handleToggleChange}>Full</ToggleButton>
+                                <ToggleButton value={"free-ebooks"} onChange={this.props.handleToggleChange}>Free</ToggleButton>
+                                <ToggleButton value={"paid-ebooks"} onChange={this.props.handleToggleChange}>Paid</ToggleButton>
+                                <ToggleButton value={"ebooks"} onChange={this.props.handleToggleChange}>Google ebooks</ToggleButton>
                             </ToggleButtonGroup>
                         </ButtonGroup>
                         <br />
@@ -155,7 +155,7 @@ class FilterOptions extends Component {
                             <DropdownButton title="language" id="bg-nested-dropdown">
                                 {this.state.parameters.map( (lang) => {
                                     return(
-                                        <MenuItem eventKey={lang.value} onSelect={this.props.handleSelectLanguageChange}>{lang.title}</MenuItem>
+                                        <MenuItem key={lang.value} id={lang.value} eventKey={lang.value} onSelect={this.props.handleSelectLanguageChange}>{lang.title}</MenuItem>
                                     )
                                 })}
                             </DropdownButton>
@@ -163,10 +163,10 @@ class FilterOptions extends Component {
                         <br />
                         <ButtonGroup>
                             <ToggleButtonGroup type="radio" name="maxResults" defaultValue={this.props.maxResults}>
-                                <ToggleButton value={"10"} onChange={this.props.handleToogleChange}>10</ToggleButton>
-                                <ToggleButton value={"20"} onChange={this.props.handleToogleChange}>20</ToggleButton>
-                                <ToggleButton value={"30"} onChange={this.props.handleToogleChange}>30</ToggleButton>
-                                <ToggleButton value={"40"} onChange={this.props.handleToogleChange}>40</ToggleButton>
+                                <ToggleButton value={"10"} onChange={this.props.handleToggleChange}>10</ToggleButton>
+                                <ToggleButton value={"20"} onChange={this.props.handleToggleChange}>20</ToggleButton>
+                                <ToggleButton value={"30"} onChange={this.props.handleToggleChange}>30</ToggleButton>
+                                <ToggleButton value={"40"} onChange={this.props.handleToggleChange}>40</ToggleButton>
                             </ToggleButtonGroup>
                         </ButtonGroup>
                     </div>

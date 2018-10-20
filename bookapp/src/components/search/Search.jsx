@@ -5,7 +5,7 @@ import { Collapse} from 'react-bootstrap';
 import SearchForm from "./SearchForm";
 import SearchResults from './SearchResults';
 import Pagination from './SearchPagination';
-import FilterOptions from './SearchFilterOptions';
+// import FilterOptions from './SearchFilterOptions';
 
 class Search extends Component {
     constructor(props) {
@@ -23,12 +23,11 @@ class Search extends Component {
             startIndex: 0,
             oldStartIndex: 0, 
             disabled: false, 
-            open: true, 
             previousButtonDisabled: true
         };
         this.handleSearchFormSubmit = this.handleSearchFormSubmit.bind(this);
         this.handleFormChange = this.handleFormChange.bind(this);
-        this.handleToogleChange = this.handleToogleChange.bind(this);
+        this.handleToggleChange = this.handleToggleChange.bind(this);
         this.handleSelectLanguageChange = this.handleSelectLanguageChange.bind(this);
         this.handlePreviousNext = this.handlePreviousNext.bind(this);
     };
@@ -187,7 +186,7 @@ class Search extends Component {
         this.getBooks(query);
     };
 
-    handleToogleChange(event) {
+    handleToggleChange(event) {
         /**
          * Update the value of the event target state.
          * @param {object} event - Carry the name and the value from the toogle button.
@@ -247,23 +246,19 @@ class Search extends Component {
 
                 {/* SEARCH INPUT */}
                 <SearchForm
+                    // search
                     query={this.state.query}
                     handleSearchFormSubmit={this.handleSearchFormSubmit}
                     handleFormChange={this.handleFormChange}
-                />
 
-                {/* FILTER BLOCK */}
-                <FilterOptions
-                    open={this.state.open}
                     type={this.state.type}
                     printType={this.state.printType}
                     filter={this.state.filter}
                     language={this.state.language}
                     maxResults={this.state.maxResults}
-                    handleToogleChange={this.handleToogleChange}
+                    handleToggleChange={this.handleToggleChange}
                     handleSelectLanguageChange={this.handleSelectLanguageChange}
                 />
-
 
                 {/* PAGINATION TOP */}
                 <Pagination

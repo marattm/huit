@@ -10,8 +10,7 @@ import Search from './components/search/Search';
 class App extends Component {
     constructor() {
         super();
-        this.state = {
-        };
+        this.state = {};
     };
 
     render() {
@@ -21,23 +20,17 @@ class App extends Component {
                 <NavBar />
 
                 <div className="container"> 
-                    <div> <br />
-                        <Switch>
-
-                            <Route 
-                                exact path='/' render={() => (
-                                    <Search/>
-                                )} 
-                            />
-
-                            <Route
-                                exact path='/about' render={() => (
-                                    <About />
-                                )}
-                            />
-                            
-                        </Switch>
-                    </div>
+                    <br />
+                    <Switch>
+                        <Route 
+                            exact path='/'
+                            render={() => (<Search/>)} 
+                        />
+                        <Route
+                            exact path='/about'
+                            render={() => (<About />)}
+                        />
+                    </Switch>
                 </div>
             </div>
         )
