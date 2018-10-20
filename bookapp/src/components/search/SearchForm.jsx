@@ -13,14 +13,22 @@ class SearchForm extends Component {
     };
 
     componentDidMount() {
-        // this.clearForm();
         this.render();
     };
 
-    componentWillUnmount() {
-    }
-
     render() {
+        const {
+            query,
+            handleFormChange,
+            type,
+            printType,
+            filter,
+            language,
+            maxResults,
+            handleToggleChange,
+            handleSelectLanguageChange
+        } = this.props;
+        
         return (
             <div>
                 {/* SEARCH BLOCK */}
@@ -39,8 +47,8 @@ class SearchForm extends Component {
                                 type="text"
                                 placeholder="Al Gore.."
                                 required
-                                value={this.props.query}
-                                onChange={this.props.handleFormChange}
+                                value={query}
+                                onChange={handleFormChange}
                                     />
                             <InputGroup.Button>
                                 <Button
@@ -57,13 +65,13 @@ class SearchForm extends Component {
                 {/* FILTER BLOCK */}
                 <FilterOptions
                     open={this.state.open}
-                    type={this.props.type}
-                    printType={this.props.printType}
-                    filter={this.props.filter}
-                    language={this.props.language}
-                    maxResults={this.props.maxResults}
-                    handleToggleChange={this.props.handleToggleChange}
-                    handleSelectLanguageChange={this.props.handleSelectLanguageChange}
+                    type={type}
+                    printType={printType}
+                    filter={filter}
+                    language={language}
+                    maxResults={maxResults}
+                    handleToggleChange={handleToggleChange}
+                    handleSelectLanguageChange={handleSelectLanguageChange}
                 />
             </div>
         )
