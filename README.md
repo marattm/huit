@@ -40,6 +40,7 @@ npm start
 ### Test
 
 ```
+cd bookapp/
 npm test --verbose
 ```
 
