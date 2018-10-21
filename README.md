@@ -2,7 +2,8 @@
 
 ## BookApp
 
-https://thebookapp.maratmonnie.com/
+http://thebookapp.maratmonnie.com/
+https://thebookapp.herokuapp.com/
 
 ### Todo and possible improvements
 
@@ -35,14 +36,14 @@ https://thebookapp.maratmonnie.com/
     - [x] 1st iteration of refactoring app -> better structure for testing
     - [ ] ...
 
-### Get started
+### Getting started
 
 ```
 cd bookapp/
 npm i
 npm start
 ```
-### Test
+### Testing
 
 ```
 cd bookapp/
