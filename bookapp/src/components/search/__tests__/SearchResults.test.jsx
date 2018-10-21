@@ -1,7 +1,8 @@
 import React from 'react';
-import { shallow, mount } from 'enzyme';
+import { mount } from 'enzyme';
 
 import SearchResults from '../SearchResults';
+
 
 
 describe('SearchResults renders properly', () => {

@@ -85,27 +85,8 @@ describe('Search renders properly', () => {
         expect(wrapper.state().previousButtonDisabled).toBe(true);
     })
 
-
-
-
-
-    // it('should have props for handleSearchFormSubmit, handleFormChange, handleToogleChange, handleSelectLanguageChange, handlePreviousNext', () => {
-    //     expect(wrapper.state().title).to.contain(title);
-    
-    //     expect(wrapper.props().handleFormChange).to.be.defined;
-    //     expect(wrapper.props().handleToogleChange).to.be.defined;
-    //     expect(wrapper.props().handleSelectLanguageChange).to.be.defined;
-    //     expect(wrapper.props().handlePreviousNext).to.be.defined;
-    // })
-
     it('should render correctly', () => {
         let wrapper = shallow(<Search title={title} />);
         expect(wrapper).toMatchSnapshot();
     });
 })
-
-
-// expect(wrapper.find('.foo-bar')).to.have.lengthOf(3);
-// expect(wrapper.text()).to.contain('unique');
-// expect(wrapper.text()).to.equal('foo');
-// wrapper.find('button').simulate('click');
