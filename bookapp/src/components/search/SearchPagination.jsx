@@ -63,7 +63,7 @@ class Pagination extends Component {
                 return (
                     <Pager.Item disabled previous href="#" name="prev" onClick={this.props.handlePreviousNext}>
                         &larr; Prev {this.props.maxResults}
-                        </Pager.Item>
+                    </Pager.Item>
                 );
             } else {
                 return (
