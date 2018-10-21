@@ -2,7 +2,7 @@
 
 ## BookApp
 
-https://thebookapp.herokuapp.com/
+https://thebookapp.maratmonnie.com/
 
 ### Todo and possible improvements
 
@@ -27,8 +27,13 @@ https://thebookapp.herokuapp.com/
     - [ ] Account, profile, etc..
     - [ ] My library functionality, etc..
     - [ ] Data processing, ML, suggestion features etc..
-- [ ] Tests
-- [ ] Refactor
+- [x] Tests
+    - [x] Unit testing, almost all static rendering is covered
+    - [ ] Unit testing for logic, work in progress..
+    - [ ] Integration testing
+- [x] Refactor
+    - [x] 1st iteration of refactoring app -> better structure for testing
+    - [ ] ...
 
 ### Get started
 
