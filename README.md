@@ -34,7 +34,8 @@ https://thebookapp.herokuapp.com/
     - [ ] Integration testing
 - [x] Refactor
     - [x] 1st iteration of refactoring app -> better structure for testing
-    - [ ] ...
+    - [ ] 2nd iteration:
+        - [ ] ..
 
 ### Getting started
 
