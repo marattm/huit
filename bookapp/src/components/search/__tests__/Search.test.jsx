@@ -78,7 +78,7 @@ describe('Search renders properly', () => {
     })
     it('should have an initial disabled state', () => {
         let wrapper = shallow(<Search title={title} />);
-        expect(wrapper.state().disabled).toBe(false);
+        expect(wrapper.state().displayDisabled).toBe(false);
     })
     it('should have an initial previousButtonDisabled state', () => {
         let wrapper = shallow(<Search title={title} />);

@@ -3,7 +3,7 @@ import { mount } from 'enzyme';
 
 import SearchPagination from '../SearchPagination';
 
-const disabled = [false, true];
+const displayDisabled = [false, true];
 const previousButtonDisabled = [false, true];
 const startIndex = [0,10];
 const query = ['', 'something'];
@@ -24,7 +24,7 @@ describe('SearchPagination renders properly', () => {
 
     beforeEach(() => {
         props = {
-            disabled: undefined,
+            displayDisabled: undefined,
             previousButtonDisabled: undefined,
             startIndex: undefined,
             query: undefined,
@@ -46,7 +46,7 @@ describe('SearchPagination renders properly', () => {
     describe(" CASE 1", () => {
         beforeEach(() => {
             props.previousButtonDisabled = false;
-            props.disabled = false;
+            props.displayDisabled = false;
             props.startIndex = 0;
             props.query = '';
             props.bot = false;
@@ -60,7 +60,7 @@ describe('SearchPagination renders properly', () => {
     describe(" CASE 2", () => {
         beforeEach(() => {
             props.previousButtonDisabled = false;
-            props.disabled = false;
+            props.displayDisabled = false;
             props.startIndex = 0;
             props.query = 'something';
             props.bot = false;
@@ -74,7 +74,7 @@ describe('SearchPagination renders properly', () => {
     describe(" CASE 3", () => {
         beforeEach(() => {
             props.previousButtonDisabled = false;
-            props.disabled = false;
+            props.displayDisabled = false;
             props.startIndex = 10;
             props.query = '';
             props.bot = false;
@@ -88,7 +88,7 @@ describe('SearchPagination renders properly', () => {
     describe(" CASE 4", () => {
         beforeEach(() => {
             props.previousButtonDisabled = false;
-            props.disabled = false;
+            props.displayDisabled = false;
             props.startIndex = 10;
             props.query = 'something';
             props.bot = false;
@@ -101,7 +101,7 @@ describe('SearchPagination renders properly', () => {
     });
     describe(" CASE 5", () => {
         beforeEach(() => {
-            props.disabled = false;
+            props.displayDisabled = false;
             props.previousButtonDisabled = true;
             props.startIndex = 0;
             props.query = '';
@@ -115,7 +115,7 @@ describe('SearchPagination renders properly', () => {
     });
     describe(" CASE 6", () => {
         beforeEach(() => {
-            props.disabled = false;
+            props.displayDisabled = false;
             props.previousButtonDisabled = true;
             props.startIndex = 0;
             props.query = 'something';
@@ -129,7 +129,7 @@ describe('SearchPagination renders properly', () => {
     });
     describe(" CASE 7", () => {
         beforeEach(() => {
-            props.disabled = false;
+            props.displayDisabled = false;
             props.previousButtonDisabled = true;
             props.startIndex = 10;
             props.query = '';
@@ -143,7 +143,7 @@ describe('SearchPagination renders properly', () => {
     });
     describe(" CASE 8", () => {
         beforeEach(() => {
-            props.disabled = false;
+            props.displayDisabled = false;
             props.previousButtonDisabled = true;
             props.startIndex = 10;
             props.query = 'something';
@@ -157,7 +157,7 @@ describe('SearchPagination renders properly', () => {
     });
     describe(" CASE 9", () => {
         beforeEach(() => {
-            props.disabled = true;
+            props.displayDisabled = true;
             props.previousButtonDisabled = false;
             props.startIndex = 0;
             props.query = '';
@@ -182,7 +182,7 @@ describe('SearchPagination renders properly', () => {
     });
     describe(" CASE 10", () => {
         beforeEach(() => {
-            props.disabled = true;
+            props.displayDisabled = true;
             props.previousButtonDisabled = false;
             props.startIndex = 0;
             props.query = 'something';
@@ -207,7 +207,7 @@ describe('SearchPagination renders properly', () => {
     });
     describe(" CASE 11", () => {
         beforeEach(() => {
-            props.disabled = true;
+            props.displayDisabled = true;
             props.previousButtonDisabled = false;
             props.startIndex = 10;
             props.query = '';
@@ -232,7 +232,7 @@ describe('SearchPagination renders properly', () => {
     });
     describe(" CASE 12", () => {
         beforeEach(() => {
-            props.disabled = true;
+            props.displayDisabled = true;
             props.previousButtonDisabled = false;
             props.startIndex = 10;
             props.query = 'something';
@@ -257,7 +257,7 @@ describe('SearchPagination renders properly', () => {
     });
     describe(" CASE 13", () => {
         beforeEach(() => {
-            props.disabled = true;
+            props.displayDisabled = true;
             props.previousButtonDisabled = true;
             props.startIndex = 0;
             props.query = '';
@@ -282,7 +282,7 @@ describe('SearchPagination renders properly', () => {
     });
     describe(" CASE 14", () => {
         beforeEach(() => {
-            props.disabled = true;
+            props.displayDisabled = true;
             props.previousButtonDisabled = true;
             props.startIndex = 0;
             props.query = 'something';
@@ -307,7 +307,7 @@ describe('SearchPagination renders properly', () => {
     });
     describe(" CASE 15", () => {
         beforeEach(() => {
-            props.disabled = true;
+            props.displayDisabled = true;
             props.previousButtonDisabled = true;
             props.startIndex = 10;
             props.query = '';
@@ -332,7 +332,7 @@ describe('SearchPagination renders properly', () => {
     });
     describe(" CASE 16", () => {
         beforeEach(() => {
-            props.disabled = true;
+            props.displayDisabled = true;
             props.previousButtonDisabled = true;
             props.startIndex = 10;
             props.query = 'something';
@@ -360,7 +360,7 @@ describe('SearchPagination renders properly', () => {
         describe(" CASE 1 BIS", () => {
             beforeEach(() => {
                 props.previousButtonDisabled = false;
-                props.disabled = false;
+                props.displayDisabled = false;
                 props.startIndex = 0;
                 props.query = '';
                 props.bot = true;
@@ -374,7 +374,7 @@ describe('SearchPagination renders properly', () => {
         describe(" CASE 2 BIS", () => {
             beforeEach(() => {
                 props.previousButtonDisabled = false;
-                props.disabled = false;
+                props.displayDisabled = false;
                 props.startIndex = 0;
                 props.query = 'something';
                 props.bot = true;
@@ -388,7 +388,7 @@ describe('SearchPagination renders properly', () => {
         describe(" CASE 3 BIS", () => {
             beforeEach(() => {
                 props.previousButtonDisabled = false;
-                props.disabled = false;
+                props.displayDisabled = false;
                 props.startIndex = 10;
                 props.query = '';
                 props.bot = true;
@@ -402,7 +402,7 @@ describe('SearchPagination renders properly', () => {
         describe(" CASE 4 BIS", () => {
             beforeEach(() => {
                 props.previousButtonDisabled = false;
-                props.disabled = false;
+                props.displayDisabled = false;
                 props.startIndex = 10;
                 props.query = 'something';
                 props.bot = true;
@@ -415,7 +415,7 @@ describe('SearchPagination renders properly', () => {
         });
         describe(" CASE 5 BIS", () => {
             beforeEach(() => {
-                props.disabled = false;
+                props.displayDisabled = false;
                 props.previousButtonDisabled = true;
                 props.startIndex = 0;
                 props.query = '';
@@ -429,7 +429,7 @@ describe('SearchPagination renders properly', () => {
         });
         describe(" CASE 6 BIS", () => {
             beforeEach(() => {
-                props.disabled = false;
+                props.displayDisabled = false;
                 props.previousButtonDisabled = true;
                 props.startIndex = 0;
                 props.query = 'something';
@@ -443,7 +443,7 @@ describe('SearchPagination renders properly', () => {
         });
         describe(" CASE 7 BIS", () => {
             beforeEach(() => {
-                props.disabled = false;
+                props.displayDisabled = false;
                 props.previousButtonDisabled = true;
                 props.startIndex = 10;
                 props.query = '';
@@ -457,7 +457,7 @@ describe('SearchPagination renders properly', () => {
         });
         describe(" CASE 8 BIS", () => {
             beforeEach(() => {
-                props.disabled = false;
+                props.displayDisabled = false;
                 props.previousButtonDisabled = true;
                 props.startIndex = 10;
                 props.query = 'something';
@@ -471,7 +471,7 @@ describe('SearchPagination renders properly', () => {
         });
         describe(" CASE 9 BIS", () => {
             beforeEach(() => {
-                props.disabled = true;
+                props.displayDisabled = true;
                 props.previousButtonDisabled = false;
                 props.startIndex = 0;
                 props.query = '';
@@ -496,7 +496,7 @@ describe('SearchPagination renders properly', () => {
         });
         describe(" CASE 10 BIS", () => {
             beforeEach(() => {
-                props.disabled = true;
+                props.displayDisabled = true;
                 props.previousButtonDisabled = false;
                 props.startIndex = 0;
                 props.query = 'something';
@@ -521,7 +521,7 @@ describe('SearchPagination renders properly', () => {
         });
         describe(" CASE 11 BIS", () => {
             beforeEach(() => {
-                props.disabled = true;
+                props.displayDisabled = true;
                 props.previousButtonDisabled = false;
                 props.startIndex = 10;
                 props.query = '';
@@ -546,7 +546,7 @@ describe('SearchPagination renders properly', () => {
         });
         describe(" CASE 12 BIS", () => {
             beforeEach(() => {
-                props.disabled = true;
+                props.displayDisabled = true;
                 props.previousButtonDisabled = false;
                 props.startIndex = 10;
                 props.query = 'something';
@@ -571,7 +571,7 @@ describe('SearchPagination renders properly', () => {
         });
         describe(" CASE 13 BIS", () => {
             beforeEach(() => {
-                props.disabled = true;
+                props.displayDisabled = true;
                 props.previousButtonDisabled = true;
                 props.startIndex = 0;
                 props.query = '';
@@ -596,7 +596,7 @@ describe('SearchPagination renders properly', () => {
         });
         describe(" CASE 14 BIS", () => {
             beforeEach(() => {
-                props.disabled = true;
+                props.displayDisabled = true;
                 props.previousButtonDisabled = true;
                 props.startIndex = 0;
                 props.query = 'something';
@@ -621,7 +621,7 @@ describe('SearchPagination renders properly', () => {
         });
         describe(" CASE 15 BIS", () => {
             beforeEach(() => {
-                props.disabled = true;
+                props.displayDisabled = true;
                 props.previousButtonDisabled = true;
                 props.startIndex = 10;
                 props.query = '';
@@ -646,7 +646,7 @@ describe('SearchPagination renders properly', () => {
         });
         describe(" CASE 16 BIS", () => {
             beforeEach(() => {
-                props.disabled = true;
+                props.displayDisabled = true;
                 props.previousButtonDisabled = true;
                 props.startIndex = 10;
                 props.query = 'something';

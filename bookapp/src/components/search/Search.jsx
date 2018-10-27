@@ -22,7 +22,7 @@ class Search extends Component {
             option: 'title',
             startIndex: 0,
             oldStartIndex: 0, 
-            disabled: false, 
+            displayDisabled: false, 
             previousButtonDisabled: true
         };
         this.handleSearchFormSubmit = this.handleSearchFormSubmit.bind(this);
@@ -120,7 +120,7 @@ class Search extends Component {
                     this.setState({ 
                         books: res.data.items,
                         startIndex: newStartIndex,
-                        disabled: true, 
+                        displayDisabled: true, 
                         previousButtonDisabled: false
                     });
                 })
@@ -133,7 +133,7 @@ class Search extends Component {
                     this.setState({
                         books: res.data.items,
                         startIndex: newStartIndex,
-                        disabled: true, 
+                        displayDisabled: true, 
                         previousButtonDisabled: false
                     });
                 })
@@ -147,7 +147,7 @@ class Search extends Component {
                     this.setState({
                         books: res.data.items,
                         startIndex: newStartIndex,
-                        disabled: true, 
+                        displayDisabled: true, 
                         previousButtonDisabled: true
                     });
                 })
@@ -262,7 +262,7 @@ class Search extends Component {
 
                 {/* PAGINATION TOP */}
                 <Pagination
-                    disabled={this.state.disabled}
+                    displayDisabled={this.state.displayDisabled}
                     startIndex={this.state.startIndex}
                     previousButtonDisabled={this.state.previousButtonDisabled}
                     query={this.state.query}
@@ -276,10 +276,10 @@ class Search extends Component {
 
 
                 {/* PAGINATION BOTTOM */}
-                <Collapse in={ this.state.disabled }>
+                <Collapse in={this.state.displayDisabled }>
                     <Pagination
                     bot={true}
-                    disabled={this.state.disabled}
+                    displayDisabled={this.state.displayDisabled}
                     startIndex={this.state.startIndex}
                     previousButtonDisabled={this.state.previousButtonDisabled}
                     query={this.state.query}

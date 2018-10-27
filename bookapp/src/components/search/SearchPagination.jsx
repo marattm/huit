@@ -16,7 +16,7 @@ class Pagination extends Component {
         /**
          * Display the paging result button at the top of the result page.
          */
-        if (this.props.disabled) {
+        if (this.props.displayDisabled) {
             if (this.props.startIndex === 0) {
                 return (
                     < Pager.Item href="#bottom">
@@ -37,7 +37,7 @@ class Pagination extends Component {
         /**
          * Display the paging result button at the bottom of the result page.
          */
-        if (this.props.disabled) {
+        if (this.props.displayDisabled) {
             if (this.props.startIndex === 0) {
                 return (
                     < Pager.Item id='bottom' href="#up">
@@ -58,7 +58,7 @@ class Pagination extends Component {
         /**
          * Disable or enable the previous button.
          */
-        if (this.props.disabled) {
+        if (this.props.displayDisabled) {
             if (this.props.startIndex === 0 || this.props.previousButtonDisabled) {
                 return (
                     <Pager.Item disabled previous href="#" name="prev" onClick={this.props.handlePreviousNext}>
@@ -79,7 +79,7 @@ class Pagination extends Component {
         /**
          * Disable or enable the previous button.
          */
-        if (this.props.disabled) {
+        if (this.props.displayDisabled) {
             if (this.props.query) {
                 return (
                     <Pager.Item next href="#" name="next" onClick={this.props.handlePreviousNext}>
