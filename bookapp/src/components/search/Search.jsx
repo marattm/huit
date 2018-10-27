@@ -4,8 +4,7 @@ import { Collapse} from 'react-bootstrap';
 
 import SearchForm from "./SearchForm";
 import SearchResults from './SearchResults';
-import Pagination from './SearchPagination';
-// import FilterOptions from './SearchFilterOptions';
+import SearchPagination from './SearchPagination';
 
 class Search extends Component {
     constructor(props) {
@@ -30,57 +29,11 @@ class Search extends Component {
         this.handleToggleChange = this.handleToggleChange.bind(this);
         this.handleSelectLanguageChange = this.handleSelectLanguageChange.bind(this);
         this.handlePreviousNext = this.handlePreviousNext.bind(this);
-    };
+    }
 
     componentDidMount() {
         this.clearForm();
         this.render();
-        // this.hydrateStateWithLocalStorage();
-
-        // add event listener to save state to localStorage
-        // when user leaves/refreshes the page
-        // window.addEventListener(
-        //     "beforeunload",
-        //     this.saveStateToLocalStorage.bind(this)
-        // );
-    };
-
-    componentWillUnmount() {
-        // window.removeEventListener(
-        //     "beforeunload",
-        //     this.saveStateToLocalStorage.bind(this)
-        // );
-
-        // saves if component has a chance to unmount
-        // this.saveStateToLocalStorage();
-    }
-
-    hydrateStateWithLocalStorage() {
-        // for all items in state
-        for (let key in this.state) {
-            // if the key exists in localStorage
-            if (localStorage.hasOwnProperty(key)) {
-                // get the key's value from localStorage
-                let value = localStorage.getItem(key);
-
-                // parse the localStorage string and setState
-                try {
-                    value = JSON.parse(value);
-                    this.setState({ [key]: value });
-                } catch (e) {
-                    // handle empty string
-                    this.setState({ [key]: value });
-                }
-            }
-        }
-    }
-
-    saveStateToLocalStorage() {
-        // for every item in React state
-        for (let key in this.state) {
-            // save to localStorage
-            localStorage.setItem(key, JSON.stringify(this.state[key]));
-        }
     }
 
     makeQuery(query, newStartIndex) {
@@ -153,7 +106,7 @@ class Search extends Component {
                 })
                 .catch((err) => { console.log(err); });
         }
-    };
+    }
 
     clearForm() {
         /**
@@ -163,7 +116,7 @@ class Search extends Component {
             query: '', 
             startIndex: 0
         });
-    };
+    }
 
     handleFormChange(event) {
         /**
@@ -173,7 +126,7 @@ class Search extends Component {
         const obj = this.state;
         obj[event.target.name] = event.target.value;
         this.setState(obj);
-    };
+    }
 
     handleSearchFormSubmit(event) {
         /**
@@ -184,18 +137,18 @@ class Search extends Component {
         let query;
         query = this.state.query;
         this.getBooks(query);
-    };
+    }
 
     handleToggleChange(event) {
         /**
          * Update the value of the event target state.
-         * @param {object} event - Carry the name and the value from the toogle button.
+         * @param {object} event - Carry the name and the value from the toggle button.
          */
         event.preventDefault();
         const obj = this.state;
         obj[event.target.name] = String(event.target.value);
         this.setState(obj);
-    };
+    }
 
     handleSelectLanguageChange(eventKey) {
         /**
@@ -205,7 +158,7 @@ class Search extends Component {
         this.setState({
             language: eventKey
         });
-    };
+    }
     handleSelectDownloadableChange(eventKey) {
         /**
          * Update the value of the language state.
@@ -214,7 +167,7 @@ class Search extends Component {
         this.setState({
             downloadable: eventKey
         });
-    };
+    }
 
     handlePreviousNext(event) {
         /**
@@ -237,7 +190,7 @@ class Search extends Component {
                 });
             }
         }
-    };
+    }
 
     render() {
         return (
@@ -261,7 +214,7 @@ class Search extends Component {
                 />
 
                 {/* PAGINATION TOP */}
-                <Pagination
+                <SearchPagination
                     displayDisabled={this.state.displayDisabled}
                     startIndex={this.state.startIndex}
                     previousButtonDisabled={this.state.previousButtonDisabled}
@@ -277,7 +230,7 @@ class Search extends Component {
 
                 {/* PAGINATION BOTTOM */}
                 <Collapse in={this.state.displayDisabled }>
-                    <Pagination
+                    <SearchPagination
                     bot={true}
                     displayDisabled={this.state.displayDisabled}
                     startIndex={this.state.startIndex}
@@ -289,7 +242,7 @@ class Search extends Component {
                 </Collapse>
             </div>
         )
-    };
+    }
 }
 
 

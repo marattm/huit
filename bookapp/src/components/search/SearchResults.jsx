@@ -6,15 +6,15 @@ class SearchResults extends Component {
     constructor(props) {
         super(props);
         this.state = {};
-    };
+    }
 
     componentDidMount() {
         this.render();
-    };
+    }
 
     checkThumbnail(info) {
         /**
-         * Check if the thumbnail info os available in the response json from the API call.
+         * Check if the thumbnail info is available in the response json from the API call.
          * @param {json} info - Book information in JSON.
          * @return {string} URL to the book's thumbnail.
          */
@@ -25,10 +25,10 @@ class SearchResults extends Component {
         } catch (error) {
             console.log(error)
         }
-    };
+    }
     checkTitle(info) {
         /**
-         * Check if the thumbnail info os available in the response json from the API call.
+         * Check if the title info is available in the response json from the API call.
          * @param {json} info - Book information in JSON.
          * @return {string} Book's title.
          */
@@ -40,10 +40,10 @@ class SearchResults extends Component {
             console.log(error);
             
         }
-    };
+    }
     checkAuthors(info) {
         /**
-         * Check if the thumbnail info os available in the response json from the API call.
+         * Check if the authors info is available in the response json from the API call.
          * @param {json} info - Book information in JSON.
          * @return {string} Book's authors.
          */
@@ -55,10 +55,10 @@ class SearchResults extends Component {
             console.log(error);
             
         }
-    };
+    }
     checkPublishers(info) {
         /**
-         * Check if the thumbnail info os available in the response json from the API call.
+         * Check if the pulishers info is available in the response json from the API call.
          * @param {json} info - Book information in JSON.
          * @return {string} Book's publisher.
          */
@@ -70,10 +70,10 @@ class SearchResults extends Component {
             console.log(error);
             
         }
-    };
+    }
     checkPublishedDate(info) {
         /**
-         * Check if the thumbnail info os available in the response json from the API call.
+         * Check if the published date info is available in the response json from the API call.
          * @param {json} info - Book information in JSON.
          * @return {string} Book's publish date.
          */
@@ -85,10 +85,10 @@ class SearchResults extends Component {
             console.log(error);
             
         }
-    };
+    }
     checkDescription(info) {
         /**
-         * Check if the thumbnail info os available in the response json from the API call.
+         * Check if the description info is available in the response json from the API call.
          * @param {json} info - Book information in JSON.
          * @return {string} Book's description.
          */
@@ -103,7 +103,7 @@ class SearchResults extends Component {
     }; 
     checkPageCount(info) {
         /**
-         * Check if the thumbnail info os available in the response json from the API call.
+         * Check if the page count info is available in the response json from the API call.
          * @param {json} info - Book information in JSON.
          * @return {string} Book's page count.
          */
@@ -115,10 +115,10 @@ class SearchResults extends Component {
             console.log(error);
             
         }
-    }; 
+    }
     checkAverageRating(info) {
         /**
-         * Check if the thumbnail info os available in the response json from the API call.
+         * Check if the average rating info is available in the response json from the API call.
          * @param {json} info - Book information in JSON.
          * @return {string} Book's average rating.
          */
@@ -130,10 +130,10 @@ class SearchResults extends Component {
             console.log(error);
             
         }
-    }; 
+    }
     checkCategories(info) {
         /**
-         * Check if the thumbnail info os available in the response json from the API call.
+         * Check if the categories info is available in the response json from the API call.
          * @param {json} info - Book information in JSON.
          * @return {string} Book's categories.
          */
@@ -150,10 +150,10 @@ class SearchResults extends Component {
             console.log(error);
             
         }
-    }; 
+    }
     checkPreviewLink(info) {
         /**
-         * Check if the thumbnail info os available in the response json from the API call.
+         * Check if the preview link info is available in the response json from the API call.
          * @param {json} info - Book information in JSON.
          * @return {string} Book's web reader link.
          */
@@ -168,7 +168,7 @@ class SearchResults extends Component {
     }; 
     checkLanguage(info) {
         /**
-         * Check if the thumbnail info os available in the response json from the API call.
+         * Check if the language info is available in the response json from the API call.
          * @param {json} info - Book information in JSON.
          * @return {string} Book's language.
          */
@@ -180,10 +180,10 @@ class SearchResults extends Component {
             console.log(error);
             
         }
-    }; 
+    }
     checkInfoLink(info) {
         /**
-         * Check if the thumbnail info os available in the response json from the API call.
+         * Check if the info link info is available in the response json from the API call.
          * @param {json} info - Book information in JSON.
          * @return {string} Book's information link.
          */
@@ -195,7 +195,7 @@ class SearchResults extends Component {
             console.log(error);
             
         }
-    };
+    }
 
     render() {
         return (
@@ -238,7 +238,7 @@ class SearchResults extends Component {
                 : "No results"}
             </div>
         )
-    };
+    }
 }
 
 export default SearchResults;

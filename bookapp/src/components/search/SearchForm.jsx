@@ -10,11 +10,11 @@ class SearchForm extends Component {
         this.state = {
             open: true,
         }
-    };
+    }
 
     componentDidMount() {
         this.render();
-    };
+    }
 
     render() {
         const {
@@ -75,7 +75,7 @@ class SearchForm extends Component {
                 />
             </div>
         )
-    };
+    }
 }
 
 

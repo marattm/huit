@@ -12,7 +12,7 @@ class About extends Component {
             }
         };
         this.checkHealth = this.checkHealth.bind(this);
-    };
+    }
 
     componentDidMount() {
         this.checkHealth();  
@@ -20,7 +20,6 @@ class About extends Component {
 
     checkHealth() {
         axios.get(`https://www.googleapis.com/books/v1/volumes?q=flowers+inauthor:keyes`)
-        // axios.get(`https://www.googleapis.com/books/v1/volumes?q=flowers+inauthor:keyes&key=${process.env.REACT_APP_GoogleAPIKey}`)
             .then((res) => {
                 if (this.state.healthData.status === "success") {
                     this.setState({
@@ -39,7 +38,7 @@ class About extends Component {
                 }
             })
             .catch((err) => { console.log(err); });
-    };
+    }
 
     render() {
         return (
@@ -55,10 +54,8 @@ class About extends Component {
                 <p>{this.state.healthData.message}</p>
             </div>
         )
-    };
+    }
 }
-
-
 
 
 export default About;

@@ -114,11 +114,11 @@ class FilterOptions extends Component {
                 { value: "zu", title: "Zulu" },
             ]
         }
-    };
+    }
 
     componentDidMount() {
         this.render();
-    };
+    }
 
     render() {
         const {
@@ -182,7 +182,7 @@ class FilterOptions extends Component {
                 </Collapse>
             </div>
         )
-    };
+    }
 }
 
 

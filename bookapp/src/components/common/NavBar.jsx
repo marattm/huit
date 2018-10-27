@@ -8,7 +8,7 @@ class NavBar extends Component {
         this.state = {
             title: 'The Book App',
         };
-    };
+    }
 
     render() {
         return(
@@ -41,7 +41,7 @@ class NavBar extends Component {
                 </Navbar.Collapse>
             </Navbar>
         )
-    };
+    }
 }
 
 export default NavBar;

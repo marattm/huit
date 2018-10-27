@@ -27,9 +27,9 @@ describe('Search renders properly', () => {
         let element_searchResult = wrapper.find('SearchResults');
         expect(element_searchResult.length).toBe(1);
     })
-    it('should render Pagination component properly', () => {
+    it('should render SearchPagination component properly', () => {
         let wrapper = shallow(<Search title={title} />);
-        let element_pagination = wrapper.find('Pagination');
+        let element_pagination = wrapper.find('SearchPagination');
         expect(element_pagination.length).toBe(2);
     })
     it('should have an initial title state', () => {

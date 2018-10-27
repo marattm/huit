@@ -486,7 +486,7 @@ describe('SearchPagination renders properly', () => {
                 expect(element.get(0).props.children.props.disabled).toBe(true); // meaning disabled button
                 expect(element.get(1).props.children.props.children[0]).toBe("Results from "); // depend on the startIndex === 0
                 expect(element.get(1).props.children.props.children[1]).toBe(props.startIndex);
-                expect(element.get(1).props.children.props.href).toBe('#up');
+                expect(element.get(1).props.children.props.href).toBe('#top');
                 expect(element.get(1).props.children.props.disabled).toBe(false);
                 expect(element.get(2).props.children.props.children[0]).toBe("Next  ");
                 expect(element.get(2).props.children.props.children[2]).toBe(" →");
@@ -511,7 +511,7 @@ describe('SearchPagination renders properly', () => {
                 expect(element.get(0).props.children.props.disabled).toBe(true); // meaning disabled button
                 expect(element.get(1).props.children.props.children[0]).toBe("Results from "); // depend on the startIndex === 0
                 expect(element.get(1).props.children.props.children[1]).toBe(props.startIndex);
-                expect(element.get(1).props.children.props.href).toBe('#up');
+                expect(element.get(1).props.children.props.href).toBe('#top');
                 expect(element.get(1).props.children.props.disabled).toBe(false);
                 expect(element.get(2).props.children.props.children[0]).toBe("Next  ");
                 expect(element.get(2).props.children.props.children[2]).toBe(" →");
@@ -536,7 +536,7 @@ describe('SearchPagination renders properly', () => {
                 expect(element.get(0).props.children.props.disabled).toBe(false); // meaning disabled button
                 expect(element.get(1).props.children.props.children[0]).toBe("Results up to "); // depend on the startIndex === 0
                 expect(element.get(1).props.children.props.children[1]).toBe(props.startIndex);
-                expect(element.get(1).props.children.props.href).toBe('#up');
+                expect(element.get(1).props.children.props.href).toBe('#top');
                 expect(element.get(1).props.children.props.disabled).toBe(false);
                 expect(element.get(2).props.children.props.children[0]).toBe("Next  ");
                 expect(element.get(2).props.children.props.children[2]).toBe(" →");
@@ -561,7 +561,7 @@ describe('SearchPagination renders properly', () => {
                 expect(element.get(0).props.children.props.disabled).toBe(false); // meaning disabled button
                 expect(element.get(1).props.children.props.children[0]).toBe("Results up to "); // depend on the startIndex === 0
                 expect(element.get(1).props.children.props.children[1]).toBe(props.startIndex);
-                expect(element.get(1).props.children.props.href).toBe('#up');
+                expect(element.get(1).props.children.props.href).toBe('#top');
                 expect(element.get(1).props.children.props.disabled).toBe(false);
                 expect(element.get(2).props.children.props.children[0]).toBe("Next  ");
                 expect(element.get(2).props.children.props.children[2]).toBe(" →");
@@ -586,7 +586,7 @@ describe('SearchPagination renders properly', () => {
                 expect(element.get(0).props.children.props.disabled).toBe(true);
                 expect(element.get(1).props.children.props.children[0]).toBe("Results from ");
                 expect(element.get(1).props.children.props.children[1]).toBe(props.startIndex);
-                expect(element.get(1).props.children.props.href).toBe('#up');
+                expect(element.get(1).props.children.props.href).toBe('#top');
                 expect(element.get(1).props.children.props.disabled).toBe(false);
                 expect(element.get(2).props.children.props.children[0]).toBe("Next  ");
                 expect(element.get(2).props.children.props.children[2]).toBe(" →");
@@ -611,7 +611,7 @@ describe('SearchPagination renders properly', () => {
                 expect(element.get(0).props.children.props.disabled).toBe(true);
                 expect(element.get(1).props.children.props.children[0]).toBe("Results from ");
                 expect(element.get(1).props.children.props.children[1]).toBe(props.startIndex);
-                expect(element.get(1).props.children.props.href).toBe('#up');
+                expect(element.get(1).props.children.props.href).toBe('#top');
                 expect(element.get(1).props.children.props.disabled).toBe(false);
                 expect(element.get(2).props.children.props.children[0]).toBe("Next  ");
                 expect(element.get(2).props.children.props.children[2]).toBe(" →");
@@ -636,7 +636,7 @@ describe('SearchPagination renders properly', () => {
                 expect(element.get(0).props.children.props.disabled).toBe(true);
                 expect(element.get(1).props.children.props.children[0]).toBe("Results up to ");
                 expect(element.get(1).props.children.props.children[1]).toBe(props.startIndex);
-                expect(element.get(1).props.children.props.href).toBe('#up');
+                expect(element.get(1).props.children.props.href).toBe('#top');
                 expect(element.get(1).props.children.props.disabled).toBe(false);
                 expect(element.get(2).props.children.props.children[0]).toBe("Next  ");
                 expect(element.get(2).props.children.props.children[2]).toBe(" →");
@@ -660,7 +660,7 @@ describe('SearchPagination renders properly', () => {
                 expect(element.get(0).props.children.props.disabled).toBe(true);
                 expect(element.get(1).props.children.props.children[0]).toBe("Results up to ");
                 expect(element.get(1).props.children.props.children[1]).toBe(props.startIndex);
-                expect(element.get(1).props.children.props.href).toBe('#up');
+                expect(element.get(1).props.children.props.href).toBe('#top');
                 expect(element.get(1).props.children.props.disabled).toBe(false);
                 expect(element.get(2).props.children.props.children[0]).toBe("Next  ");
                 expect(element.get(2).props.children.props.children[2]).toBe(" →");
