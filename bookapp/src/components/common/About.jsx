@@ -11,14 +11,14 @@ class About extends Component {
                 status: 'waiting for a message..'
             }
         };
-        this.health = this.health.bind(this);
+        this.checkHealth = this.checkHealth.bind(this);
     };
 
     componentDidMount() {
-        this.health();  
+        this.checkHealth();  
     }
 
-    health() {
+    checkHealth() {
         axios.get(`https://www.googleapis.com/books/v1/volumes?q=flowers+inauthor:keyes`)
         // axios.get(`https://www.googleapis.com/books/v1/volumes?q=flowers+inauthor:keyes&key=${process.env.REACT_APP_GoogleAPIKey}`)
             .then((res) => {
@@ -46,7 +46,7 @@ class About extends Component {
             <div>
                 <button 
                     className="btn btn-success btn-lg"
-                    onClick={(event) => this.health(event)}
+                    onClick={(event) => this.checkHealth(event)}
                 >
                     Check Health!
                 </button>

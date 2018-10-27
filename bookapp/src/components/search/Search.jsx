@@ -83,7 +83,7 @@ class Search extends Component {
         }
     }
 
-    queryMaker(query, newStartIndex) {
+    makeQuery(query, newStartIndex) {
         /** 
          * Create query url based on the query input and the filter parameters.
          * @param {string} query - The user input query.
@@ -115,7 +115,7 @@ class Search extends Component {
          */
         if (buttonType === "next") {
             let newStartIndex = parseInt(this.state.startIndex) + parseInt(this.state.maxResults);
-            axios.get(this.queryMaker(query, newStartIndex))
+            axios.get(this.makeQuery(query, newStartIndex))
                 .then((res) => {
                     this.setState({ 
                         books: res.data.items,
@@ -128,7 +128,7 @@ class Search extends Component {
         }
         else if (buttonType === "prev") {
             let newStartIndex = parseInt(this.state.startIndex) - parseInt(this.state.maxResults);
-            axios.get(this.queryMaker(query, newStartIndex))
+            axios.get(this.makeQuery(query, newStartIndex))
                 .then((res) => {
                     this.setState({
                         books: res.data.items,
@@ -141,7 +141,7 @@ class Search extends Component {
         }
         else {
             let newStartIndex = 0;
-            axios.get(this.queryMaker(query, newStartIndex))
+            axios.get(this.makeQuery(query, newStartIndex))
                 .then((res) => { 
                     let newStartIndex = 0 + parseInt(this.state.maxResults);
                     this.setState({

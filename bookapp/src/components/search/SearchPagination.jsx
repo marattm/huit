@@ -12,7 +12,7 @@ class Pagination extends Component {
         this.render();
     };
 
-    displayIndexTop() {
+    displayIndexButtonTop() {
         /**
          * Display the paging result button at the top of the result page.
          */
@@ -33,7 +33,7 @@ class Pagination extends Component {
         }
     }
 
-    displayIndexBot() {
+    displayIndexButtonBottom() {
         /**
          * Display the paging result button at the bottom of the result page.
          */
@@ -54,7 +54,7 @@ class Pagination extends Component {
         }
     }
 
-    dynamicPreviousButton() {
+    displayPreviousButton() {
         /**
          * Disable or enable the previous button.
          */
@@ -75,7 +75,7 @@ class Pagination extends Component {
         }
     }
 
-    dynamicNextButton() {
+    displayNextButton() {
         /**
          * Disable or enable the previous button.
          */
@@ -100,9 +100,9 @@ class Pagination extends Component {
         return (
             <div>
                 <Pager>
-                    {this.dynamicPreviousButton()}
-                    {this.props.bot ? this.displayIndexBot() : this.displayIndexTop()}
-                    {this.dynamicNextButton()}
+                    {this.displayPreviousButton()}
+                    {this.props.bot ? this.displayIndexButtonBottom() : this.displayIndexButtonTop()}
+                    {this.displayNextButton()}
                 </Pager>
             </div>
         )
