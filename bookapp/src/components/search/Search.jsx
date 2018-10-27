@@ -107,13 +107,13 @@ class Search extends Component {
         return fullUrl
     }
 
-    getBooks(query, movement) {
+    getBooks(query, buttonType) {
         /**
          * Get the books list by send a request using Google API, and update the state.
          * @param {string} query - The user input query.
-         * @param {string} movement - Selector to distinguish if the user use the search, previous or next button.
+         * @param {string} buttonType - Selector to distinguish if the user use the search, previous or next button.
          */
-        if (movement === "next") {
+        if (buttonType === "next") {
             let newStartIndex = parseInt(this.state.startIndex) + parseInt(this.state.maxResults);
             axios.get(this.queryMaker(query, newStartIndex))
                 .then((res) => {
@@ -126,7 +126,7 @@ class Search extends Component {
                 })
                 .catch((err) => { console.log(err); });
         }
-        else if (movement === "prev") {
+        else if (buttonType === "prev") {
             let newStartIndex = parseInt(this.state.startIndex) - parseInt(this.state.maxResults);
             axios.get(this.queryMaker(query, newStartIndex))
                 .then((res) => {
