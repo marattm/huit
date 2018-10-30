@@ -12,10 +12,6 @@ class SearchPagination extends Component {
         this.state = {};
     }
 
-    componentDidMount() {
-        this.render();
-    }
-
     render() {
         return (
             <div>

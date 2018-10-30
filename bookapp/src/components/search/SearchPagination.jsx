@@ -8,10 +8,6 @@ class SearchPagination extends Component {
         this.state = {};
     }
 
-    componentDidMount() {
-        this.render();
-    }
-
     displayPageIndexButtonTop() {
         /**
          * Display the page index button at the top of the result page. This button also serve as an anchor and as a shortcut to get to the bottom of the page.

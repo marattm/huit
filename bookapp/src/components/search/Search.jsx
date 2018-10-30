@@ -33,7 +33,6 @@ class Search extends Component {
 
     componentDidMount() {
         this.clearForm();
-        this.render();
     }
 
     makeQuery(query, newStartIndex) {

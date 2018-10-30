@@ -8,10 +8,6 @@ class SearchPaginationNextButton extends Component {
         this.state = {};
     }
 
-    componentDidMount() {
-        this.render();
-    }
-
     displayNextButton() {
         /**
          * Disable or enable the previous button based on the query & displayDisabled variables.

@@ -11,10 +11,6 @@ class FilterOptions extends Component {
         }
     }
 
-    componentDidMount() {
-        this.render();
-    }
-
     render() {
         const {
             open,

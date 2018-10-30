@@ -8,10 +8,6 @@ class SearchResults extends Component {
         this.state = {};
     }
 
-    componentDidMount() {
-        this.render();
-    }
-
     checkInfo(key, info) {
         /**
          * Check if the info link info is available in the response json from the API call.
