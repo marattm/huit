@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Media, Panel, PanelGroup} from 'react-bootstrap';
+import { Media, Panel, PanelGroup } from 'react-bootstrap';
 
 
 class SearchResults extends Component {
@@ -38,7 +38,7 @@ class SearchResults extends Component {
             }
         } catch (error) {
             console.log(error);
-            
+
         }
     }
     checkAuthors(info) {
@@ -53,7 +53,7 @@ class SearchResults extends Component {
             }
         } catch (error) {
             console.log(error);
-            
+
         }
     }
     checkPublishers(info) {
@@ -68,7 +68,7 @@ class SearchResults extends Component {
             }
         } catch (error) {
             console.log(error);
-            
+
         }
     }
     checkPublishedDate(info) {
@@ -83,7 +83,7 @@ class SearchResults extends Component {
             }
         } catch (error) {
             console.log(error);
-            
+
         }
     }
     checkDescription(info) {
@@ -98,9 +98,9 @@ class SearchResults extends Component {
             }
         } catch (error) {
             console.log(error);
-            
+
         }
-    }; 
+    };
     checkPageCount(info) {
         /**
          * Check if the page count info is available in the response json from the API call.
@@ -113,7 +113,7 @@ class SearchResults extends Component {
             }
         } catch (error) {
             console.log(error);
-            
+
         }
     }
     checkAverageRating(info) {
@@ -128,7 +128,7 @@ class SearchResults extends Component {
             }
         } catch (error) {
             console.log(error);
-            
+
         }
     }
     checkCategories(info) {
@@ -148,7 +148,7 @@ class SearchResults extends Component {
             }
         } catch (error) {
             console.log(error);
-            
+
         }
     }
     checkPreviewLink(info) {
@@ -163,9 +163,9 @@ class SearchResults extends Component {
             }
         } catch (error) {
             console.log(error);
-            
+
         }
-    }; 
+    };
     checkLanguage(info) {
         /**
          * Check if the language info is available in the response json from the API call.
@@ -178,7 +178,7 @@ class SearchResults extends Component {
             }
         } catch (error) {
             console.log(error);
-            
+
         }
     }
     checkInfoLink(info) {
@@ -193,7 +193,7 @@ class SearchResults extends Component {
             }
         } catch (error) {
             console.log(error);
-            
+
         }
     }
 
@@ -201,41 +201,41 @@ class SearchResults extends Component {
         return (
             <div>
                 {this.props.books ?
-                    this.props.books.map( (book) => {
-                    return (
-                        <PanelGroup accordion key={book.id} id={"panel-group-" + book.id}>
-                            <Panel eventKey="1" bsStyle="info" id={"panel-" + book.id}>
-                                <Panel.Heading id={"panel-heading" + book.id}>
-                                    <Panel.Title toggle id={"panel-title" + book.id}>
-                                        <Media id={"media-" + book.id}>
-                                            <Media.Left id={"media-left-" + book.id}>
-                                                <img width={64} height={64} alt='' src={this.checkThumbnail(book.volumeInfo)}/>
-                                            </Media.Left>
-                                            <Media.Body id={"media-body-" + book.id}>
-                                                <Media.Heading id={"media-heading-" + book.id}>{this.checkTitle(book.volumeInfo)}</Media.Heading>
-                                                <p>
-                                                    {this.checkAuthors(book.volumeInfo)}, 
-                                                    <em>   {this.checkPublishers(book.volumeInfo)}</em>, 
+                    this.props.books.map((book) => {
+                        return (
+                            <PanelGroup accordion key={book.id} id={"panel-group-" + book.id}>
+                                <Panel eventKey="1" bsStyle="info" id={"panel-" + book.id}>
+                                    <Panel.Heading id={"panel-heading" + book.id}>
+                                        <Panel.Title toggle id={"panel-title" + book.id}>
+                                            <Media id={"media-" + book.id}>
+                                                <Media.Left id={"media-left-" + book.id}>
+                                                    <img width={64} height={64} alt='' src={this.checkThumbnail(book.volumeInfo)} />
+                                                </Media.Left>
+                                                <Media.Body id={"media-body-" + book.id}>
+                                                    <Media.Heading id={"media-heading-" + book.id}>{this.checkTitle(book.volumeInfo)}</Media.Heading>
+                                                    <p>
+                                                        {this.checkAuthors(book.volumeInfo)},
+                                                    <em>   {this.checkPublishers(book.volumeInfo)}</em>,
                                                     <em>   {this.checkPublishedDate(book.volumeInfo)}</em>
-                                                </p>
-                                            </Media.Body>
-                                        </Media>
-                                    </Panel.Title>
-                                </Panel.Heading>
-                                <Panel.Body collapsible id={"panel-body-" + book.id}>
-                                    <p><b>Description:</b> {this.checkDescription(book.volumeInfo)}</p>
-                                    <p><b>Average Rating:</b> {this.checkAverageRating(book.volumeInfo)}/5</p>
-                                    <p><b>Category:</b> {this.checkCategories(book.volumeInfo)}</p>
-                                    <p><b>Page number:</b> {this.checkPageCount(book.volumeInfo)} pages</p>
-                                    <p><b>Language:</b> {this.checkLanguage(book.volumeInfo)}</p>
-                                    <p><a href={this.checkPreviewLink(book.accessInfo)} target="_blank">Preview</a></p>
-                                    <p><a href={this.checkInfoLink(book.volumeInfo)} target="_blank">More..</a></p>
-                                </Panel.Body>
-                            </Panel>
-                        </PanelGroup>
-                    )
-                })
-                : "No results"}
+                                                    </p>
+                                                </Media.Body>
+                                            </Media>
+                                        </Panel.Title>
+                                    </Panel.Heading>
+                                    <Panel.Body collapsible id={"panel-body-" + book.id}>
+                                        <p><b>Description:</b> {this.checkDescription(book.volumeInfo)}</p>
+                                        <p><b>Average Rating:</b> {this.checkAverageRating(book.volumeInfo)}/5</p>
+                                        <p><b>Category:</b> {this.checkCategories(book.volumeInfo)}</p>
+                                        <p><b>Page number:</b> {this.checkPageCount(book.volumeInfo)} pages</p>
+                                        <p><b>Language:</b> {this.checkLanguage(book.volumeInfo)}</p>
+                                        <p><a href={this.checkPreviewLink(book.accessInfo)} target="_blank">Preview</a></p>
+                                        <p><a href={this.checkInfoLink(book.volumeInfo)} target="_blank">More..</a></p>
+                                    </Panel.Body>
+                                </Panel>
+                            </PanelGroup>
+                        )
+                    })
+                    : "No results"}
             </div>
         )
     }
