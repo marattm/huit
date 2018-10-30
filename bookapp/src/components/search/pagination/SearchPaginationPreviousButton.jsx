@@ -14,7 +14,7 @@ class SearchPaginationPreviousButton extends Component {
 
     displayPreviousButton() {
         /**
-         * Disable or enable the previous button.
+         * Disable or enable the previous button based on the startIndex &  previousButtonDisabled & displayDisabled variables.
          */
         if (this.props.displayDisabled) {
             if (this.props.startIndex === 0 || this.props.previousButtonDisabled) {
