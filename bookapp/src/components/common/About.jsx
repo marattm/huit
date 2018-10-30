@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { Button } from 'react-bootstrap';
 
 
 class About extends Component {
@@ -7,32 +8,32 @@ class About extends Component {
         super();
         this.state = {
             healthData: {
-                message: 'click on the button',
-                status: 'waiting for a message..'
+                status: 'click on the button',
+                message: 'waiting for a message..'
             }
         };
         this.checkHealth = this.checkHealth.bind(this);
     }
 
     componentDidMount() {
-        this.checkHealth();  
+        this.checkHealth();
     }
 
     checkHealth() {
         axios.get(`https://www.googleapis.com/books/v1/volumes?q=flowers+inauthor:keyes`)
             .then((res) => {
-                if (this.state.healthData.status === "success") {
+                if (this.state.healthData.status === 200) {
                     this.setState({
                         healthData: {
-                            message: 'click on the button',
-                            status: 'waiting for a message..'
+                            status: 'click on the button',
+                            message: 'waiting for the response..'
                         }
                     })
                 } else {
                     this.setState({
                         healthData: {
                             message: res.data.totalItems,
-                            status: 'OK Google API working..'
+                            status: res.status
                         }
                     })
                 }
@@ -43,15 +44,15 @@ class About extends Component {
     render() {
         return (
             <div>
-                <button 
+                <Button
                     className="btn btn-success btn-lg"
                     onClick={(event) => this.checkHealth(event)}
                 >
                     Check Health!
-                </button>
-                <br /><br />
-                <p>{this.state.healthData.status}</p>
-                <p>{this.state.healthData.message}</p>
+                </Button>
+                <br /><br /> <hr />
+                <p>{"Status Code: " + this.state.healthData.status}</p>
+                <p>{"Total Item received: " + this.state.healthData.message}</p>
             </div>
         )
     }
@@ -59,3 +60,4 @@ class About extends Component {
 
 
 export default About;
+
