@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Form, FormGroup, InputGroup, FormControl, Button, Glyphicon} from 'react-bootstrap';
+import { Form, FormGroup, InputGroup, FormControl, Button, Glyphicon } from 'react-bootstrap';
 
 import FilterOptions from './SearchFilterOptions';
 
@@ -28,7 +28,7 @@ class SearchForm extends Component {
             handleToggleChange,
             handleSelectLanguageChange
         } = this.props;
-        
+
         return (
             <div>
                 {/* SEARCH BLOCK */}
@@ -41,7 +41,7 @@ class SearchForm extends Component {
                                 </Button>
                             </InputGroup.Button>
 
-                            <FormControl 
+                            <FormControl
                                 name="query"
                                 className="form-control input"
                                 type="text"
@@ -49,7 +49,7 @@ class SearchForm extends Component {
                                 required
                                 value={query}
                                 onChange={handleFormChange}
-                                    />
+                            />
                             <InputGroup.Button>
                                 <Button
                                     type="submit"

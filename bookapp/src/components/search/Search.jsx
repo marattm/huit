@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { Collapse} from 'react-bootstrap';
+import { Collapse } from 'react-bootstrap';
 
 import SearchForm from "./SearchForm";
 import SearchResults from './SearchResults';
@@ -16,12 +16,12 @@ class Search extends Component {
             type: 'relevance',
             printType: 'all',
             filter: 'all',
-            language: 'all', 
+            language: 'all',
             maxResults: "10",
             option: 'title',
             startIndex: 0,
-            oldStartIndex: 0, 
-            displayDisabled: false, 
+            oldStartIndex: 0,
+            displayDisabled: false,
             previousButtonDisabled: true
         };
         this.handleSearchFormSubmit = this.handleSearchFormSubmit.bind(this);
@@ -60,6 +60,19 @@ class Search extends Component {
         return fullUrl
     }
 
+    sendRequest(newStartIndex, query, displayDisabledValue, previousButtonDisabledValue) {
+        axios.get(this.makeQuery(query, newStartIndex))
+            .then((res) => {
+                this.setState({
+                    books: res.data.items,
+                    startIndex: newStartIndex,
+                    displayDisabled: displayDisabledValue,
+                    previousButtonDisabled: previousButtonDisabledValue
+                });
+            })
+            .catch((err) => { console.log(err); });
+    }
+
     getBooks(query, buttonType) {
         /**
          * Get the books list by send a request using Google API, and update the state.
@@ -68,43 +81,17 @@ class Search extends Component {
          */
         if (buttonType === "next") {
             let newStartIndex = parseInt(this.state.startIndex) + parseInt(this.state.maxResults);
-            axios.get(this.makeQuery(query, newStartIndex))
-                .then((res) => {
-                    this.setState({ 
-                        books: res.data.items,
-                        startIndex: newStartIndex,
-                        displayDisabled: true, 
-                        previousButtonDisabled: false
-                    });
-                })
-                .catch((err) => { console.log(err); });
+            this.sendRequest(newStartIndex, query, true, false);
+
         }
         else if (buttonType === "prev") {
             let newStartIndex = parseInt(this.state.startIndex) - parseInt(this.state.maxResults);
-            axios.get(this.makeQuery(query, newStartIndex))
-                .then((res) => {
-                    this.setState({
-                        books: res.data.items,
-                        startIndex: newStartIndex,
-                        displayDisabled: true, 
-                        previousButtonDisabled: false
-                    });
-                })
-                .catch((err) => { console.log(err); });
+            this.sendRequest(newStartIndex, query, true, false);
+
         }
         else {
-            let newStartIndex = 0;
-            axios.get(this.makeQuery(query, newStartIndex))
-                .then((res) => { 
-                    let newStartIndex = 0 + parseInt(this.state.maxResults);
-                    this.setState({
-                        books: res.data.items,
-                        startIndex: newStartIndex,
-                        displayDisabled: true, 
-                        previousButtonDisabled: true
-                    });
-                })
-                .catch((err) => { console.log(err); });
+            let newStartIndex = 0 + parseInt(this.state.maxResults);
+            this.sendRequest(newStartIndex, query, true, true);
         }
     }
 
@@ -113,7 +100,7 @@ class Search extends Component {
          * Clear the form.
          */
         this.setState({
-            query: '', 
+            query: '',
             startIndex: 0
         });
     }
@@ -181,7 +168,7 @@ class Search extends Component {
                 oldStartIndex: newStartIndex
             });
         }
-        if(event.target.name === "prev") {
+        if (event.target.name === "prev") {
             if (this.state.startIndex >= this.state.maxResults) {
                 this.getBooks(this.state.query, "prev");
                 let newStartIndex = 0 - parseInt(this.state.maxResults);
@@ -195,7 +182,7 @@ class Search extends Component {
     render() {
         return (
             <div>
-                <h1> {this.state.title} </h1><hr/>
+                <h1> {this.state.title} </h1><hr />
 
                 {/* SEARCH INPUT */}
                 <SearchForm
@@ -226,19 +213,18 @@ class Search extends Component {
 
                 <hr />
                 {/* RESULT BLOCK */}
-                <SearchResults books={this.state.books}/>
-
+                <SearchResults books={this.state.books} />
 
                 {/* PAGINATION BOTTOM */}
-                <Collapse in={this.state.displayDisabled }>
+                <Collapse in={this.state.displayDisabled}>
                     <SearchPagination
-                    bot={true}
-                    displayDisabled={this.state.displayDisabled}
-                    startIndex={this.state.startIndex}
-                    previousButtonDisabled={this.state.previousButtonDisabled}
-                    query={this.state.query}
-                    maxResults={this.state.maxResults}
-                    handlePreviousNext={this.handlePreviousNext}
+                        bot={true}
+                        displayDisabled={this.state.displayDisabled}
+                        startIndex={this.state.startIndex}
+                        previousButtonDisabled={this.state.previousButtonDisabled}
+                        query={this.state.query}
+                        maxResults={this.state.maxResults}
+                        handlePreviousNext={this.handlePreviousNext}
                     />
                 </Collapse>
             </div>
