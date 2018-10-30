@@ -4,7 +4,7 @@ import { Collapse} from 'react-bootstrap';
 
 import SearchForm from "./SearchForm";
 import SearchResults from './SearchResults';
-import SearchPagination from './SearchPagination';
+import SearchPagination from './pagination/SearchPagination';
 
 class Search extends Component {
     constructor(props) {
@@ -215,6 +215,7 @@ class Search extends Component {
 
                 {/* PAGINATION TOP */}
                 <SearchPagination
+                    bot={false}
                     displayDisabled={this.state.displayDisabled}
                     startIndex={this.state.startIndex}
                     previousButtonDisabled={this.state.previousButtonDisabled}
