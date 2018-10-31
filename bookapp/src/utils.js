@@ -422,5 +422,13 @@ const parameters = [{
 
 const titles = ["Relevance", "Newest", "All", 'Books', 'Magazines', 'All', 'Partial', 'Full', 'Free', 'Paid', 'Google ebooks', '10', '20', '30', '40']
 
+const imageURLs = ['https://cdn.pixabay.com/photo/2017/08/06/22/01/books-2596809_1280.jpg', 'https://images.pexels.com/photos/50548/books-library-knowledge-tunnel-50548.jpeg?cs=srgb&dl=books-bottomless-education-50548.jpg&fm=jpg', 'https://images.pexels.com/photos/12064/pexels-photo-12064.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
+    'https://images.pexels.com/photos/50548/books-library-knowledge-tunnel-50548.jpeg?cs=srgb&dl=books-bottomless-education-50548.jpg&fm=jpg', 'https://images.pexels.com/photos/159775/library-la-trobe-study-students-159775.jpeg?cs=srgb&dl=adult-books-campus-159775.jpg&fm=jpg', 'https://images.pexels.com/photos/207742/pexels-photo-207742.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260', 'https://images.pexels.com/photos/163662/pexels-photo-163662.jpeg?cs=srgb&dl=books-bookshelves-education-163662.jpg&fm=jpg'
+];
+
+const placeholder = ['Bernard Werber', 'Al Gore', 'Game of Thrones'];
+
 exports.titles = titles;
+exports.placeholder = placeholder;
+exports.imageURLs = imageURLs;
 exports.parameters = parameters;

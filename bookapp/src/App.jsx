@@ -15,23 +15,18 @@ class App extends Component {
 
     render() {
         return (
-            <div id='top'>
-
+            <div id='top' >
                 <NavBar />
-
-                <div className="container"> 
-                    <br />
-                    <Switch>
-                        <Route 
-                            exact path='/'
-                            render={() => (<Search/>)} 
-                        />
-                        <Route
-                            exact path='/about'
-                            render={() => (<About />)}
-                        />
-                    </Switch>
-                </div>
+                <Switch>
+                    <Route
+                        exact path='/'
+                        render={() => (<Search />)}
+                    />
+                    <Route
+                        exact path='/about'
+                        render={() => (<About />)}
+                    />
+                </Switch>
             </div>
         )
     };

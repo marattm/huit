@@ -14,7 +14,7 @@ class SearchPagination extends Component {
 
     render() {
         return (
-            <div>
+            <div className='container'>
                 <Pager>
                     <SearchPaginationPreviousButton
                         displayDisabled={this.props.displayDisabled}

@@ -1,10 +1,12 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import axios from 'axios';
-import { Collapse } from 'react-bootstrap';
+import { Collapse, Jumbotron } from 'react-bootstrap';
 
 import SearchForm from "./SearchForm";
 import SearchResults from './SearchResults';
 import SearchPagination from './pagination/SearchPagination';
+
+import { imageURLs } from '../../utils';
 
 class Search extends Component {
     constructor(props) {
@@ -180,24 +182,27 @@ class Search extends Component {
 
     render() {
         return (
-            <div>
-                <h1> {this.state.title} </h1><hr />
+            <Fragment>
+                <Jumbotron style={{ backgroundImage: `url(${imageURLs[0]})` }}>
+                    <h1 style={{ color: 'white' }}>  {this.state.title} </h1>
+                    {/* SEARCH INPUT */}
+                    <SearchForm
+                        // search
+                        query={this.state.query}
+                        handleSearchFormSubmit={this.handleSearchFormSubmit}
+                        handleFormChange={this.handleFormChange}
 
-                {/* SEARCH INPUT */}
-                <SearchForm
-                    // search
-                    query={this.state.query}
-                    handleSearchFormSubmit={this.handleSearchFormSubmit}
-                    handleFormChange={this.handleFormChange}
+                        type={this.state.type}
+                        printType={this.state.printType}
+                        filter={this.state.filter}
+                        language={this.state.language}
+                        maxResults={this.state.maxResults}
+                        handleToggleChange={this.handleToggleChange}
+                        handleSelectLanguageChange={this.handleSelectLanguageChange}
+                    />
+                </Jumbotron>
 
-                    type={this.state.type}
-                    printType={this.state.printType}
-                    filter={this.state.filter}
-                    language={this.state.language}
-                    maxResults={this.state.maxResults}
-                    handleToggleChange={this.handleToggleChange}
-                    handleSelectLanguageChange={this.handleSelectLanguageChange}
-                />
+                {/* <hr /> */}
 
                 {/* PAGINATION TOP */}
                 <SearchPagination
@@ -210,7 +215,8 @@ class Search extends Component {
                     handlePreviousNext={this.handlePreviousNext}
                 />
 
-                <hr />
+
+                {/* <hr /> */}
                 {/* RESULT BLOCK */}
                 <SearchResults books={this.state.books} />
 
@@ -226,7 +232,7 @@ class Search extends Component {
                         handlePreviousNext={this.handlePreviousNext}
                     />
                 </Collapse>
-            </div>
+            </Fragment >
         )
     }
 }

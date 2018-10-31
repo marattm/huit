@@ -11,8 +11,8 @@ class NavBar extends Component {
     }
 
     render() {
-        return(
-            <Navbar inverse collapseOnSelect >
+        return (
+            <Navbar inverse collapseOnSelect>
                 <Navbar.Header>
                     <Navbar.Brand>
                         <LinkContainer to="/">

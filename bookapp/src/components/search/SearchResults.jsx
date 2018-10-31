@@ -67,13 +67,15 @@ class SearchResults extends Component {
                                         </Panel.Title>
                                     </Panel.Heading>
                                     <Panel.Body collapsible id={"panel-body-" + book.id}>
-                                        <p><b>Description:</b> {this.checkInfo('description', book.volumeInfo)}</p>
-                                        <p><b>Average Rating:</b> {this.checkInfo('averageRating', book.volumeInfo)}/5</p>
-                                        <p><b>Category:</b> {this.checkInfo('categories', book.volumeInfo)}</p>
-                                        <p><b>Page number:</b> {this.checkInfo('pageCount', book.volumeInfo)} pages</p>
-                                        <p><b>Language:</b> {this.checkInfo('language', book.volumeInfo)}</p>
-                                        <p><a href={this.checkInfo('webReaderLink', book.accessInfo)} target="_blank">Preview</a></p>
-                                        <p><a href={this.checkInfo('infoLink', book.volumeInfo)} target="_blank">More..</a></p>
+                                        <div className='container'>
+                                            <p><b>Description:</b> {this.checkInfo('description', book.volumeInfo)}</p>
+                                            <p><b>Average Rating:</b> {this.checkInfo('averageRating', book.volumeInfo)}/5</p>
+                                            <p><b>Category:</b> {this.checkInfo('categories', book.volumeInfo)}</p>
+                                            <p><b>Page number:</b> {this.checkInfo('pageCount', book.volumeInfo)} pages</p>
+                                            <p><b>Language:</b> {this.checkInfo('language', book.volumeInfo)}</p>
+                                            <p><a href={this.checkInfo('webReaderLink', book.accessInfo)} target="_blank">Preview</a></p>
+                                            <p><a href={this.checkInfo('infoLink', book.volumeInfo)} target="_blank">More..</a></p>
+                                        </div>
                                     </Panel.Body>
                                 </Panel>
                             </PanelGroup>

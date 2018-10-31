@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Form, FormGroup, InputGroup, FormControl, Button, Glyphicon } from 'react-bootstrap';
 
 import FilterOptions from './SearchFilterOptions';
-
+import { placeholder } from '../../utils';
 
 class SearchForm extends Component {
     constructor(props) {
@@ -30,9 +30,9 @@ class SearchForm extends Component {
         } = this.props;
 
         return (
-            <div>
+            <div className='container'>
                 {/* SEARCH BLOCK */}
-                <Form onSubmit={(event) => this.props.handleSearchFormSubmit(event)}>
+                <Form onSubmit={(event) => this.props.handleSearchFormSubmit(event)} >
                     <FormGroup>
                         <InputGroup>
                             <InputGroup.Button>
@@ -45,7 +45,7 @@ class SearchForm extends Component {
                                 name="query"
                                 className="form-control input"
                                 type="text"
-                                placeholder="Al Gore.."
+                                placeholder={placeholder[0] + '..'}
                                 required
                                 value={query}
                                 onChange={handleFormChange}
