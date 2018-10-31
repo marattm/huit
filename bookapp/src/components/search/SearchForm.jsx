@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { Form, FormGroup, InputGroup, FormControl, Button, Glyphicon } from 'react-bootstrap';
 
-import FilterOptions from './SearchFilterOptions';
+import FilterOptions from './filters/SearchFilterOptions';
+// import FilterOptions from './SearchFilterOptions';
 import { placeholder } from '../../utils';
 
 class SearchForm extends Component {
