@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Form, FormGroup, InputGroup, FormControl, Button, Glyphicon } from 'react-bootstrap';
 
 import FilterOptions from './filters/SearchFilterOptions';
-// import FilterOptions from './SearchFilterOptions';
+
 import { placeholder } from '../../utils';
 
 class SearchForm extends Component {
@@ -33,7 +33,7 @@ class SearchForm extends Component {
         return (
             <div className='container'>
                 {/* SEARCH BLOCK */}
-                <Form onSubmit={(event) => this.props.handleSearchFormSubmit(event)} >
+                <Form onSubmit={(event) => { this.props.handleSearchFormSubmit(event) }}>
                     <FormGroup>
                         <InputGroup>
                             <InputGroup.Button>
@@ -55,6 +55,7 @@ class SearchForm extends Component {
                                 <Button
                                     type="submit"
                                     className="btn-primary"
+                                    onclick="goToAnchor('results')"
                                 >
                                     Search
                                 </Button>

@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react';
-import { ButtonGroup, ToggleButtonGroup, ToggleButton } from 'react-bootstrap';
+import { ButtonGroup, ToggleButtonGroup, ToggleButton, FormGroup, ControlLabel } from 'react-bootstrap';
 
 
 class FilterOptionsType extends Component {
@@ -11,12 +11,17 @@ class FilterOptionsType extends Component {
     render() {
         return (
             <Fragment>
-                <ButtonGroup >
-                    <ToggleButtonGroup type="radio" name="type" defaultValue={this.props.type}>
-                        <ToggleButton value={"relevance"} onChange={this.props.handleToggleChange}>Relevance</ToggleButton>
-                        <ToggleButton value={"newest"} onChange={this.props.handleToggleChange}>Newest</ToggleButton>
-                    </ToggleButtonGroup>
-                </ButtonGroup>
+
+
+                <ControlLabel style={{ color: 'white' }}>Order by</ControlLabel>
+                <FormGroup >
+                    <ButtonGroup >
+                        <ToggleButtonGroup type="radio" name="type" defaultValue={this.props.type}>
+                            <ToggleButton value={"relevance"} onChange={this.props.handleToggleChange}>Relevance</ToggleButton>
+                            <ToggleButton value={"newest"} onChange={this.props.handleToggleChange}>Newest</ToggleButton>
+                        </ToggleButtonGroup>
+                    </ButtonGroup>
+                </FormGroup>
             </Fragment>
         )
     }

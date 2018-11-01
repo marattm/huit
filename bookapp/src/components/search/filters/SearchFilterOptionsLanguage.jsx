@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react';
-import { ButtonGroup, DropdownButton, MenuItem } from 'react-bootstrap';
+import { FormGroup, ControlLabel, FormControl } from 'react-bootstrap';
 
 import { parameters } from '../../../utils';
 
@@ -13,19 +13,26 @@ class SearchFilterOptionsLanguage extends Component {
 
     render() {
         const {
-            handleSelectLanguageChange
+            handleToggleChange
         } = this.props;
         return (
             <Fragment>
-                <ButtonGroup >
-                    <DropdownButton title="language" id="bg-nested-dropdown">
+                <FormGroup controlId="formControlsSelect" >
+                    <ControlLabel style={{ color: 'white' }}>Select a language</ControlLabel>
+                    <FormControl
+                        name="language"
+                        componentClass="select"
+                        placeholder="Select a language"
+                        onChange={handleToggleChange}
+                        style={{ width: 340 }}
+                    >
                         {this.state.parameters.map((lang) => {
                             return (
-                                <MenuItem key={lang.value} id={lang.value} eventKey={lang.value} onSelect={handleSelectLanguageChange}>{lang.title}</MenuItem>
+                                <option value={lang.value}> {lang.title}</option>
                             )
                         })}
-                    </DropdownButton>
-                </ButtonGroup>
+                    </FormControl>
+                </FormGroup>
             </Fragment>
         )
     }

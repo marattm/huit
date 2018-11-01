@@ -15,7 +15,7 @@ class SearchPaginationNextButton extends Component {
         if (this.props.displayDisabled) {
             if (this.props.query) {
                 return (
-                    <Pager.Item next href="#" name="next" onClick={this.props.handlePreviousNext}>
+                    <Pager.Item next href="#" name="next" onClick={this.props.handlePreviousNext} >
                         Next  {this.props.maxResults} &rarr;
                     </Pager.Item>
                 );

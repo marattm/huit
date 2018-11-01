@@ -3,9 +3,11 @@ import { Switch, Route } from 'react-router-dom'
 
 
 import About from './components/common/About';
+import Footer from './components/common/Footer';
 import NavBar from './components/common/NavBar';
 import Search from './components/search/Search';
 
+import { imageURLs } from './utils';
 
 class App extends Component {
     constructor() {
@@ -15,7 +17,7 @@ class App extends Component {
 
     render() {
         return (
-            <div id='top' >
+            <div id='top' style={{ backgroundImage: `url(${imageURLs[1]})`, backgroundAttachment: 'fixed', "height": "100%" }}>
                 <NavBar />
                 <Switch>
                     <Route
@@ -27,6 +29,8 @@ class App extends Component {
                         render={() => (<About />)}
                     />
                 </Switch>
+                <hr />
+                <Footer />
             </div>
         )
     };

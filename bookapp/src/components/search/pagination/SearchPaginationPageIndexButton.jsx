@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Pager } from 'react-bootstrap';
+import { Pager, Popover, OverlayTrigger } from 'react-bootstrap';
 
 
 class SearchPaginationPageIndexButton extends Component {
@@ -7,6 +7,12 @@ class SearchPaginationPageIndexButton extends Component {
         super(props);
         this.state = {};
     }
+
+    popoverHoverFocus = (
+        <Popover id="popover-trigger-hover-focus">
+            {!this.props.bot ? "Click to go down." : "Click to go up."}
+        </Popover>
+    );
 
     displayPageIndexButtonTop() {
         /**
@@ -21,9 +27,15 @@ class SearchPaginationPageIndexButton extends Component {
                 )
             } else {
                 return (
-                    < Pager.Item href="#bottom">
-                        Results up to {this.props.startIndex}
-                    </Pager.Item >
+                    <OverlayTrigger
+                        trigger={['hover', 'focus']}
+                        placement="top"
+                        overlay={this.popoverHoverFocus}
+                    >
+                        < Pager.Item href="#bottom">
+                            Results up to {this.props.startIndex}
+                        </Pager.Item >
+                    </OverlayTrigger>
                 )
             }
         }
@@ -42,9 +54,15 @@ class SearchPaginationPageIndexButton extends Component {
                 )
             } else {
                 return (
-                    < Pager.Item id='bottom' href="#top">
-                        Results up to {this.props.startIndex}
-                    </Pager.Item >
+                    <OverlayTrigger
+                        trigger={['hover', 'focus']}
+                        placement="bottom"
+                        overlay={this.popoverHoverFocus}
+                    >
+                        < Pager.Item id='bottom' href="#top">
+                            Results up to {this.props.startIndex}
+                        </Pager.Item >
+                    </OverlayTrigger>
                 )
             }
         }

@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react';
-import { ButtonGroup, ToggleButtonGroup, ToggleButton } from 'react-bootstrap';
+import { ButtonGroup, ToggleButtonGroup, ToggleButton, FormGroup, ControlLabel } from 'react-bootstrap';
 
 
 class SearchFilterOptionsFilter extends Component {
@@ -15,16 +15,19 @@ class SearchFilterOptionsFilter extends Component {
         } = this.props;
         return (
             <Fragment>
-                <ButtonGroup >
-                    <ToggleButtonGroup type="radio" name="filter" defaultValue={filter}>
-                        <ToggleButton value={"all"} onChange={handleToggleChange}>All</ToggleButton>
-                        <ToggleButton value={"partial"} onChange={handleToggleChange}>Partial</ToggleButton>
-                        <ToggleButton value={"full"} onChange={handleToggleChange}>Full</ToggleButton>
-                        <ToggleButton value={"free-ebooks"} onChange={handleToggleChange}>Free</ToggleButton>
-                        <ToggleButton value={"paid-ebooks"} onChange={handleToggleChange}>Paid</ToggleButton>
-                        <ToggleButton value={"ebooks"} onChange={handleToggleChange}>Google ebooks</ToggleButton>
-                    </ToggleButtonGroup>
-                </ButtonGroup>
+                <ControlLabel style={{ color: 'white' }}>Filter by kind</ControlLabel>
+                <FormGroup>
+                    <ButtonGroup >
+                        <ToggleButtonGroup type="radio" name="filter" defaultValue={filter}>
+                            <ToggleButton value={"all"} onChange={handleToggleChange}>All</ToggleButton>
+                            <ToggleButton value={"partial"} onChange={handleToggleChange}>Partial</ToggleButton>
+                            <ToggleButton value={"full"} onChange={handleToggleChange}>Full</ToggleButton>
+                            <ToggleButton value={"free-ebooks"} onChange={handleToggleChange}>Free</ToggleButton>
+                            <ToggleButton value={"paid-ebooks"} onChange={handleToggleChange}>Paid</ToggleButton>
+                            <ToggleButton value={"ebooks"} onChange={handleToggleChange}> Google's</ToggleButton>
+                        </ToggleButtonGroup>
+                    </ButtonGroup>
+                </FormGroup>
             </Fragment>
         )
     }

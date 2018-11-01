@@ -2,11 +2,10 @@ import React, { Component, Fragment } from 'react';
 import axios from 'axios';
 import { Collapse, Jumbotron } from 'react-bootstrap';
 
+
 import SearchForm from "./SearchForm";
 import SearchResults from './SearchResults';
 import SearchPagination from './pagination/SearchPagination';
-
-import { imageURLs } from '../../utils';
 
 class Search extends Component {
     constructor(props) {
@@ -35,6 +34,11 @@ class Search extends Component {
 
     componentDidMount() {
         this.clearForm();
+        console.log(window.location.origin);
+        axios.get(window.location.origin + '/check')
+            .then(res => {
+                console.log(res);
+            })
     }
 
     makeQuery(query, newStartIndex) {
@@ -180,12 +184,17 @@ class Search extends Component {
         }
     }
 
+
+
     render() {
         return (
             <Fragment>
-                <Jumbotron style={{ backgroundImage: `url(${imageURLs[0]})` }}>
-                    <h1 style={{ color: 'white' }}>  {this.state.title} </h1>
-                    {/* SEARCH INPUT */}
+
+
+
+                {/* SEARCH INPUT */}
+                <Jumbotron style={{ backgroundColor: 'transparent' }}>
+                    <h1 style={{ color: 'white' }} className='container'>  {this.state.title} </h1>
                     <SearchForm
                         // search
                         query={this.state.query}
@@ -202,7 +211,7 @@ class Search extends Component {
                     />
                 </Jumbotron>
 
-                {/* <hr /> */}
+
 
                 {/* PAGINATION TOP */}
                 <SearchPagination
@@ -216,9 +225,11 @@ class Search extends Component {
                 />
 
 
-                {/* <hr /> */}
+
                 {/* RESULT BLOCK */}
                 <SearchResults books={this.state.books} />
+
+
 
                 {/* PAGINATION BOTTOM */}
                 <Collapse in={this.state.displayDisabled}>
@@ -232,6 +243,8 @@ class Search extends Component {
                         handlePreviousNext={this.handlePreviousNext}
                     />
                 </Collapse>
+
+
             </Fragment >
         )
     }

@@ -43,16 +43,17 @@ class About extends Component {
 
     render() {
         return (
-            <div>
+            <div className='container'>
                 <Button
                     className="btn btn-success btn-lg"
                     onClick={(event) => this.checkHealth(event)}
+
                 >
                     Check Health!
                 </Button>
                 <br /><br /> <hr />
-                <p>{"Status Code: " + this.state.healthData.status}</p>
-                <p>{"Total Item received: " + this.state.healthData.message}</p>
+                <p style={{ color: 'white' }}> <strong> Status Code: </strong><strong><em>{this.state.healthData.status}</em></strong></p>
+                <p style={{ color: 'white' }}><strong>Total Item received: </strong> <strong><em>{this.state.healthData.message}</em></strong></p>
             </div>
         )
     }

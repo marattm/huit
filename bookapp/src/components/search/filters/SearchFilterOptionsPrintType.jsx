@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react';
-import { ButtonGroup, ToggleButtonGroup, ToggleButton } from 'react-bootstrap';
+import { ButtonGroup, ToggleButtonGroup, ToggleButton, FormGroup, ControlLabel } from 'react-bootstrap';
 
 
 class FilterOptionsPrintType extends Component {
@@ -15,13 +15,16 @@ class FilterOptionsPrintType extends Component {
         } = this.props;
         return (
             <Fragment>
-                <ButtonGroup >
-                    <ToggleButtonGroup type="radio" name="printType" defaultValue={printType}>
-                        <ToggleButton value={"all"} onChange={handleToggleChange}>All</ToggleButton>
-                        <ToggleButton value={"books"} onChange={handleToggleChange}>Books</ToggleButton>
-                        <ToggleButton value={"magazines"} onChange={handleToggleChange}>Magazines</ToggleButton>
-                    </ToggleButtonGroup>
-                </ButtonGroup>
+                <ControlLabel style={{ color: 'white' }}>Filter by print type</ControlLabel>
+                <FormGroup>
+                    <ButtonGroup >
+                        <ToggleButtonGroup type="radio" name="printType" defaultValue={printType}>
+                            <ToggleButton value={"all"} onChange={handleToggleChange}>All</ToggleButton>
+                            <ToggleButton value={"books"} onChange={handleToggleChange}>Books</ToggleButton>
+                            <ToggleButton value={"magazines"} onChange={handleToggleChange}>Magazines</ToggleButton>
+                        </ToggleButtonGroup>
+                    </ButtonGroup>
+                </FormGroup>
             </Fragment>
         )
     }

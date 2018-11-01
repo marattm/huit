@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { Collapse } from 'react-bootstrap';
 
 import SearchFilterOptionsPrintType from './SearchFilterOptionsPrintType';
@@ -24,36 +24,36 @@ class FilterOptions extends Component {
             handleSelectLanguageChange
         } = this.props;
         return (
-            <div>
+            <Fragment>
                 <Collapse in={open}>
                     <div>
                         <SearchFilterOptionsType
                             type={type}
                             handleToggleChange={handleToggleChange}
                         />
-                        <br />
+
                         <SearchFilterOptionsPrintType
                             printType={printType}
                             handleToggleChange={handleToggleChange}
                         />
-                        <br />
+
                         <SearchFilterOptionsFilter
                             filter={filter}
                             handleToggleChange={handleToggleChange}
                         />
-                        <br />
+
                         <SearchFilterOptionsLanguage
                             handleToggleChange={handleToggleChange}
                             handleSelectLanguageChange={handleSelectLanguageChange}
                         />
-                        <br />
+
                         <SearchFilterOptionsMaxResults
                             maxResults={maxResults}
                             handleToggleChange={handleToggleChange}
                         />
                     </div>
                 </Collapse>
-            </div>
+            </Fragment>
         )
     }
 }
