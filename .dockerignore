@@ -1,0 +1,9 @@
+/env
+/bookapp
+/scripts
+/node_modules
+.gitignore
+LICENSE
+Makefile
+README.md
+!/bookapp/build

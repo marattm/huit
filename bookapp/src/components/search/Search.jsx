@@ -35,7 +35,7 @@ class Search extends Component {
     componentDidMount() {
         this.clearForm();
         console.log(window.location.origin);
-        axios.get(window.location.origin + '/check')
+        axios.get(window.location.origin + '/api/v0/health')
             .then(res => {
                 console.log(res);
             })
