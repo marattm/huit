@@ -3,12 +3,6 @@ import { mount } from 'enzyme';
 
 import SearchPagination from '../SearchPagination';
 
-const displayDisabled = [false, true];
-const previousButtonDisabled = [false, true];
-const startIndex = [0, 10];
-const query = ['', 'something'];
-const bor = [false, true];
-
 describe('SearchPagination renders properly', () => {
 
     let props;
