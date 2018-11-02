@@ -28,7 +28,7 @@ class SearchFilterOptionsLanguage extends Component {
                     >
                         {this.state.parameters.map((lang) => {
                             return (
-                                <option value={lang.value}> {lang.title}</option>
+                                <option key={lang.value} value={lang.value}> {lang.title}</option>
                             )
                         })}
                     </FormControl>

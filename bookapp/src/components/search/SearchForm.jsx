@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Form, FormGroup, InputGroup, FormControl, Button, Glyphicon } from 'react-bootstrap';
 
 import FilterOptions from './filters/SearchFilterOptions';
+import SearchFilterOptionsPrintType from './filters/SearchFilterOptionsPrintType';
 
 import { placeholder } from '../../utils';
 
@@ -11,10 +12,6 @@ class SearchForm extends Component {
         this.state = {
             open: true,
         }
-    }
-
-    componentDidMount() {
-        this.render();
     }
 
     render() {
@@ -55,26 +52,32 @@ class SearchForm extends Component {
                                 <Button
                                     type="submit"
                                     className="btn-primary"
-                                    onclick="goToAnchor('results')"
                                 >
                                     Search
                                 </Button>
                             </InputGroup.Button>
                         </InputGroup>
                     </FormGroup>
+
+                    <SearchFilterOptionsPrintType
+                        printType={printType}
+                        handleToggleChange={handleToggleChange}
+                        type="submit"
+                    />
+
+                    {/* FILTER BLOCK */}
+                    <FilterOptions
+                        open={this.state.open}
+                        type={type}
+                        printType={printType}
+                        filter={filter}
+                        language={language}
+                        maxResults={maxResults}
+                        handleToggleChange={handleToggleChange}
+                        handleSelectLanguageChange={handleSelectLanguageChange}
+                    />
                 </Form>
 
-                {/* FILTER BLOCK */}
-                <FilterOptions
-                    open={this.state.open}
-                    type={type}
-                    printType={printType}
-                    filter={filter}
-                    language={language}
-                    maxResults={maxResults}
-                    handleToggleChange={handleToggleChange}
-                    handleSelectLanguageChange={handleSelectLanguageChange}
-                />
             </div>
         )
     }

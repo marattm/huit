@@ -63,10 +63,6 @@ const parameters = [{
         title: "Chinese (Simplified)"
     },
     {
-        value: "zh",
-        title: "Chinese (Traditional)"
-    },
-    {
         value: "co",
         title: "Corsican"
     },
@@ -137,10 +133,6 @@ const parameters = [{
     {
         value: "ht",
         title: "Haitian Creole"
-    },
-    {
-        value: "ha",
-        title: "Hausa"
     },
     {
         value: "ha",
@@ -573,10 +565,6 @@ const languageFilter = {
             title: "Chinese (Simplified)"
         },
         {
-            value: "zh",
-            title: "Chinese (Traditional)"
-        },
-        {
             value: "co",
             title: "Corsican"
         },
@@ -647,10 +635,6 @@ const languageFilter = {
         {
             value: "ht",
             title: "Haitian Creole"
-        },
-        {
-            value: "ha",
-            title: "Hausa"
         },
         {
             value: "ha",

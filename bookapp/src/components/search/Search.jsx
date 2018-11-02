@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import axios from 'axios';
-import { Collapse, Jumbotron, Button } from 'react-bootstrap';
+import { Collapse, Jumbotron } from 'react-bootstrap';
 
 
 import SearchForm from "./SearchForm";

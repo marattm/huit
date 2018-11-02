@@ -17,7 +17,7 @@ class About extends Component {
             }
         };
         this.checkGoogleAPIHealth = this.checkGoogleAPIHealth.bind(this);
-        this.checkBackendAPI = this.checkBackendAPI.bind(this);
+        this.checkBackendAPIHealth = this.checkBackendAPIHealth.bind(this);
     }
 
     componentDidMount() {
@@ -26,6 +26,9 @@ class About extends Component {
     }
 
     checkGoogleAPIHealth() {
+        /**
+         * Make a API call to a Google API Books, and set the state with th response data.
+         */
         axios.get(`https://www.googleapis.com/books/v1/volumes?q=flowers+inauthor:keyes`)
             .then((res) => {
                 if (this.state.healthData.status === 200) {
@@ -47,7 +50,10 @@ class About extends Component {
             .catch((err) => { console.log(err); });
     }
 
-    checkBackendAPI() {
+    checkBackendAPIHealth() {
+        /**
+         * Make a API call to the backend API, and set the state with th response data.
+         */
         axios.get(`api/v0/health`)
             .then((res) => {
                 console.log(res);
@@ -76,7 +82,7 @@ class About extends Component {
             <div className='container'>
                 <Button
                     className="btn btn-success btn-lg"
-                    onClick={(event) => this.checkGoogleAPIHealth(event)}
+                    onClick={(event) => this.checkGoogleAPIHealth()}
 
                 >
                     Check Google API Health!
@@ -89,7 +95,7 @@ class About extends Component {
 
                 <Button
                     className="btn btn-success btn-lg"
-                    onClick={this.checkBackendAPI}
+                    onClick={this.checkBackendAPIHealth()}
                 >
                     Check Backend Service Health!
                 </Button>

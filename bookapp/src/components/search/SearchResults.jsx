@@ -72,8 +72,8 @@ class SearchResults extends Component {
                                         <p><b>Category:</b> {this.checkInfo('categories', book.volumeInfo)}</p>
                                         <p><b>Page number:</b> {this.checkInfo('pageCount', book.volumeInfo)} pages</p>
                                         <p><b>Language:</b> {this.checkInfo('language', book.volumeInfo)}</p>
-                                        <p><a href={this.checkInfo('webReaderLink', book.accessInfo)} target="_blank">Preview</a></p>
-                                        <p><a href={this.checkInfo('infoLink', book.volumeInfo)} target="_blank">More..</a></p>
+                                        <p><a href={this.checkInfo('webReaderLink', book.accessInfo)} rel="noopener noreferrer" target="_blank">Preview</a></p>
+                                        <p><a href={this.checkInfo('infoLink', book.volumeInfo)} rel="noopener noreferrer" target="_blank">More..</a></p>
                                     </Panel.Body>
                                 </Panel>
                             </PanelGroup>
