@@ -62,6 +62,11 @@ class Search extends Component {
     }
 
     sendRequest(newStartIndex, query, displayDisabledValue, previousButtonDisabledValue) {
+        /**
+         * Send the AJAX request using Google API, and update the state.
+         * @param {string} query - The user input query.
+         * @param {string} buttonType - Selector to distinguish if the user use the search, previous or next button.
+         */
         axios.get(this.makeQuery(query, newStartIndex))
             .then((res) => {
                 this.setState({
@@ -76,7 +81,7 @@ class Search extends Component {
 
     getBooks(query, buttonType) {
         /**
-         * Get the books list by send a request using Google API, and update the state.
+         * Redirect the the API call depending the buttonType, and call the sendRequest function.
          * @param {string} query - The user input query.
          * @param {string} buttonType - Selector to distinguish if the user use the search, previous or next button.
          */
@@ -111,9 +116,9 @@ class Search extends Component {
          * Update the state for every input in the form field.
          * @param {object} event - Carry the name and the value in the form field.
          */
-        const obj = this.state;
+        let obj = this.state; // can't do this.state[event.target.name]
         obj[event.target.name] = event.target.value;
-        this.setState(obj);
+        this.setState(obj); // update the state with the whole new state obj
     }
 
     handleSearchFormSubmit(event) {
@@ -133,7 +138,7 @@ class Search extends Component {
          * @param {object} event - Carry the name and the value from the toggle button.
          */
         event.preventDefault();
-        const obj = this.state;
+        let obj = this.state;
         obj[event.target.name] = String(event.target.value);
         this.setState(obj);
     }

@@ -24,7 +24,7 @@ class SearchResults extends Component {
                 var result = '';
                 if (info.categories) {
                     for (let i = 0; i < info.categories.length; i++) {
-                        const element = info.categories[i];
+                        let element = info.categories[i];
                         result += element;
                     }
                     return result;

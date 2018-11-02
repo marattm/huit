@@ -7,8 +7,6 @@ import Footer from './components/common/Footer';
 import NavBar from './components/common/NavBar';
 import Search from './components/search/Search';
 
-import { imageURLs } from './utils';
-
 class App extends Component {
     constructor() {
         super();

@@ -11,8 +11,6 @@ class FilterOptionsType extends Component {
     render() {
         return (
             <Fragment>
-
-
                 <ControlLabel style={{ color: 'white' }}>Order by</ControlLabel>
                 <FormGroup >
                     <ButtonGroup >

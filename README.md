@@ -27,19 +27,20 @@ https://thebookapp.herokuapp.com/
 - [ ] Backend implementation
     - [x] Implemented a very simple Python / Flask app
     - [x] Containerized the app
-    - [x] Improve / implement factory app pattern
+    - [ ] Improve / implement factory app pattern
     - [x] Features:
         - [ ] Account, profile, etc..
         - [ ] My library functionality, etc..
         - [ ] Data processing, ML, suggestion features etc..
 - [x] Tests
     - [x] Unit testing, almost all static rendering is covered
-    - [ ] Unit testing for logic, work in progress..
+    - [x] Unit testing for logic, work in progress..
     - [ ] Integration testing
 - [x] Refactor
     - [x] 1st iteration of refactoring app -> better structure for testing
     - [x] 2nd iteration:
         - [x] General housekeeping and code DRYing
+        - [x] Removed the local storage save of actual research -> not useful at all.. (hydrateStateWithLocalStorage and saveStateToLocalStorage functions)
         - [x] SRP applied as most as possible
             - [x] Reduce large functions and large components
         - [x] Improved UI
