@@ -1,11 +1,12 @@
 import React, { Component, Fragment } from 'react';
 import axios from 'axios';
-import { Collapse, Jumbotron } from 'react-bootstrap';
+import { Collapse, Jumbotron, Button } from 'react-bootstrap';
 
 
 import SearchForm from "./SearchForm";
 import SearchResults from './SearchResults';
 import SearchPagination from './pagination/SearchPagination';
+
 
 class Search extends Component {
     constructor(props) {
@@ -34,11 +35,6 @@ class Search extends Component {
 
     componentDidMount() {
         this.clearForm();
-        console.log(window.location.origin);
-        axios.get(window.location.origin + '/api/v0/health')
-            .then(res => {
-                console.log(res);
-            })
     }
 
     makeQuery(query, newStartIndex) {
@@ -243,7 +239,6 @@ class Search extends Component {
                         handlePreviousNext={this.handlePreviousNext}
                     />
                 </Collapse>
-
 
             </Fragment >
         )

@@ -23,10 +23,6 @@ class About extends Component {
     componentDidMount() {
         this.checkGoogleAPIHealth();
         this.checkBackendAPI();
-        axios.get(window.location.origin + '/api/v0/health')
-            .then(res => {
-                console.log(res);
-            })
     }
 
     checkGoogleAPIHealth() {
@@ -52,7 +48,7 @@ class About extends Component {
     }
 
     checkBackendAPI() {
-        axios.get(window.location.origin + `api/v0/health`)
+        axios.get(`api/v0/health`)
             .then((res) => {
                 console.log(res);
                 if (this.state.responseData.status === 200) {
@@ -71,7 +67,7 @@ class About extends Component {
                     })
                 }
             })
-            .catch((err) => { console.log(err); });
+            .catch((err) => { console.log(err); })
     }
 
 
@@ -93,27 +89,7 @@ class About extends Component {
 
                 <Button
                     className="btn btn-success btn-lg"
-                    onClick={axios.get(window.location.origin + `api/v0/health`)
-                        .then((res) => {
-                            console.log(res);
-                            if (this.state.responseData.status === 200) {
-                                this.setState({
-                                    responseData: {
-                                        status: 'click on the button',
-                                        message: 'waiting for the response..'
-                                    }
-                                })
-                            } else {
-                                this.setState({
-                                    responseData: {
-                                        message: res.data,
-                                        status: res.status
-                                    }
-                                })
-                            }
-                        })
-                        .catch((err) => { console.log(err); })}
-
+                    onClick={this.checkBackendAPI}
                 >
                     Check Backend Service Health!
                 </Button>

@@ -17,11 +17,11 @@ describe('About renders properly ..', () => {
 
     it('renders properly', () => {
         const button = wrapper.find('Button');
-        expect(button.length).toBe(1);
-        expect(button.get(0).props.children).toBe('Check Health!');
+        expect(button.length).toBe(2);
+        expect(button.get(0).props.children).toBe('Check Google API Health!');
 
         const information = wrapper.find('p');
-        expect(information.length).toBe(2);
+        expect(information.length).toBe(4);
         expect(information.get(0).props.children[1].props.children).toBe(' Status Code: ');
         expect(information.get(0).props.children[2].props.children.props.children).toBe(healthData.status);
         expect(information.get(1).props.children[0].props.children).toBe('Total Item received: ');

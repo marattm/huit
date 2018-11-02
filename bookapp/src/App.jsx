@@ -13,11 +13,13 @@ class App extends Component {
     constructor() {
         super();
         this.state = {};
-    };
+    }
+
+
 
     render() {
         return (
-            <div id='top' style={{ backgroundImage: `url(${imageURLs[1]})`, backgroundAttachment: 'fixed', "height": "100%" }}>
+            <div id='top'>
                 <NavBar />
                 <Switch>
                     <Route
@@ -29,11 +31,10 @@ class App extends Component {
                         render={() => (<About />)}
                     />
                 </Switch>
-                <hr />
                 <Footer />
             </div>
         )
-    };
-};
+    }
+}
 
 export default App;
