@@ -6,6 +6,7 @@ import About from './components/common/About';
 import Footer from './components/common/Footer';
 import NavBar from './components/common/NavBar';
 import Search from './components/search/Search';
+// import Search from './components/search/Search.withFormik';
 
 class App extends Component {
     constructor() {
