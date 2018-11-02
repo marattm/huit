@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Form, FormGroup, InputGroup, FormControl, Button, Glyphicon } from 'react-bootstrap';
 
 import FilterOptions from './filters/SearchFilterOptions';
-import SearchFilterOptionsPrintType from './filters/SearchFilterOptionsPrintType';
 
 import { placeholder } from '../../utils';
 
@@ -58,12 +57,6 @@ class SearchForm extends Component {
                             </InputGroup.Button>
                         </InputGroup>
                     </FormGroup>
-
-                    <SearchFilterOptionsPrintType
-                        printType={printType}
-                        handleToggleChange={handleToggleChange}
-                        type="submit"
-                    />
 
                     {/* FILTER BLOCK */}
                     <FilterOptions

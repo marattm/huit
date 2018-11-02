@@ -1,11 +1,13 @@
 import React, { Component, Fragment } from 'react';
 import axios from 'axios';
-import { Collapse, Jumbotron } from 'react-bootstrap';
+import { Jumbotron, Collapse } from 'react-bootstrap';
 import { withFormik } from 'formik';
 
 import SearchForm from "./SearchForm.withFormik";
 import SearchResults from './SearchResults';
 import SearchPagination from './pagination/SearchPagination';
+import SearchResultsBlock from './SearchResultsBlock.withFormik';
+
 
 import { validationSearch } from "../../services/validation.schemas.service";
 
@@ -18,27 +20,109 @@ const formikEnhancer = withFormik({
 
     mapPropsToValues: () => ({
         query: '',
-        type: 'relevance',
-        printType: 'all',
-        filter: 'all',
+        // startIndex: '0',
         maxResults: '10',
+        type: 'relevance',
+        filter: 'all',
+        printType: 'all',
         language: 'all',
-        startIndex: '0',
-        response: []
+        // displayDisabledValue: false,
+        // previousButtonDisabledValue: false,
+        // response: {}
     }),
 
-    handleSubmit: (values, { props, setSubmitting }) => {
-        alert(JSON.stringify(values, null, 2))
+    handleSubmit: (values, { resetForm, props, setStatus, setSubmitting }) => {
+        // alert(JSON.stringify(values, null, 2))
+        // console.log(values);
 
-        // console.log(props.getBooks(values.query, values.startIndex, values.maxResults, values.type, values.filter, values.printType, values.language));
+        getBooks(
+            values.query,
+            values.startIndex,
+            values.maxResults,
+            values.type,
+            values.filter,
+            values.printType,
+            values.language,
+            values.previousButtonDisabledValue,
+            values.displayDisabledValue,
+            values.buttonType)
+            .then((res) => {
+                console.log('dads', res);
+                props.onSuccess(res.data.items);
 
-        props.hello()
+                // setStatus({ girafe: res.data.items })
+            })
+            .catch()
 
+        // resetForm()
         setSubmitting(false)
     }
 })
 
 const MyEnhancedForm = formikEnhancer(SearchForm);
+
+
+const makeQuery = (query, newStartIndex, maxResults, type, filter, printType, language) => {
+    /** 
+     * Create query url based on the query input and the filter parameters.
+     * @param {string} query - The user input query.
+     * @param {string} newStartIndex - The new start index for paging.
+     * @return {string} full query URL.
+     */
+    var fullUrl = `https://www.googleapis.com/books/v1/volumes?q=`
+        + query
+        + `&maxResults=` + maxResults
+        + `&startIndex=` + newStartIndex
+        + `&orderBy=` + type;
+    if (filter !== 'all') {
+        fullUrl = fullUrl + `&filter=` + filter;
+    }
+    if (printType !== 'all') {
+        fullUrl = fullUrl + `&printType=` + printType;
+    }
+    if (language !== 'all') {
+        fullUrl = fullUrl + `&langRestrict=` + language;
+    }
+    return fullUrl
+}
+
+const sendRequest = (query, newStartIndex, maxResults, type, filter, printType, language, displayDisabledValue, previousButtonDisabledValue) => {
+    /**
+     * Send the AJAX request using Google API, and update the state.
+     * @param {string} query - The user input query.
+     * @param {string} buttonType - Selector to distinguish if the user use the search, previous or next button.
+     */
+    return axios.get(makeQuery(query, newStartIndex, maxResults, type, filter, printType, language))
+        .then((res) => {
+            return res
+        })
+        .catch((err) => { console.log(err); });
+}
+
+const getBooks = (query, startIndex, maxResults, type, filter, printType, language, displayDisabledValue, previousButtonDisabledValue, buttonType) => {
+    /**
+     * Redirect the API call depending the buttonType, and call the sendRequest function.
+     * @param {string} query - The user input query.
+     * @param {string} buttonType - Selector to distinguish if the user use the search, previous or next button.
+     */
+    if (buttonType === "next") {
+        let newStartIndex = parseInt(startIndex) + parseInt(maxResults);
+        return sendRequest(query, newStartIndex, maxResults, type, filter, printType, language, displayDisabledValue, previousButtonDisabledValue);
+
+    }
+    else if (buttonType === "prev") {
+        let newStartIndex = parseInt(startIndex) - parseInt(maxResults);
+        return sendRequest(query, newStartIndex, maxResults, type, filter, printType, language, displayDisabledValue, previousButtonDisabledValue);
+
+    }
+    else {
+        let newStartIndex = 0 + parseInt(maxResults);
+        return sendRequest(query, newStartIndex, maxResults, type, filter, printType, language, displayDisabledValue, previousButtonDisabledValue);
+    }
+}
+
+
+
 
 
 class Search extends Component {
@@ -58,139 +142,157 @@ class Search extends Component {
             oldStartIndex: 0,
             displayDisabled: false,
             previousButtonDisabled: true
-        };
-        this.handleSearchFormSubmit = this.handleSearchFormSubmit.bind(this);
-        this.handleFormChange = this.handleFormChange.bind(this);
-        this.handleToggleChange = this.handleToggleChange.bind(this);
-        this.handleSelectLanguageChange = this.handleSelectLanguageChange.bind(this);
+        }
+        // this.handleSearchFormSubmit = this.handleSearchFormSubmit.bind(this);
+        // this.handleFormChange = this.handleFormChange.bind(this);
+        // this.handleToggleChange = this.handleToggleChange.bind(this);
+        // this.handleSelectLanguageChange = this.handleSelectLanguageChange.bind(this);
         this.handlePreviousNext = this.handlePreviousNext.bind(this);
     }
 
-    componentDidMount() {
-        this.clearForm()
-    }
+    // state = {
+    //     title: 'Search books..',
+    //     books: [],
+    //     query: '',
+    //     type: 'relevance',
+    //     printType: 'all',
+    //     filter: 'all',
+    //     language: 'all',
+    //     maxResults: "10",
+    //     option: 'title',
+    //     startIndex: 0,
+    //     oldStartIndex: 0,
+    //     displayDisabled: false,
+    //     previousButtonDisabled: true
+    // }
+
+    // componentDidMount() {
+    //     this.clearForm()
+    // }
 
 
-    hello() {
-        console.log('this.state.maxResults')
-        console.log(this.state.maxResults)
-    }
 
-    makeQuery(query, newStartIndex) {
-        /** 
-         * Create query url based on the query input and the filter parameters.
-         * @param {string} query - The user input query.
-         * @param {string} newStartIndex - The new start index for paging.
-         * @return {string} full query URL.
-         */
-        var fullUrl = `https://www.googleapis.com/books/v1/volumes?q=`
-            + query
-            + `&maxResults=` + this.state.maxResults
-            + `&startIndex=` + newStartIndex
-            + `&orderBy=` + this.state.type;
-        if (this.state.filter !== 'all') {
-            fullUrl = fullUrl + `&filter=` + this.state.filter;
-        }
-        if (this.state.printType !== 'all') {
-            fullUrl = fullUrl + `&printType=` + this.state.printType;
-        }
-        if (this.state.language !== 'all') {
-            fullUrl = fullUrl + `&langRestrict=` + this.state.language;
-        }
-        return fullUrl
-    }
+    // hello() {
+    //     console.log('this.state.maxResults')
+    //     console.log(this.state)
+    // }
 
-    sendRequest(newStartIndex, query, displayDisabledValue, previousButtonDisabledValue) {
-        /**
-         * Send the AJAX request using Google API, and update the state.
-         * @param {string} query - The user input query.
-         * @param {string} buttonType - Selector to distinguish if the user use the search, previous or next button.
-         */
-        axios.get(this.makeQuery(query, newStartIndex))
-            .then((res) => {
-                this.setState({
-                    books: res.data.items,
-                    startIndex: newStartIndex,
-                    displayDisabled: displayDisabledValue,
-                    previousButtonDisabled: previousButtonDisabledValue
-                });
-            })
-            .catch((err) => { console.log(err); });
-    }
+    // makeQuery(query, newStartIndex, maxResults, type, filter, printType, language) {
+    //     /** 
+    //      * Create query url based on the query input and the filter parameters.
+    //      * @param {string} query - The user input query.
+    //      * @param {string} newStartIndex - The new start index for paging.
+    //      * @return {string} full query URL.
+    //      */
+    //     var fullUrl = `https://www.googleapis.com/books/v1/volumes?q=`
+    //         + query
+    //         + `&maxResults=` + maxResults
+    //         + `&startIndex=` + newStartIndex
+    //         + `&orderBy=` + type
+    //     if (filter !== 'all') {
+    //         fullUrl = fullUrl + `&filter=` + filter
+    //     }
+    //     if (printType !== 'all') {
+    //         fullUrl = fullUrl + `&printType=` + printType
+    //     }
+    //     if (language !== 'all') {
+    //         fullUrl = fullUrl + `&langRestrict=` + language
+    //     }
+    //     return fullUrl
+    // }
 
-    getBooks(query, buttonType) {
-        /**
-         * Redirect the the API call depending the buttonType, and call the sendRequest function.
-         * @param {string} query - The user input query.
-         * @param {string} buttonType - Selector to distinguish if the user use the search, previous or next button.
-         */
-        if (buttonType === "next") {
-            let newStartIndex = parseInt(this.state.startIndex) + parseInt(this.state.maxResults);
-            this.sendRequest(newStartIndex, query, true, false);
+    // sendRequest(query, newStartIndex, maxResults, type, filter, printType, language, displayDisabledValue, previousButtonDisabledValue) {
+    //     /**
+    //      * Send the AJAX request using Google API, and update the state.
+    //      * @param {string} query - The user input query.
+    //      * @param {string} buttonType - Selector to distinguish if the user use the search, previous or next button.
+    //      */
+    //     axios.get(this.makeQuery(query, newStartIndex, maxResults, type, filter, printType, language))
+    //         .then((res) => {
+    //             // console.log(res)
+    //             console.log('displayDisabledValue:', displayDisabledValue)
+    //             console.log('previousButtonDisabledValue:', previousButtonDisabledValue)
+    //             return res
+    //         })
+    //         .catch((err) => { console.log(err); })
+    // }
 
-        }
-        else if (buttonType === "prev") {
-            let newStartIndex = parseInt(this.state.startIndex) - parseInt(this.state.maxResults);
-            this.sendRequest(newStartIndex, query, true, false);
+    // getBooks(query, startIndex, maxResults, type, filter, printType, language, displayDisabledValue, previousButtonDisabledValue, buttonType) {
+    //     /**
+    //      * Redirect the API call depending the buttonType, and call the sendRequest function.
+    //      * @param {string} query - The user input query.
+    //      * @param {string} buttonType - Selector to distinguish if the user use the search, previous or next button.
+    //      */
+    //     if (buttonType === "next") {
+    //         let newStartIndex = parseInt(startIndex) + parseInt(maxResults);
+    //         return sendRequest(query, newStartIndex, maxResults, type, filter, printType, language, displayDisabledValue, previousButtonDisabledValue);
 
-        }
-        else {
-            let newStartIndex = 0 + parseInt(this.state.maxResults);
-            this.sendRequest(newStartIndex, query, true, true);
-        }
-    }
+    //     }
+    //     else if (buttonType === "prev") {
+    //         let newStartIndex = parseInt(startIndex) - parseInt(maxResults);
+    //         this.sendRequest(query, newStartIndex, maxResults, type, filter, printType, language, displayDisabledValue, previousButtonDisabledValue);
 
-    clearForm() {
-        /**
-         * Clear the form.
-         */
-        this.setState({
-            query: '',
-            startIndex: 0
-        });
-    }
+    //     }
+    //     else {
+    //         let newStartIndex = 0 + parseInt(maxResults);
+    //         this.sendRequest(query, newStartIndex, maxResults, type, filter, printType, language, displayDisabledValue, previousButtonDisabledValue);
+    //     }
+    // }
 
-    handleFormChange(event) {
-        /**
-         * Update the state for every input in the form field.
-         * @param {object} event - Carry the name and the value in the form field.
-         */
-        let obj = this.state; // can't do this.state[event.target.name]
-        obj[event.target.name] = event.target.value;
-        this.setState(obj); // update the state with the whole new state obj
-    }
 
-    handleSearchFormSubmit(event) {
-        /**
-         * Submit the query to the getBook() function.
-         * @param {object} event
-         */
-        event.preventDefault();
-        let query;
-        query = this.state.query;
-        this.getBooks(query);
-    }
 
-    handleToggleChange(event) {
-        /**
-         * Update the value of the event target state.
-         * @param {object} event - Carry the name and the value from the toggle button.
-         */
-        event.preventDefault();
-        let obj = this.state;
-        obj[event.target.name] = String(event.target.value);
-        this.setState(obj);
-    }
 
-    handleSelectLanguageChange(eventKey) {
-        /**
-         * Update the value of the language state.
-         * @param {object} eventKey - Value of the dropdown button.
-         */
-        this.setState({
-            language: eventKey
-        });
-    }
+    // clearForm() {
+    //     /**
+    //      * Clear the form.
+    //      */
+    //     this.setState({
+    //         query: '',
+    //         startIndex: 0
+    //     });
+    // }
+
+    // handleFormChange(event) {
+    //     /**
+    //      * Update the state for every input in the form field.
+    //      * @param {object} event - Carry the name and the value in the form field.
+    //      */
+    //     let obj = this.state; // can't do this.state[event.target.name]
+    //     obj[event.target.name] = event.target.value;
+    //     this.setState(obj); // update the state with the whole new state obj
+    // }
+
+    // handleSearchFormSubmit(event) {
+    //     /**
+    //      * Submit the query to the getBook() function.
+    //      * @param {object} event
+    //      */
+    //     event.preventDefault();
+    //     let query;
+    //     query = this.state.query;
+    //     this.getBooks(query);
+    // }
+
+    // handleToggleChange(event) {
+    //     /**
+    //      * Update the value of the event target state.
+    //      * @param {object} event - Carry the name and the value from the toggle button.
+    //      */
+    //     event.preventDefault();
+    //     let obj = this.state;
+    //     obj[event.target.name] = String(event.target.value);
+    //     this.setState(obj);
+    // }
+
+    // handleSelectLanguageChange(eventKey) {
+    //     /**
+    //      * Update the value of the language state.
+    //      * @param {object} eventKey - Value of the dropdown button.
+    //      */
+    //     this.setState({
+    //         language: eventKey
+    //     });
+    // }
     handleSelectDownloadableChange(eventKey) {
         /**
          * Update the value of the language state.
@@ -224,42 +326,27 @@ class Search extends Component {
         }
     }
 
+    handleOnSuccess = (value) => {
+        /**
+         * Update the value of the language state.
+         * @param {object} eventKey - Value of the dropdown button.
+         */
+        console.log(this.state)
+        this.setState({ values: value })
 
+    }
 
     render() {
+        console.log('this.props.form.status22', this.props.form)
         return (
             <Fragment>
-
-
 
                 {/* SEARCH INPUT */}
                 <Jumbotron style={{ backgroundColor: 'transparent' }}>
                     <h1 style={{ color: 'white' }} className='container'>  {this.state.title} </h1>
-                    {/* <SearchForm
-                        // search
-                        query={this.state.query}
-                        handleSearchFormSubmit={this.handleSearchFormSubmit}
-                        handleFormChange={this.handleFormChange}
-
-                        type={this.state.type}
-                        printType={this.state.printType}
-                        filter={this.state.filter}
-                        language={this.state.language}
-                        maxResults={this.state.maxResults}
-                        handleToggleChange={this.handleToggleChange}
-                        handleSelectLanguageChange={this.handleSelectLanguageChange}
-                    /> */}
-
-
                     <MyEnhancedForm
-                        getBooks={this.getBooks}
-                        // optionsFilter={optionsFilter}
-                        // title={this.state.title}
-                        hello={this.hello}
+                        onSuccess={this.handleOnSuccess}
                     />
-
-
-
                 </Jumbotron>
 
 
@@ -277,8 +364,12 @@ class Search extends Component {
 
 
 
-                {/* RESULT BLOCK */}
-                <SearchResults books={this.state.books} />
+                {/* SEARCH RESULTS BLOCK */}
+                {this.state.values ?
+                    < SearchResultsBlock values={this.state.values} />
+                    : null}
+
+
 
 
 
@@ -294,7 +385,6 @@ class Search extends Component {
                         handlePreviousNext={this.handlePreviousNext}
                     />
                 </Collapse>
-
             </Fragment >
         )
     }

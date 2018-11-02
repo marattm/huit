@@ -22,7 +22,7 @@ class About extends Component {
 
     componentDidMount() {
         this.checkGoogleAPIHealth();
-        // this.checkBackendAPI();
+        // this.checkBackendAPIHealth();
     }
 
     checkGoogleAPIHealth() {
@@ -82,7 +82,7 @@ class About extends Component {
             <div className='container'>
                 <Button
                     className="btn btn-success btn-lg"
-                    onClick={(event) => this.checkGoogleAPIHealth()}
+                    onClick={() => this.checkGoogleAPIHealth()}
 
                 >
                     Check Google API Health!
