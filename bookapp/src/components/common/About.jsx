@@ -22,7 +22,7 @@ class About extends Component {
 
     componentDidMount() {
         this.checkGoogleAPIHealth();
-        this.checkBackendAPI();
+        // this.checkBackendAPI();
     }
 
     checkGoogleAPIHealth() {
