@@ -5,7 +5,7 @@ import renderer from 'react-test-renderer';
 
 import Footer from '../Footer';
 
-const author = " The Book App - Marat Tulepbayev-Monnie - 2018";
+const author = " The Book App - Marat Tulepbayev-Monnie - 2018 - ";
 
 describe('About renders properly ..', () => {
 
@@ -15,7 +15,7 @@ describe('About renders properly ..', () => {
     it('renders properly', () => {
         const element = wrapper.find('p');
         expect(element.length).toBe(1);
-        expect(element.get(0).props.children.props.children).toBe(author);
+        expect(element.get(0).props.children.props.children[0]).toBe(author);
     })
 
     it('renders a snapshot properly', () => {
