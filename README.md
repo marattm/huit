@@ -82,13 +82,21 @@ heroku open
 heroku apps:rename newname --app oldname
 ```
 
-2. Deploy whole app with backend to heorku.
+2. Deploy whole app with backend to local using docker.
+
+__NB:__ PRE-REQUISITE: docker installed, from root directory.
+
+```
+make deploy
+```
+
+3. Deploy whole app with backend to heorku.
 
 __NB:__ PRE-REQUISITE: docker installed, heroku account, heroku CLI installed, from root directory.
 
 ```
 make setup
-make deploy
+make heroku
 ```
 
 ### Makefile commands
