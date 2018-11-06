@@ -27,15 +27,15 @@ https://thebookapp.herokuapp.com/
 - [ ] Backend implementation
     - [x] Implemented a very simple Python / Flask app
     - [x] Containerized the app
-    - [ ] Improve / implement factory app pattern
+    - [x] Implement a first check health API
     - [x] Features:
         - [ ] Account, profile, etc..
         - [ ] My library functionality, etc..
         - [ ] Data processing, ML, suggestion features etc..
 - [x] Tests
     - [x] Unit testing, almost all static rendering is covered
-    - [x] Unit testing for logic, work in progress..
-    - [ ] Integration testing
+    - [x] Unit testing for logic, some done but still work to do..
+    - [ ] Continue Unit Testing & Integration testing
 - [x] Refactor
     - [x] 1st iteration of refactoring app -> better structure for testing
     - [x] 2nd iteration:
@@ -47,7 +47,8 @@ https://thebookapp.herokuapp.com/
         - [x] Features:
             - [x] Updated the API health check feature
             - [x] Changed the language selection
-            - [ ] Improve the form part of the code
+            - [x] Improve the form part of the code with Formik
+
 
 ### Getting started
 
