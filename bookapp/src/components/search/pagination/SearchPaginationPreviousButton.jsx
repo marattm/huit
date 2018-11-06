@@ -13,7 +13,7 @@ class SearchPaginationPreviousButton extends Component {
          * Disable or enable the previous button based on the startIndex &  previousButtonDisabled & displayDisabled variables.
          */
         if (this.props.displayDisabled) {
-            if (this.props.startIndex === 0 || this.props.previousButtonDisabled) {
+            if (this.props.startIndex === 0 || !this.props.previousButtonDisabled) {
                 return (
                     <Pager.Item disabled previous href="#" name="prev" onClick={this.props.handlePreviousNext}>
                         &larr; Prev {this.props.maxResults}

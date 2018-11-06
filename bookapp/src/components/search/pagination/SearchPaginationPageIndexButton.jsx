@@ -21,9 +21,15 @@ class SearchPaginationPageIndexButton extends Component {
         if (this.props.displayDisabled) {
             if (this.props.startIndex === 0) {
                 return (
-                    < Pager.Item href="#bottom">
-                        Results from {this.props.startIndex}
-                    </Pager.Item >
+                    <OverlayTrigger
+                        trigger={['hover', 'focus']}
+                        placement="top"
+                        overlay={this.popoverHoverFocus}
+                    >
+                        < Pager.Item href="#bottom">
+                            Results from {this.props.startIndex} to {this.props.maxResults}
+                        </Pager.Item >
+                    </OverlayTrigger>
                 )
             } else {
                 return (
@@ -33,7 +39,7 @@ class SearchPaginationPageIndexButton extends Component {
                         overlay={this.popoverHoverFocus}
                     >
                         < Pager.Item href="#bottom">
-                            Results up to {this.props.startIndex}
+                            Results from {this.props.startIndex} to {this.props.startIndex + parseInt(this.props.maxResults)}
                         </Pager.Item >
                     </OverlayTrigger>
                 )
@@ -48,9 +54,15 @@ class SearchPaginationPageIndexButton extends Component {
         if (this.props.displayDisabled) {
             if (this.props.startIndex === 0) {
                 return (
-                    < Pager.Item id='bottom' href="#top">
-                        Results from {this.props.startIndex}
-                    </Pager.Item >
+                    <OverlayTrigger
+                        trigger={['hover', 'focus']}
+                        placement="bottom"
+                        overlay={this.popoverHoverFocus}
+                    >
+                        < Pager.Item id='bottom' href="#top">
+                            Results from {this.props.startIndex} to {this.props.maxResults}
+                        </Pager.Item >
+                    </OverlayTrigger>
                 )
             } else {
                 return (
@@ -60,7 +72,7 @@ class SearchPaginationPageIndexButton extends Component {
                         overlay={this.popoverHoverFocus}
                     >
                         < Pager.Item id='bottom' href="#top">
-                            Results up to {this.props.startIndex}
+                            Results from {this.props.startIndex - parseInt(this.props.maxResults)} to {this.props.startIndex}
                         </Pager.Item >
                     </OverlayTrigger>
                 )

@@ -44,6 +44,8 @@ class SearchResults extends Component {
     render() {
         return (
             <div className='container'>
+                {console.log('SearchResults: ', this.props)
+                }
                 {this.props.books ?
                     this.props.books.map((book) => {
                         return (

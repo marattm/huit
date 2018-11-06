@@ -4,11 +4,11 @@ import { Jumbotron, Collapse } from 'react-bootstrap';
 import { withFormik } from 'formik';
 
 import SearchForm from "./SearchForm.withFormik";
-import SearchPagination from './pagination/SearchPagination';
-import SearchResultsBlock from './SearchResultsBlock.withFormik';
+import SearchPagination from '../pagination/SearchPagination';
+import SearchResults from './SearchResults.withFormik';
 
 
-import { validationSearch } from "../../services/validation.schemas.service";
+import { validationSearch } from "../../../services/validation.schemas.service";
 
 
 const formikEnhancer = withFormik({
@@ -28,6 +28,7 @@ const formikEnhancer = withFormik({
     }),
 
     handleSubmit: (values, { resetForm, props, setSubmitting }) => {
+        console.log('dads0', values.startIndex);
         getBooks(
             values.query,
             values.startIndex,
@@ -38,7 +39,7 @@ const formikEnhancer = withFormik({
             values.language,
             values.buttonType)
             .then((res) => {
-                console.log('dads', values.startIndex);
+                console.log('dads', values.startIndex)
                 props.onSuccess({
                     res,
                     queryData: {
@@ -51,9 +52,10 @@ const formikEnhancer = withFormik({
                         language: values.language
                     }
                 })
-                // setStatus({ girafe: res.data.items })
             })
             .catch((err) => { console.log(err) })
+        console.log('dads2', values.startIndex);
+
         resetForm()
         setSubmitting(false)
     }
@@ -113,15 +115,19 @@ const getBooks = (query, startIndex, maxResults, type, filter, printType, langua
      * @param {string} buttonType - Selector to distinguish if the user use the search, previous or next button.
      */
     if (buttonType === "next") {
-        let newStartIndex = parseInt(startIndex) + parseInt(maxResults);
-        return sendRequest(query, newStartIndex, maxResults, type, filter, printType, language, true, false);
+        return sendRequest(query, startIndex, maxResults, type, filter, printType, language, true, false);
     }
     else if (buttonType === "prev") {
-        let newStartIndex = parseInt(startIndex) - parseInt(maxResults);
-        return sendRequest(query, newStartIndex, maxResults, type, filter, printType, language, true, false);
+        var newPreviousButtonDisabledValue = false
+        if (startIndex === 0) {
+            console.log('NEGATIVE');
+            newPreviousButtonDisabledValue = true
+        }
+
+        return sendRequest(query, startIndex, maxResults, type, filter, printType, language, true, newPreviousButtonDisabledValue);
     }
     else {
-        let newStartIndex = 0 + parseInt(maxResults);
+        let newStartIndex = 0;
         return sendRequest(query, newStartIndex, maxResults, type, filter, printType, language, true, true);
     }
 }
@@ -144,7 +150,6 @@ class Search extends Component {
             maxResults: "10",
             option: 'title',
             startIndex: 0,
-            oldStartIndex: 0,
             displayDisabled: false,
             previousButtonDisabled: true
         }
@@ -154,9 +159,37 @@ class Search extends Component {
 
 
 
+    handleNextButtonBehavior() {
+        let newStartIndex2 = this.state.startIndex + parseInt(this.state.maxResults);
+        // console.log('handleNextButtonBehavior > newStartIndex2', newStartIndex2);
+        getBooks(this.state.query, newStartIndex2, this.state.maxResults, this.state.type, this.state.filter, this.state.printType, this.state.language, "next")
+            .then((res) => {
+                // console.log('handleNextButtonBehavior > dads', res);
+                this.setState({
+                    values: res.res.data.items
+                })
+            })
+            .catch((err) => { console.log(err); });
+        this.setState({
+            startIndex: newStartIndex2
+        });
+    }
 
-
-
+    handlePreviousButtonBehavior() {
+        let newStartIndex = Math.abs(this.state.startIndex - parseInt(this.state.maxResults));
+        getBooks(this.state.query, newStartIndex, this.state.maxResults, this.state.type, this.state.filter, this.state.printType, this.state.language, "prev")
+            .then((res) => {
+                console.log('dads', res);
+                this.setState({
+                    values: res.res.data.items
+                })
+            })
+            .catch((err) => { console.log(err); });
+        console.log('apres next', this.state.values)
+        this.setState({
+            startIndex: newStartIndex
+        });
+    }
 
     handlePreviousNext(event) {
         /**
@@ -164,53 +197,10 @@ class Search extends Component {
          * @param {object} event - Carry the target name, either prev or next.
          */
         if (event.target.name === "next") {
-            console.log('this.state.maxResults', this.state.maxResults);
-            console.log('this.state.startIndex', this.state.startIndex);
-
-            getBooks(this.state.query, this.state.startIndex, this.state.maxResults, this.state.type, this.state.filter, this.state.printType, this.state.language, "next")
-                .then((res) => {
-                    console.log('dads', res);
-                    this.setState({
-                        values: res.res.data.items
-                        // startIndex: value.queryData.startIndex
-                    })
-                    // setStatus({ girafe: res.data.items })
-                })
-                .catch((err) => { console.log(err); });
-            console.log('apres next', this.state.values)
-
-
-
-            let newStartIndex = this.oldStartIndex + parseInt(this.state.maxResults);
-            // let newStartIndex = this.state.oldStartIndex + parseInt(this.state.maxResults);
-            this.setState({
-                oldStartIndex: newStartIndex,
-                startIndex: newStartIndex
-
-            });
-            console.log('this.state.oldStartIndex1', this.state.oldStartIndex);
-            console.log('this.state.startIndex1', this.state.startIndex);
-
+            this.handleNextButtonBehavior()
         }
         if (event.target.name === "prev") {
-            if (this.state.startIndex >= this.state.maxResults) {
-                getBooks(this.state.query, this.state.startIndex, this.state.maxResults, this.state.type, this.state.filter, this.state.printType, this.state.language, "prev").then((res) => {
-                    console.log('dads', res);
-                    this.setState({
-                        values: res.res.data.items
-                        // startIndex: value.queryData.startIndex
-                    })
-                    // setStatus({ girafe: res.data.items })
-                })
-                    .catch((err) => { console.log(err); });
-                console.log('apres next', this.state.values)
-                let newStartIndex = Math.abs(0 - parseInt(this.state.maxResults));
-                this.setState({
-                    oldStartIndex: newStartIndex,
-                    startIndex: newStartIndex
-
-                });
-            }
+            this.handlePreviousButtonBehavior()
         }
     }
 
@@ -268,7 +258,7 @@ class Search extends Component {
 
                 {/* SEARCH RESULTS BLOCK */}
                 {this.state.values ?
-                    < SearchResultsBlock values={this.state.values} />
+                    < SearchResults books={this.state.values} />
                     : null}
 
 

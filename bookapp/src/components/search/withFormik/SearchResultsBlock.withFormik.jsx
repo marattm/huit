@@ -5,7 +5,7 @@ import { Collapse } from 'react-bootstrap';
 
 
 import SearchResults from './SearchResults.withFormik';
-import SearchPagination from './pagination/SearchPagination';
+import SearchPagination from '../pagination/SearchPagination';
 
 
 

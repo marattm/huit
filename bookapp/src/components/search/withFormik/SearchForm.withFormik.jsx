@@ -2,11 +2,11 @@ import React, { Component } from 'react';
 import { Form, InputGroup, FormControl, Button, Glyphicon, Alert, Collapse } from 'react-bootstrap';
 
 
-import FilterOptions from './filters.withFormik/SearchFilterOptions.withFormik';
-import SearchResultsBlock from './SearchResultsBlock.withFormik';
+import FilterOptions from '../filters/filters.withFormik/SearchFilterOptions.withFormik';
 
 
-import { placeholder } from '../../utils';
+
+import { placeholder } from '../../../utils';
 
 class SearchForm extends Component {
     constructor(props) {

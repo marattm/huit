@@ -27,6 +27,7 @@ class SearchPagination extends Component {
                         bot={this.props.bot}
                         displayDisabled={this.props.displayDisabled}
                         startIndex={this.props.startIndex}
+                        maxResults={this.props.maxResults}
                     />
                     <SearchPaginationNextButton
                         displayDisabled={this.props.displayDisabled}
