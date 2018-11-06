@@ -69,17 +69,5 @@ describe('About Component behavior', () => {
     })
 
 
-
-
-    it('fetches async counters', () => {
-        const wrapper = shallow(<About />)
-
-        expect(wrapper.state().healthData).toEqual(healthDataBefore)
-
-        promise.then(() => {
-            expect(wrapper.state().healthData).toEqual(healthDataAfter)
-        })
-    })
-
 })
 

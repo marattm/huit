@@ -121,7 +121,7 @@ describe('SearchPaginationPreviousButton renders properly', () => {
             expect(element.get(0).props.children.props.children[0]).toBe("← Prev ");
             expect(element.get(0).props.children.props.children[1]).toBe(props.maxResults);
             expect(element.get(0).props.children.props.name).toBe('prev');
-            expect(element.get(0).props.children.props.disabled).toBe(false); // meaning disabled button
+            expect(element.get(0).props.children.props.disabled).toBe(true); // meaning disabled button
         })
     });
     describe(" CASE 7: displayDisabled=true & previousButtonDisabled=true & startIndex=0 & maxResults=10", () => {
@@ -155,7 +155,7 @@ describe('SearchPaginationPreviousButton renders properly', () => {
             expect(element.get(0).props.children.props.children[0]).toBe("← Prev ");
             expect(element.get(0).props.children.props.children[1]).toBe(props.maxResults);
             expect(element.get(0).props.children.props.name).toBe('prev');
-            expect(element.get(0).props.children.props.disabled).toBe(true); // meaning disabled button
+            expect(element.get(0).props.children.props.disabled).toBe(false); // meaning disabled button
         })
     });
 
