@@ -75,12 +75,6 @@ class SearchForm extends Component {
                         </div>
                     </Collapse>
                 </Form>
-
-                {/* SEARCH RESULTS BLOCK */}
-                {/* <SearchResultsBlock
-                    values={values}
-                /> */}
-
             </div>
         )
     }

@@ -28,7 +28,6 @@ const formikEnhancer = withFormik({
     }),
 
     handleSubmit: (values, { resetForm, props, setSubmitting }) => {
-        console.log('dads0', values.startIndex);
         getBooks(
             values.query,
             values.startIndex,
@@ -39,7 +38,6 @@ const formikEnhancer = withFormik({
             values.language,
             values.buttonType)
             .then((res) => {
-                console.log('dads', values.startIndex)
                 props.onSuccess({
                     res,
                     queryData: {
@@ -54,8 +52,6 @@ const formikEnhancer = withFormik({
                 })
             })
             .catch((err) => { console.log(err) })
-        console.log('dads2', values.startIndex);
-
         resetForm()
         setSubmitting(false)
     }
@@ -120,7 +116,6 @@ const getBooks = (query, startIndex, maxResults, type, filter, printType, langua
     else if (buttonType === "prev") {
         var newPreviousButtonDisabledValue = false
         if (startIndex === 0) {
-            console.log('NEGATIVE');
             newPreviousButtonDisabledValue = true
         }
 
@@ -151,7 +146,8 @@ class Search extends Component {
             option: 'title',
             startIndex: 0,
             displayDisabled: false,
-            previousButtonDisabled: true
+            previousButtonDisabled: true,
+            searchMode: false
         }
         this.handlePreviousNext = this.handlePreviousNext.bind(this);
     }
@@ -161,10 +157,8 @@ class Search extends Component {
 
     handleNextButtonBehavior() {
         let newStartIndex2 = this.state.startIndex + parseInt(this.state.maxResults);
-        // console.log('handleNextButtonBehavior > newStartIndex2', newStartIndex2);
         getBooks(this.state.query, newStartIndex2, this.state.maxResults, this.state.type, this.state.filter, this.state.printType, this.state.language, "next")
             .then((res) => {
-                // console.log('handleNextButtonBehavior > dads', res);
                 this.setState({
                     values: res.res.data.items
                 })
@@ -210,8 +204,6 @@ class Search extends Component {
          * Update the general state.
          * @param {object} eventKey - Value of the dropdown button.
          */
-        console.log('return values from getbook on succes', value)
-
         this.setState({
             values: value.res.res.data.items,
             displayDisabled: value.res.displayDisabledValue,
@@ -223,7 +215,8 @@ class Search extends Component {
             type: value.queryData.type,
             filter: value.queryData.filter,
             printType: value.queryData.printType,
-            language: value.queryData.language
+            language: value.queryData.language,
+            searchMode: true
         })
         console.log('apres', this.state)
     }
@@ -244,31 +237,9 @@ class Search extends Component {
 
 
                 {/* PAGINATION TOP */}
-                <SearchPagination
-                    bot={false}
-                    displayDisabled={this.state.displayDisabled}
-                    startIndex={this.state.startIndex}
-                    previousButtonDisabled={this.state.previousButtonDisabled}
-                    query={this.state.query}
-                    maxResults={this.state.maxResults}
-                    handlePreviousNext={this.handlePreviousNext}
-                />
-
-
-
-                {/* SEARCH RESULTS BLOCK */}
                 {this.state.values ?
-                    < SearchResults books={this.state.values} />
-                    : null}
-
-
-
-
-
-                {/* PAGINATION BOTTOM */}
-                <Collapse in={this.state.displayDisabled}>
                     <SearchPagination
-                        bot={true}
+                        bot={false}
                         displayDisabled={this.state.displayDisabled}
                         startIndex={this.state.startIndex}
                         previousButtonDisabled={this.state.previousButtonDisabled}
@@ -276,7 +247,37 @@ class Search extends Component {
                         maxResults={this.state.maxResults}
                         handlePreviousNext={this.handlePreviousNext}
                     />
-                </Collapse>
+                    : null}
+
+
+
+
+                {/* SEARCH RESULTS BLOCK */}
+                {this.state.searchMode ?
+                    < SearchResults
+                        books={this.state.values}
+                    />
+                    : null}
+
+
+
+
+
+                {/* PAGINATION BOTTOM */}
+                {this.state.values ?
+                    <Collapse in={this.state.displayDisabled}>
+                        <SearchPagination
+                            bot={true}
+                            displayDisabled={this.state.displayDisabled}
+                            startIndex={this.state.startIndex}
+                            previousButtonDisabled={this.state.previousButtonDisabled}
+                            query={this.state.query}
+                            maxResults={this.state.maxResults}
+                            handlePreviousNext={this.handlePreviousNext}
+                        />
+                    </Collapse>
+                    : null}
+
             </Fragment >
         )
     }

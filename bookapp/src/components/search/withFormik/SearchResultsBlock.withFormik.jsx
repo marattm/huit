@@ -16,36 +16,18 @@ class SearchResultsBlock extends Component {
 
     constructor(props) {
         super(props);
-        this.state = {
-            title: 'Search books..',
-            books: [],
-            queryData: {
-                query: '',
-                type: 'relevance',
-                printType: 'all',
-                filter: 'all',
-                language: 'all',
-                maxResults: "10",
-            },
-            option: 'title',
-            startIndex: 0,
-            oldStartIndex: 0,
-            displayDisabled: false,
-            previousButtonDisabled: true,
-            nextStateOpen: false
-        };
+        this.state = {}
     }
 
 
 
     render() {
-        console.log('this.props.form.status', this.props.values)
         return (
             <Fragment>
 
 
                 {/* PAGINATION TOP */}
-                <SearchPagination
+                {/* <SearchPagination
                     bot={false}
                     displayDisabled={this.state.displayDisabled}
                     startIndex={this.state.startIndex}
@@ -53,7 +35,7 @@ class SearchResultsBlock extends Component {
                     query={this.state.query}
                     maxResults={this.state.maxResults}
                     handlePreviousNext={this.handlePreviousNext}
-                />
+                /> */}
 
 
 
@@ -63,7 +45,7 @@ class SearchResultsBlock extends Component {
 
 
                 {/* PAGINATION BOTTOM */}
-                <Collapse in={this.state.displayDisabled}>
+                {/* <Collapse in={this.state.displayDisabled}>
                     <SearchPagination
                         bot={true}
                         displayDisabled={this.state.displayDisabled}
@@ -73,7 +55,7 @@ class SearchResultsBlock extends Component {
                         maxResults={this.state.maxResults}
                         handlePreviousNext={this.handlePreviousNext}
                     />
-                </Collapse>
+                </Collapse> */}
 
             </Fragment >
         )

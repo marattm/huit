@@ -44,8 +44,6 @@ class SearchResults extends Component {
     render() {
         return (
             <div className='container'>
-                {console.log('SearchResults: ', this.props)
-                }
                 {this.props.books ?
                     this.props.books.map((book) => {
                         return (
@@ -81,7 +79,7 @@ class SearchResults extends Component {
                             </PanelGroup>
                         )
                     })
-                    : <p style={{ color: 'white' }}>No results</p>}
+                    : <p style={{ color: 'white', textAlign: 'center' }}><em><strong>No result.</strong></em></p>}
             </div>
         )
     }
