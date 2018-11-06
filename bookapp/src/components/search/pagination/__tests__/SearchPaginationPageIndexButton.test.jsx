@@ -144,7 +144,7 @@ describe('SearchPaginationPageIndexButton renders properly', () => {
             let element = searchPaginationPageIndexButton().find('li');
             expect(element.length).toBe(1);
             expect(element.get(0).props.children.props.children[0]).toBe("Results from ");
-            expect(element.get(0).props.children.props.children[3]).toBe(props.startIndex);
+            expect(element.get(0).props.children.props.children[1]).toBe(props.startIndex);
             expect(element.get(0).props.children.props.href).toBe('#top');
             expect(element.get(0).props.children.props.disabled).toBe(false);
         })

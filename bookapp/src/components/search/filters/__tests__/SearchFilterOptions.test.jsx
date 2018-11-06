@@ -10,7 +10,7 @@ import SearchFilterOptionsLanguage from '../SearchFilterOptionsLanguage';
 import SearchFilterOptionsType from '../SearchFilterOptionsType';
 import SearchFilterOptionsMaxResults from '../SearchFilterOptionsMaxResults';
 
-import { parameters, titles } from '../../../../utils';
+import { parameters, titles } from '../../../../services/utils';
 
 
 describe('SearchFilterOptions renders properly', () => {

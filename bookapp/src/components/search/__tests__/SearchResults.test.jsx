@@ -3,7 +3,7 @@ import { mount } from 'enzyme';
 
 import SearchResults from '../SearchResults';
 
-import { collection } from '../../../utils'
+import { collection } from '../../../services/utils'
 
 describe('SearchResults renders properly', () => {
 

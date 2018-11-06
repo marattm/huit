@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import { FormGroup, ControlLabel, FormControl } from 'react-bootstrap';
 
-import { parameters } from '../../../../utils';
+import { parameters } from '../../../../services/utils';
 
 class SearchFilterOptionsLanguage extends Component {
     constructor(props) {

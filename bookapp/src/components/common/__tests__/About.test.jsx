@@ -6,7 +6,7 @@ import axios from 'axios';
 
 import About from '../About';
 
-import { googleAPICallResult } from '../../../utils';
+import { googleAPICallResult } from '../../../services/utils';
 
 describe('About renders properly ..', () => {
 

@@ -3,7 +3,7 @@ import { Form, FormGroup, InputGroup, FormControl, Button, Glyphicon } from 'rea
 
 import FilterOptions from './filters/SearchFilterOptions';
 
-import { placeholder } from '../../utils';
+import { placeholder } from '../../services/utils';
 
 class SearchForm extends Component {
     constructor(props) {

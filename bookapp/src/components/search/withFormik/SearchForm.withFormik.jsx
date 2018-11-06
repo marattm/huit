@@ -6,7 +6,7 @@ import FilterOptions from '../filters/filters.withFormik/SearchFilterOptions.wit
 
 
 
-import { placeholder } from '../../../utils';
+import { placeholder } from '../../../services/utils';
 
 class SearchForm extends Component {
     constructor(props) {
@@ -24,9 +24,7 @@ class SearchForm extends Component {
             isSubmitting,
             handleChange,
             handleBlur,
-            handleSubmit,
-            // handleReset,
-            // dirty
+            handleSubmit
         } = this.props;
 
         return (

@@ -79,7 +79,7 @@ class SearchResults extends Component {
                             </PanelGroup>
                         )
                     })
-                    : <p style={{ color: 'white', textAlign: 'center' }}><em><strong>No result.</strong></em></p>}
+                    : null}
             </div>
         )
     }
