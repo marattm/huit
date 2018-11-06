@@ -8,11 +8,11 @@ class NavBar extends Component {
         this.state = {
             title: 'The Book App',
         };
-    };
+    }
 
     render() {
-        return(
-            <Navbar inverse collapseOnSelect >
+        return (
+            <Navbar inverse collapseOnSelect>
                 <Navbar.Header>
                     <Navbar.Brand>
                         <LinkContainer to="/">
@@ -41,7 +41,7 @@ class NavBar extends Component {
                 </Navbar.Collapse>
             </Navbar>
         )
-    };
+    }
 }
 
 export default NavBar;

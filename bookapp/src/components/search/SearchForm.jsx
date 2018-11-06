@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import { Form, FormGroup, InputGroup, FormControl, Button, Glyphicon} from 'react-bootstrap';
+import { Form, FormGroup, InputGroup, FormControl, Button, Glyphicon } from 'react-bootstrap';
 
-import FilterOptions from './SearchFilterOptions';
+import FilterOptions from './filters/SearchFilterOptions';
 
+import { placeholder } from '../../services/utils';
 
 class SearchForm extends Component {
     constructor(props) {
@@ -10,11 +11,7 @@ class SearchForm extends Component {
         this.state = {
             open: true,
         }
-    };
-
-    componentDidMount() {
-        this.render();
-    };
+    }
 
     render() {
         const {
@@ -28,11 +25,11 @@ class SearchForm extends Component {
             handleToggleChange,
             handleSelectLanguageChange
         } = this.props;
-        
+
         return (
-            <div>
+            <div className='container'>
                 {/* SEARCH BLOCK */}
-                <Form onSubmit={(event) => this.props.handleSearchFormSubmit(event)}>
+                <Form onSubmit={(event) => { this.props.handleSearchFormSubmit(event) }}>
                     <FormGroup>
                         <InputGroup>
                             <InputGroup.Button>
@@ -41,15 +38,15 @@ class SearchForm extends Component {
                                 </Button>
                             </InputGroup.Button>
 
-                            <FormControl 
+                            <FormControl
                                 name="query"
                                 className="form-control input"
                                 type="text"
-                                placeholder="Al Gore.."
+                                placeholder={placeholder[0] + '..'}
                                 required
                                 value={query}
                                 onChange={handleFormChange}
-                                    />
+                            />
                             <InputGroup.Button>
                                 <Button
                                     type="submit"
@@ -60,22 +57,23 @@ class SearchForm extends Component {
                             </InputGroup.Button>
                         </InputGroup>
                     </FormGroup>
+
+                    {/* FILTER BLOCK */}
+                    <FilterOptions
+                        open={this.state.open}
+                        type={type}
+                        printType={printType}
+                        filter={filter}
+                        language={language}
+                        maxResults={maxResults}
+                        handleToggleChange={handleToggleChange}
+                        handleSelectLanguageChange={handleSelectLanguageChange}
+                    />
                 </Form>
 
-                {/* FILTER BLOCK */}
-                <FilterOptions
-                    open={this.state.open}
-                    type={type}
-                    printType={printType}
-                    filter={filter}
-                    language={language}
-                    maxResults={maxResults}
-                    handleToggleChange={handleToggleChange}
-                    handleSelectLanguageChange={handleSelectLanguageChange}
-                />
             </div>
         )
-    };
+    }
 }
 
 

@@ -20,21 +20,35 @@ https://thebookapp.herokuapp.com/
     - [x] Display the result with a thumbnail, title, publisher and date information
     - [x] Display the result with extra information
     - [ ] Highlight the result with the term of the query searched
-    - [ ] Enhanced UI
+    - [x] Enhanced UI
         - [x] Local storage saved state
-        - [ ] Better design
-        - [ ] More responsive
+        - [x] Better design
+        - [x] More responsive
 - [ ] Backend implementation
-    - [ ] Account, profile, etc..
-    - [ ] My library functionality, etc..
-    - [ ] Data processing, ML, suggestion features etc..
+    - [x] Implemented a very simple Python / Flask app
+    - [x] Containerized the app
+    - [x] Implement a first check health API
+    - [x] Features:
+        - [ ] Account, profile, etc..
+        - [ ] My library functionality, etc..
+        - [ ] Data processing, ML, suggestion features etc..
 - [x] Tests
     - [x] Unit testing, almost all static rendering is covered
-    - [ ] Unit testing for logic, work in progress..
-    - [ ] Integration testing
+    - [x] Unit testing for logic, some done but still work to do..
+    - [ ] Continue Unit Testing & Integration testing
 - [x] Refactor
     - [x] 1st iteration of refactoring app -> better structure for testing
-    - [ ] ...
+    - [x] 2nd iteration:
+        - [x] General housekeeping and code DRYing
+        - [x] Removed the local storage save of actual research -> not useful at all.. (hydrateStateWithLocalStorage and saveStateToLocalStorage functions)
+        - [x] SRP applied as most as possible
+            - [x] Reduce large functions and large components
+        - [x] Improved UI
+        - [x] Features:
+            - [x] Updated the API health check feature
+            - [x] Changed the language selection
+            - [x] Improve the form part of the code with Formik
+
 
 ### Getting started
 
@@ -52,6 +66,10 @@ npm test --verbose
 
 ### Deployment
 
+1. Deploy react app
+
+__NB:__ PRE-REQUISITE: heroku account, heroku CLI installed.
+
 ```
 cd bookapp/
 heroku login
@@ -62,4 +80,35 @@ git commit -m "react-create-app on Heroku"
 git push heroku master
 heroku open
 heroku apps:rename newname --app oldname
+```
+
+2. Deploy whole app with backend to heorku.
+
+__NB:__ PRE-REQUISITE: docker installed, heroku account, heroku CLI installed, from root directory.
+
+```
+make setup
+make deploy
+```
+
+### Makefile commands
+
+1. Deploy a containerized app in the localhost.
+```
+make deploy
+```
+
+2. Clean environment.
+```
+make clean
+```
+
+3. Setup heroku. (to do it one time)
+```
+make setup
+```
+
+4. Deploy the containerized app the production environment to heroku.
+```
+make heroku
 ```

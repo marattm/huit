@@ -1,6 +1,5 @@
 import React from 'react';
-import { shallow, mount } from 'enzyme';
-import renderer from 'react-test-renderer';
+import { shallow } from 'enzyme';
 
 
 import Search from '../Search';
@@ -27,9 +26,9 @@ describe('Search renders properly', () => {
         let element_searchResult = wrapper.find('SearchResults');
         expect(element_searchResult.length).toBe(1);
     })
-    it('should render Pagination component properly', () => {
+    it('should render SearchPagination component properly', () => {
         let wrapper = shallow(<Search title={title} />);
-        let element_pagination = wrapper.find('Pagination');
+        let element_pagination = wrapper.find('SearchPagination');
         expect(element_pagination.length).toBe(2);
     })
     it('should have an initial title state', () => {
@@ -78,7 +77,7 @@ describe('Search renders properly', () => {
     })
     it('should have an initial disabled state', () => {
         let wrapper = shallow(<Search title={title} />);
-        expect(wrapper.state().disabled).toBe(false);
+        expect(wrapper.state().displayDisabled).toBe(false);
     })
     it('should have an initial previousButtonDisabled state', () => {
         let wrapper = shallow(<Search title={title} />);

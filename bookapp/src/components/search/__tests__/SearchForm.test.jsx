@@ -1,20 +1,10 @@
 import React from 'react';
-import { shallow, mount } from 'enzyme';
+import { shallow } from 'enzyme';
 
 import SearchForm from '../SearchForm';
 
-
-const open = true;
-const type = 'relevance';
-const printType = 'all';
-const filter = 'all';
-const language = 'all';
-const maxResults = "10";
-
-
-
 describe('SearchForm renders properly', () => {
-    
+
     it('should render div component properly', () => {
         let wrapper = shallow(<SearchForm />)
         let element = wrapper.find('div');
