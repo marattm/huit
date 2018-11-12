@@ -89,8 +89,8 @@ describe('SearchPaginationNextButton renders properly', () => {
         })
     });
 
-    it('should render correctly', () => {
-        expect(searchPaginationNextButton()).toMatchSnapshot();
-    });
+    // it('should render correctly', () => {
+    //     expect(searchPaginationNextButton()).toMatchSnapshot();
+    // });
 
 })

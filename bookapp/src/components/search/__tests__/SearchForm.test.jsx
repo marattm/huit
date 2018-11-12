@@ -50,8 +50,8 @@ describe('SearchForm renders properly', () => {
         let wrapper = shallow(<SearchForm />);
         expect(wrapper.state().open).toBe(true);
     })
-    it('should render correctly', () => {
-        let wrapper = shallow(<SearchForm />)
-        expect(wrapper).toMatchSnapshot();
-    });
+    // it('should render correctly', () => {
+    //     let wrapper = shallow(<SearchForm />)
+    //     expect(wrapper).toMatchSnapshot();
+    // });
 })

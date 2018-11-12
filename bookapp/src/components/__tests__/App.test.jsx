@@ -20,8 +20,8 @@ describe('App', () => {
         const wrapper = shallow(<App />);
         expect(wrapper.find('Route').length).toEqual(2);
     });
-    it('should render correctly', () => {
-        const wrapper = shallow(<App />);
-        expect(wrapper).toMatchSnapshot();
-    });
+    // it('should render correctly', () => {
+    //     const wrapper = shallow(<App />);
+    //     expect(wrapper).toMatchSnapshot();
+    // });
 });

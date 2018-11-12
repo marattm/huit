@@ -189,8 +189,8 @@ describe('SearchFilterOptions renders properly', () => {
 
 
 
-    it('should render correctly', () => {
-        let wrapper = shallow(<SearchFilterOptions />)
-        expect(wrapper).toMatchSnapshot()
-    })
+    // it('should render correctly', () => {
+    //     let wrapper = shallow(<SearchFilterOptions />)
+    //     expect(wrapper).toMatchSnapshot()
+    // })
 })

@@ -36,10 +36,10 @@ describe('About renders properly ..', () => {
         expect(About.prototype.componentDidMount.calledOnce).toBe(true);
     });
 
-    it('renders a snapshot properly', () => {
-        const tree = renderer.create(<About />).toJSON();
-        expect(tree).toMatchSnapshot();
-    })
+    // it('renders a snapshot properly', () => {
+    //     const tree = renderer.create(<About />).toJSON();
+    //     expect(tree).toMatchSnapshot();
+    // })
 
 })
 
