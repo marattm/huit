@@ -21,7 +21,7 @@ before_install:
 install:
 - yarn --cwd bookapp/ install
 script:
-# - yarn --cwd bookapp/ test
+- yarn --cwd bookapp/ test
 - yarn --cwd bookapp/ build
 - docker build -t app .
 - docker tag app registry.heroku.com/$HEROKU_APP_NAME/web
