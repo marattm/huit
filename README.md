@@ -1,4 +1,5 @@
 # huit
+[![Build Status](https://travis-ci.com/marattm/huit.svg?branch=master)](https://travis-ci.com/marattm/huit)
 
 ## BookApp
 
