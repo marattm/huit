@@ -18,8 +18,8 @@ before_install:
 # login to docker registries (dockerhub + heroku) 
 - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
 install:
-- npm --cwd bookapp/ install
+- yarn --cwd bookapp/ install
 script:
-- npm -cwd bookapp/ test
-- npm --cwd bookapp/ run build
+- yarn --cwd bookapp/ test
+- yarn --cwd bookapp/ build
 - docker build -t app .
