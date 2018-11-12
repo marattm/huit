@@ -113,8 +113,8 @@ describe('SearchResults renders properly', () => {
 
 
 
-    it('should render correctly', () => {
-        expect(searchResults()).toMatchSnapshot();
-    });
+    // it('should render correctly', () => {
+    //     expect(searchResults()).toMatchSnapshot();
+    // });
 
 })
