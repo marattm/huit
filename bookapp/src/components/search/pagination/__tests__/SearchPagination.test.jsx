@@ -41,8 +41,8 @@ describe('SearchPagination renders properly', () => {
     //     expect(element.length).toBe(1);
     // })
 
-    it('should render correctly', () => {
-        expect(searchPagination()).toMatchSnapshot();
-    });
+    // it('should render correctly', () => {
+    //     expect(searchPagination()).toMatchSnapshot();
+    // });
 
 })

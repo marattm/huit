@@ -84,8 +84,8 @@ describe('Search renders properly', () => {
         expect(wrapper.state().previousButtonDisabled).toBe(true);
     })
 
-    it('should render correctly', () => {
-        let wrapper = shallow(<Search title={title} />);
-        expect(wrapper).toMatchSnapshot();
-    });
+    // it('should render correctly', () => {
+    //     let wrapper = shallow(<Search title={title} />);
+    //     expect(wrapper).toMatchSnapshot();
+    // });
 })

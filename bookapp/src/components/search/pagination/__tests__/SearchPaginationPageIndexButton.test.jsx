@@ -151,8 +151,8 @@ describe('SearchPaginationPageIndexButton renders properly', () => {
     });
 
 
-    it('should render correctly', () => {
-        expect(searchPaginationPageIndexButton()).toMatchSnapshot();
-    });
+    // it('should render correctly', () => {
+    //     expect(searchPaginationPageIndexButton()).toMatchSnapshot();
+    // });
 
 })

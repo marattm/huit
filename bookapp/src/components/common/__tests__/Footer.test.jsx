@@ -18,10 +18,10 @@ describe('About renders properly ..', () => {
         expect(element.get(0).props.children.props.children[0]).toBe(author);
     })
 
-    it('renders a snapshot properly', () => {
-        const tree = renderer.create(<Footer />).toJSON();
-        expect(tree).toMatchSnapshot();
-    })
+    // it('renders a snapshot properly', () => {
+    //     const tree = renderer.create(<Footer />).toJSON();
+    //     expect(tree).toMatchSnapshot();
+    // })
 
 })
 

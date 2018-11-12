@@ -1,0 +1,31 @@
+sudo: required
+services:
+- docker
+env:
+  DOCKER_COMPOSE_VERSION: 1.18.0
+branches:
+  only:
+  - master
+  - develop
+  - "/^(hotfix).*$/"
+  - "/^(feature).*$/"
+language: node_js
+node_js:
+- '9'
+before_install:
+# heroku cli install
+- wget -qO- https://toolbelt.heroku.com/install.sh | sh
+# login to docker registries (dockerhub + heroku) 
+- echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+- echo "$HEROKU_PASSWORD" | docker login -u "$HEROKU_USERNAME" --password-stdin registry.heroku.com
+install:
+- yarn --cwd bookapp/ install
+script:
+- yarn --cwd bookapp/ test
+- yarn --cwd bookapp/ build
+- docker build -t app .
+- docker tag app registry.heroku.com/$HEROKU_APP_NAME/web
+deploy:
+  provider: script
+  script: docker push app; docker push registry.heroku.com/$HEROKU_APP_NAME/web; heroku
+    container:release web --app $HEROKU_APP_NAME
