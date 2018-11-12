@@ -160,8 +160,8 @@ describe('SearchPaginationPreviousButton renders properly', () => {
     });
 
 
-    it('should render correctly', () => {
-        expect(searchPaginationPreviousButton()).toMatchSnapshot();
-    });
+    // it('should render correctly', () => {
+    //     expect(searchPaginationPreviousButton()).toMatchSnapshot();
+    // });
 
 })
